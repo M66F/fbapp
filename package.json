@@ -1,0 +1,19 @@
+{
+  "name": "fussballwebapp",
+  "version": "0.0.1",
+  "description": "Fußball Web Applikation mit den neusten Webtechnologien",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M66F/fbapp.git"
+  },
+  "author": "Marvin, Peter, Anna, Robert, Michael",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/M66F/fbapp/issues"
+  },
+  "homepage": "https://github.com/M66F/fbapp#readme"
+}
