@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/M66F/fbapp/issues"
   },
-  "homepage": "https://github.com/M66F/fbapp#readme"
+  "homepage": "https://github.com/M66F/fbapp#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
 }
