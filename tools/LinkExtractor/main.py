@@ -34,7 +34,7 @@ def main():
         return
 
     m = re.findall("href=\"\/.{0,20}\/profil\/spieler\/\d*", content)
-    print(m)
+    #print(m)
 
     links = [ ]
     for link in m:
@@ -54,7 +54,7 @@ def main():
     path = 'all_players.txt'
 
     file = codecs.open(path, "w", "utf-8")
-    file.write(str(linkList))
+    file.write(str(linkList).replace('[','').replace(']',''))
     print("Saving to file done.")
     file.close()
 
