@@ -1,22 +1,16 @@
 <% include header %>
 
+<%# contains scripts for this site %>
   <script type="text/javascript" , src= "./static/js/index.controller.js"></script>
 
   <h1><%-title %></h1>
 
-<%# a basic html file is included here %>
-<% include sample.html%>
-
 <%# HTML %>
-    <button type="submit" , id="franck_ribery" , onclick = requestPlayerData(this.id)>Frank Ribéry</button> 
-  <button type="submit" , id="arjen_robben" , onclick = requestPlayerData(this.id)>Arjen Robben</button>  
-  <button type="submit" , id="holger_badstuber" , onclick = requestPlayerData(this.id)>holger_badstuber</button>  
-  <button type="submit" , id="jan_kirchhoff" , onclick = requestPlayerData(this.id)>jan_kirchhoff</button>  
-  <button type="submit" , id="robert_lewandowski" , onclick = requestPlayerData(this.id); >robert_lewandowski</button>
-  <br>
-  <p id='data'>Spielername: Verein:</p> 
 
+<%# these will be filled by index.controller.js %>
+<div id="Buttons"></div>
 
+<div id="Details"></div>
 
 
 
