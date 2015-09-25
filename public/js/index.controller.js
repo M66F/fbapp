@@ -16,7 +16,7 @@ function requestPlayerList() {
     //call function to handle the returned data
     httpRequest.onreadystatechange = createPlayerList;
     //path where JSON data is provided on server
-    httpRequest.open('GET', '/playerdata/playerList.json');
+    httpRequest.open('GET', '/playerdata/general/playerData.pd');
     httpRequest.send();
 }
 //function to handle the returned JSON file
@@ -32,7 +32,7 @@ function createPlayerList() {
         //loop through the players in the JSON file
         for (var player in playerList) {
           //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-          out += "<li><button type=submit , id="+playerList[player].playerid+" , onclick = requestPlayerData(this.id)>"+playerList[player].Name+"</button></li>";
+          out += "<li><button type=submit , id="+playerList[player].filename+" , onclick = requestPlayerData(this.id)>"+playerList[player].playername+"</button></li>";
 
         };
         //end the list
