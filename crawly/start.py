@@ -67,6 +67,31 @@ players = [
     'http://www.transfermarkt.de/marvin-ducksch/profil/spieler/125103',
 ]
 
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+# clear file (get rid of old data, but just ONCE, thats why we do it here and not in crawly.py, awesome idea right?)
+try:
+    print("Clearing file ...")
+    n = "playerData"
+    path = 'data/general/' + n + '.pd'
+    file = open(path, 'w')
+    file.write("[ ]")
+    file.close()
+except:
+    print(bcolors.FAIL + "Clearing file " + n + " failed [Code F1]" + bcolors.ENDC)
+
+print(bcolors.OKGREEN + "Clearing file " + n + " successful" + bcolors.ENDC)
+
 for player in players:
     crawly.savePlayerData(player)
 
