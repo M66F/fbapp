@@ -3,7 +3,7 @@
 Start with python3.4 crawly.py"""
 
 __author__      = "Peter"
-__version__ = "0.0.2"
+__version__ = "0.1.0"
 __maintainer__ = "Peter"
 __status__ = "Development"
 
@@ -498,6 +498,21 @@ def getPictureURL(content):
         return "n.a."
 
 
+def addToIndexJSON(filename, playername, imageurl):
+
+    n = "playerData"
+    path = 'data/general/' + n + '.pd'
+    file = open(path, 'r')
+    fileData = file.read()
+    file.close()
+    file = open(path, 'w')
+    fileData = re.sub(']', '', fileData)
+    fileData = re.sub('}(?!,)', '},', fileData)
+    fileData += '{\"filename\":\"' + filename + '\", \"playername\":\"' + playername + '\", \"imageurl\":\"' + imageurl + '\" } ]'
+    file.write(fileData)
+    file.close()
+
+
 def savePlayerData(iurl):
     try:
         ##############################################
@@ -542,7 +557,7 @@ def savePlayerData(iurl):
     print(bcolors.OKGREEN + "Collecting data done." + bcolors.ENDC)
 
 
-    ##save to File
+    ##save to single player-File
     try:
         print("Saving to file...")
         n = re.sub('http://www.transfermarkt.de/', '', url)
@@ -557,3 +572,16 @@ def savePlayerData(iurl):
         print(bcolors.FAIL + "Writing file for " + name + " failed [Code F1]" + bcolors.ENDC)
 
     print(bcolors.OKGREEN + "Saving done for " + name + bcolors.ENDC)
+
+    ##add to index json file
+    try:
+        print("Saving to file...")
+        filename = re.sub('http://www.transfermarkt.de/', '', url)
+        filename = re.sub('/profil/spieler/.*', '', filename)
+        filename = re.sub('-', ' ', filename)
+        filename = re.sub('\s', '_', filename)
+        addToIndexJSON(filename, name, pictureURL)
+    except:
+        print(bcolors.FAIL + "Adding " + name + " to playerData failed!" + bcolors.ENDC)
+
+    print(bcolors.OKGREEN + "Adding " + name + " to playerData successful" + bcolors.ENDC)
