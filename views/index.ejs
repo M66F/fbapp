@@ -1,26 +1,34 @@
 <% include header %>
 
 <%# contains scripts for this site %>
-  <script type="text/javascript" , src= "./static/js/index.controller.js"></script>
+  <script type="text/javascript" src= "./static/js/index.controller.js"></script>
 
 
 <%# HTML %>
+<%# the Heading %>
 <div id = "Heading" class="heading">
   <h1><%-title %></h1></div>
-<%# these will be filled by index.controller.js %>
-<div id="playerColumn" , class ="playerColumn" ,  style = 'float: left;margin: 30px;'></div>
+<%# these will be filled by index.controller.js with players %>
+<div id="playerColumn" class ="playerColumn" style = 'float: left;margin: 30px;'></div>
 
-<div id="details" , class ="details"></div>
-
-<div id="rightColumn" , class = "rightColumn">
-<div id="liveTicker" , class = "liveTicker">LiveTicker</div>
-<div id="Login" , class = "Login">
-	<p>Login:</p> <br>
-	<button>Login with Facebook</button>
-	<button>Login with Twitter</button>
+<%# container with details of players in the middle, it accepts drop events of player images %>
+<div id="details" class ="details" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<div id="textDetails"></div>
 
 </div>
-<div id= "Chat" , class = "Chat">Websocket Chat</div>
+
+<%# column on the right with LiveTicker, Login and Websocket Chat %>
+<div id="rightColumn" class = "rightColumn">
+
+	<div id="liveTicker" class = "liveTicker">LiveTicker</div>
+
+	<div id="login" class = "login">
+		<p>Login:</p> <br>
+		<button>Login with Facebook</button>
+		<button>Login with Twitter</button>
+	</div>
+
+	<div id= "chat" class = "chat">Websocket Chat</div>
 
 </div>
 

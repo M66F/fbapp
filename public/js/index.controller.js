@@ -1,4 +1,18 @@
+  //**********************************************************************************
+  //Drag and Drop Event Handling 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var id = ev.dataTransfer.getData("text");
+    requestPlayerDetail(id);
+}
 //****************************************************************************************
 //make httpRequest to get the list of all players and create the list to choose from
 //at the moment a list of buttons is created 
@@ -26,13 +40,13 @@ function createPlayerList() {
       if (httpRequest.status === 200) {
         //put received JSON file into variable and parse it
         var playerList = JSON.parse(httpRequest.responseText);
-        //create a string with HTML code, which will turn into a List with a Button for each player in the List of the JSON
+        //create a string with HTML code, which will turn into a List of all Players from the JSON
         //start of the List
         var out = "<ul style='list-style: none;padding:0;margin:0;'>";
         //loop through the players in the JSON file
         for (var player in playerList) {
           //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-          out += "<li><div class= 'playerBox'><image src="+playerList[player].imageurl+" , id="+playerList[player].filename+" , onclick = requestPlayerDetail(this.id)></image><p>"+playerList[player].playername+"</p></div></li>";
+          out += "<li><div class= 'playerBox'><img src="+playerList[player].imageurl+" id="+playerList[player].filename+" draggable='true' ondragstart='drag(event)' ></img><p>"+playerList[player].playername+"</p></div></li>";
 
         };
         //end the list
@@ -72,8 +86,8 @@ requestPlayerList();
         var player = JSON.parse(httpRequest.responseText);
 
 //write JSON content into Element on Webpage as a table
-document.getElementById("details").innerHTML = 
-"<image src=" + player.PictureURL +"></image>"+
+document.getElementById("textDetails").innerHTML =
+"<img src="+player.PictureURL+" style='width:160px;height:200;'><img>"+ 
 "<table>"+
 "<tr><td>Spielername:</td><td>" + player.Name + 
 "</td></tr><tr><td>Größe:</td><td>" + player.Groesse +
@@ -84,7 +98,7 @@ document.getElementById("details").innerHTML =
 "</td></tr><tr><td>Schuhmodell:</td><td>" + player.Schuhmodell +
 "</td></tr><tr><td>Position:</td><td>" + player.Position +
 "</td></tr><tr><td>VertragBis:</td><td>" + player.VertragBis +
-"</td></tr><tr><td>AktuellerMarktwert:</td><td>" + player.AktuellerMarktwert +
+"</td></tr><tr><td>Aktueller Marktwert:</td><td>" + player.AktuellerMarktwert +
 "</td></tr><tr><td>Geburtsdatum:</td><td>" + player.Geburtsdatum +
 "</td></tr><tr><td>Schussfuss:</td><td>" + player.Schussfuss +
 "</td></tr><tr><td>Alter:</td><td>" + player.Alter +
@@ -99,3 +113,5 @@ document.getElementById("details").innerHTML =
       }
     }
   }
+
+
