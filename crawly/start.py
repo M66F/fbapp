@@ -2,6 +2,8 @@
 # Data will be saved in /data/playername.pd
 # Start with python3 start.py, else errors (python2)
 
+# USE ./TOOLS/LINKEXTRACTOR TO COPY&PASTE WHOLE TEAMS
+
 import crawly
 import time
 
