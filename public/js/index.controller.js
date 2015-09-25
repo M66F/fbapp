@@ -1,4 +1,4 @@
-  //**********************************************************************************
+﻿  //**********************************************************************************
   //Drag and Drop Event Handling 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -97,7 +97,7 @@ document.getElementById("textDetails").innerHTML =
 "</td></tr><tr><td>Schuhgrösse:</td><td>" + player.Schuhgroesse +
 "</td></tr><tr><td>Schuhmodell:</td><td>" + player.Schuhmodell +
 "</td></tr><tr><td>Position:</td><td>" + player.Position +
-"</td></tr><tr><td>VertragBis:</td><td>" + player.VertragBis +
+"</td></tr><tr><td>Vertrag bis:</td><td>" + player.VertragBis +
 "</td></tr><tr><td>Aktueller Marktwert:</td><td>" + player.AktuellerMarktwert +
 "</td></tr><tr><td>Geburtsdatum:</td><td>" + player.Geburtsdatum +
 "</td></tr><tr><td>Schussfuss:</td><td>" + player.Schussfuss +
