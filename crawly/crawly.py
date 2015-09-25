@@ -509,9 +509,9 @@ def savePlayerData(iurl):
 
     ##collect all Data
     data =  {'Name':name, 'Alter':alter, 'Geburtsdatum':geburtsdatum, 'Geburtsort': geburtsort, 'Groesse':groesse, 'Nationalitaet':nationalitaet,
-              'Verein':verein, 'Position':position, 'Schussfuss':schussfuss, 'Im Team seit':imTeamSeit, 'Vertrag bis':vertragBis,
+              'Verein':verein, 'Position':position, 'Schussfuss':schussfuss, 'ImTeamSeit':imTeamSeit, 'VertragBis':vertragBis,
               'Spielerberater':spielerBerater, 'Schuhgroesse':schuhgroesse, 'Ausruester':ausruester, 'Schuhmodell':schuhmodell,
-              'Aktueller Marktwert':aktuellerMarktwert, 'Hoechster Marktwert':hoechsterMarktwert }
+              'AktuellerMarktwert':aktuellerMarktwert, 'HoechsterMarktwert':hoechsterMarktwert }
 
     print(bcolors.OKGREEN + "Collecting data done." + bcolors.ENDC)
 

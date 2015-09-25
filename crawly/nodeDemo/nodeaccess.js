@@ -11,6 +11,6 @@ fs.readFile('data/arjenrobben.pd', 'utf8', function (err,data) {
     json = JSON.parse(data);
     console.log(json);                    //whole JSON
     console.log(json["Spielerberater"]);  //just Spielerberater - Value
-    console.log(json["Im Team seit"]);    //just Im Team seit - Value
+    console.log(json["ImTeamSeit"]);    //just Im Team seit - Value
 
 });
