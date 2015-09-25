@@ -1,0 +1,23 @@
+<% include header %>
+
+  <script type="text/javascript" , src= "./static/js/index.controller.js"></script>
+
+  <h1><%-title %></h1>
+
+<%# a basic html file is included here %>
+<% include sample.html%>
+
+<%# HTML %>
+    <button type="submit" , id="1" , onclick = requestPlayerData(this.id)>Frank Ribéry</button> 
+  <button type="submit" , id="2" , onclick = requestPlayerData(this.id)>Rudi Völler</button>  
+  <button type="submit" , id="3" , onclick = requestPlayerData(this.id)>Hans Sarpei</button>  
+  <button type="submit" , id="4" , onclick = requestPlayerData(this.id)>Jürgen Klinsmann</button>  
+  <button type="submit" , id="5" , onclick = requestPlayerData(this.id); >Michael Schlechtinger</button>
+  <br>
+  <p id='data'>Spielername: Verein:</p> 
+
+
+
+
+
+<% include footer %>
