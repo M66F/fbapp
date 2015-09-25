@@ -10,7 +10,7 @@
       return false;
     }
     httpRequest.onreadystatechange = writePlayerDetail;
-    httpRequest.open('GET', '/static/players/' + playerid + '.json');
+    httpRequest.open('GET', '/playerdata/' + playerid + '.pd');
     httpRequest.send();
   }
 
