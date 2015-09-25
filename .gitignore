@@ -3,3 +3,5 @@ public/components
 .sass-cache
 .idea/
 .editorconfig
+*/__pycache__
+

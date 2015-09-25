@@ -3,7 +3,7 @@
 Start with python3.4 crawly.py"""
 
 __author__      = "Peter"
-__version__ = "0.0.2"
+__version__ = "0.0.1"
 __maintainer__ = "Peter"
 __status__ = "Development"
 
