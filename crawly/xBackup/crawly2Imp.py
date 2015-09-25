@@ -3,11 +3,11 @@
 Start with python3.4 crawly.py"""
 
 __author__      = "Peter"
-__version__ = "0.2.0"
+__version__ = "0.1.0"
 __maintainer__ = "Peter"
 __status__ = "Development"
 
-# To-Do: improved validation check, error log
+# To-Do: validation check, error log
 # Only touch if you know what you are doing
 
 # ADD PLAYERS IN start.py
@@ -498,24 +498,6 @@ def getPictureURL(content):
         return "n.a."
 
 
-def validationCheck(data, filepath):
-    # alpha state of data validation
-
-    #check for HTML Tags
-    htmltags = re.search('[<|>]', data)
-    if(htmltags != None):
-        print(bcolors.FAIL + "CRITICAL ERROR for file " + filepath + " (check validation.log)" + bcolors.ENDC)
-        try:
-            path = 'logs/critical/validation.log'
-            file = open(path, 'a')
-            file.write("ERROR - HTML-Tags in data found. Check file and function to fix errors : '" + filepath + "'\n")
-            file.close()
-        except:
-            print(bcolors.FAIL + "Writing log for " + filepath + " failed [Code F1]" + bcolors.ENDC)
-
-    print(bcolors.OKGREEN + "Validation check for " + filepath + " successful" + bcolors.ENDC)
-
-
 def addToIndexJSON(filename, playername, imageurl):
 
     n = "playerData"
@@ -583,10 +565,6 @@ def savePlayerData(iurl):
         n = re.sub('-', ' ', n)
         n = re.sub('\s', '_', n)
         path = 'data/' + n + '.pd'
-
-        ##validation check
-        validationCheck(json.dumps(data), path)
-
         file = open(path, 'w')
         file.write(json.dumps(data))
         file.close()

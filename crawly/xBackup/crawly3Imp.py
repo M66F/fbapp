@@ -3,11 +3,11 @@
 Start with python3.4 crawly.py"""
 
 __author__      = "Peter"
-__version__ = "0.2.0"
+__version__ = "0.1.0"
 __maintainer__ = "Peter"
 __status__ = "Development"
 
-# To-Do: improved validation check, error log
+# To-Do: validation check, error log
 # Only touch if you know what you are doing
 
 # ADD PLAYERS IN start.py
