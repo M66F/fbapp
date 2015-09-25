@@ -31,6 +31,8 @@ app.use(cookieParser());
 //provide data to clients
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+app.use('/playerdata', express.static(path.join(__dirname, 'crawly/data')));
+
 app.use('/', routes);
 
 /// catch 404 and forward to error handler
