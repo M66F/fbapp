@@ -70,5 +70,5 @@ players = [
 for player in players:
     crawly.savePlayerData(player)
 
-print('--- %s seconds ---' % round((time.time() - start_time), 2))
+print('--- %s seconds for %s players ---' % (round((time.time() - start_time), 2), len(players)))
 
