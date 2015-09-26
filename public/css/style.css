@@ -92,3 +92,33 @@ float: right;
  	text-align: center;
  	float: top;
 }
+
+.socialButton {
+  width:100px;
+  height:100px;
+  display:inline-block;
+  font-family:Arial, sans-serif;
+  font-size:15px;
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+  text-transform:uppercase;
+  text-align:center;
+  text-shadow:1px 1px 0px #07526e;
+  padding-top:6px;
+  margin-left:20px;
+  margin-right:auto;
+  left:30px;
+  position:relative;
+  cursor:pointer;
+  border: none;
+  background: #109bce;
+  border-radius: 5px;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #07526e, 0px 10px 5px #999;
+}
+
+.socialButton:active {
+  top:3px;
+  color: red;
+  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
+}
