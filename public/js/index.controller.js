@@ -1,7 +1,6 @@
 //Speech recognition for search input field
-if (!('webkitSpeechRecognition' in window)) {
-  alert('Speech recognition is not enabled in your Browser! Please use the latest Version of Chrome!');
-}else {
+if ('webkitSpeechRecognition' in window) {
+
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = false;
   recognition.interimResults = false;
@@ -39,6 +38,9 @@ if (!('webkitSpeechRecognition' in window)) {
   }
 
 function startSpeechRecognition (event) {
+  if (!('webkitSpeechRecognition' in window)) {
+  alert('Speech recognition is not enabled in your Browser! Please use the latest Version of Chrome!');
+}
   speechImage.src = '/static/img/mic-slash.gif';
   alert('Spracheingabe gestartet!');
   recognition.start();
