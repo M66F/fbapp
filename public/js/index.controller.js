@@ -159,7 +159,7 @@ function createPlayerList() {
 
 //write JSON content into Element on Webpage as a table
 document.getElementById("textDetails").innerHTML =
-"<img src="+player.PictureURL+" style='width:160px;height:200;'><img>"+ 
+"<img src="+player.PictureURL+" style='width:160px;height:200;' draggable = false><img>"+ 
 "<table style='margin-left:auto; margin-right:auto;'>"+
 "<tr><td>Spielername:</td><td>" + player.Name + 
 "</td></tr><tr><td>Größe:</td><td>" + player.Groesse +
