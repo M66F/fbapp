@@ -1,52 +1,4 @@
-﻿  
-//Speech recognition for search input field
-if (!('webkitSpeechRecognition' in window)) {
-  alert('Speech recognition is not enabled in your Browser! Please use the latest Version of Chrome!');
-}else {
-  var recognition = new webkitSpeechRecognition();
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.lang = 'de-DE';
-
-  recognition.onstart = function() {
-    recognizing = true;
-    alert('Speak now!');
-    alert(getElementById("speechImage"));
-  }
-  recognition.onresult = function(event) { 
-    alert(event);
-  }
-  recognition.onerror = function(event) {
- if (event.error == 'no-speech') {
-      start_img.src = 'mic.gif';
-      alert('No speech was detected. You may need to adjust your microphone settings!');
-    }
-    if (event.error == 'audio-capture') {
-      start_img.src = 'mic.gif';
-      alert(' No microphone was found. Ensure that a microphone is installed and that microphone settings are configured correctly!');
-    }
-    if (event.error == 'not-allowed') {
-      if (event.timeStamp - start_timestamp < 100) {
-        alert('Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream');
-      } else {
-        showInfo('Permission to use microphone was denied.');
-      }
-    }
-  };
-
-
-  }
-  recognition.onend = function() { 
-recognizing = false;
-//start_img.src = 'mic.gif';
-
-  }
-
-function startSpeechRecognition (event) {
-  recognition.start();
-  alert('Spracheingabe gestartet!');
-}
-  //**********************************************************************************
+﻿  //**********************************************************************************
   //Drag and Drop Event Handling 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -91,11 +43,14 @@ function createPlayerList() {
         //create a string with HTML code, which will turn into a List of all Players from the JSON
         //start of the List
         var out = "<ul style='list-style: none;padding:0;margin:0;'>";
+          // get search string
+          var searchString = document.getElementById('searchText').value;
         //loop through the players in the JSON file
         for (var player in playerList) {
-          //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-          out += "<li><div class= 'playerBox'><img src="+playerList[player].imageurl+" id="+playerList[player].filename+" draggable='true' ondragstart='drag(event)' ></img><p>"+playerList[player].playername+"</p></div></li>";
-
+            if (playerList[player].playername.toUpperCase().match(searchString.toUpperCase())) {
+                //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
+                out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id=" + playerList[player].filename + " draggable='true' ondragstart='drag(event)' ></img><p>" + playerList[player].playername + "</p></div></li>";
+            }
         };
         //end the list
         out += "</ul>"
