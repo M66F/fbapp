@@ -32,7 +32,7 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 
 
-  }
+  
   recognition.onend = function() { 
     recognizing = false;
     speechImage.src = '/static/img/mic.gif';
@@ -42,6 +42,7 @@ function startSpeechRecognition (event) {
   speechImage.src = '/static/img/mic-slash.gif';
   alert('Spracheingabe gestartet!');
   recognition.start();
+}
 }
   //**********************************************************************************
 
