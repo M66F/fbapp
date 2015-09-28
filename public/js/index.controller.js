@@ -23,7 +23,8 @@ if (!('webkitSpeechRecognition' in window)) {
   }
 
   recognition.onresult = function(event) { 
-    searchText.value = "result";
+    //write recognised text into input field of search
+    searchText.value = event.results[0][0].transcript;
     alert(event);
   }
 
@@ -53,12 +54,16 @@ if (!('webkitSpeechRecognition' in window)) {
 
 function startSpeechRecognition (event) {
 //check if speech recognition is already running
-  if (true) {
+  if (recognizing == false) {
 
   speechImage.src = '/static/img/mic-slash.gif';
   alert('Spracheingabe gestartet!');
   recognition.start();
-  };
+  } else {
+    recognition.stop();
+    alert("Spracheingabe beendet!");
+    speechImage.src = '/static/img/mic.gif';
+  }
 }
 }
   //**********************************************************************************
