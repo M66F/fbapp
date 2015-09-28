@@ -23,7 +23,7 @@ if (!('webkitSpeechRecognition' in window)) {
   }
 
   recognition.onresult = function(event) { 
-    searchText.text = "result";
+    searchText.value = "result";
     alert(event);
   }
 
