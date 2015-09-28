@@ -17,9 +17,6 @@
   },
   "homepage": "https://github.com/M66F/fbapp#readme",
   "dependencies": {
-    "express": "^4.13.3"
-  },
-  "dependencies": {
     "express": "^4.13.3",
     "serve-favicon": "^2.3.0",
     "morgan": "^1.6.1",
