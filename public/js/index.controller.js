@@ -1,7 +1,17 @@
 //Speech recognition for search input field
-if ('webkitSpeechRecognition' in window) {
+if (!('webkitSpeechRecognition' in window)) {
+  // handling if the browser doesn´t support speech recognition 
+  function startSpeechRecognition (event) {
+
+  speechImage.src = '/static/img/mic-slash.gif';
+  alert("Speech recognition is not enabled in your Browser! Please use the latest Version of Chrome!");
+}
+
+
+} else {
 
   var recognition = new webkitSpeechRecognition();
+  var recognizing = false;
   recognition.continuous = false;
   recognition.interimResults = false;
   recognition.lang = 'de-DE';
@@ -11,9 +21,13 @@ if ('webkitSpeechRecognition' in window) {
     speechImage.src = '/static/img/mic-animate.gif';
 
   }
+
   recognition.onresult = function(event) { 
+    searchText.text = "result";
     alert(event);
   }
+
+  //error handling
   recognition.onerror = function(event) {
  if (event.error == 'no-speech') {
 
@@ -38,12 +52,13 @@ if ('webkitSpeechRecognition' in window) {
   }
 
 function startSpeechRecognition (event) {
-  if (!('webkitSpeechRecognition' in window)) {
-  alert('Speech recognition is not enabled in your Browser! Please use the latest Version of Chrome!');
-}
+//check if speech recognition is already running
+  if (true) {
+
   speechImage.src = '/static/img/mic-slash.gif';
   alert('Spracheingabe gestartet!');
   recognition.start();
+  };
 }
 }
   //**********************************************************************************
