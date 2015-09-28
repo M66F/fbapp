@@ -10,41 +10,39 @@ if (!('webkitSpeechRecognition' in window)) {
 
   recognition.onstart = function() {
     recognizing = true;
-    alert('Speak now!');
-    alert(getElementById("speechImage"));
+    speechImage.src = '/static/img/mic-animate.gif';
+
   }
   recognition.onresult = function(event) { 
     alert(event);
   }
   recognition.onerror = function(event) {
  if (event.error == 'no-speech') {
-      start_img.src = 'mic.gif';
+
       alert('No speech was detected. You may need to adjust your microphone settings!');
     }
     if (event.error == 'audio-capture') {
-      start_img.src = 'mic.gif';
+
       alert(' No microphone was found. Ensure that a microphone is installed and that microphone settings are configured correctly!');
     }
     if (event.error == 'not-allowed') {
-      if (event.timeStamp - start_timestamp < 100) {
         alert('Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream');
-      } else {
-        showInfo('Permission to use microphone was denied.');
       }
-    }
+    
+    speechImage.src = '/static/img/mic.gif';
   };
 
 
   }
   recognition.onend = function() { 
-recognizing = false;
-//start_img.src = 'mic.gif';
-
+    recognizing = false;
+    speechImage.src = '/static/img/mic.gif';
   }
 
 function startSpeechRecognition (event) {
-  recognition.start();
+  speechImage.src = '/static/img/mic-slash.gif';
   alert('Spracheingabe gestartet!');
+  recognition.start();
 }
   //**********************************************************************************
   //Drag and Drop Event Handling 
