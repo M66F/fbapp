@@ -25,7 +25,8 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onresult = function(event) { 
     //write recognised text into input field of search
     searchText.value = event.results[0][0].transcript;
-    alert(event);
+    //start the search
+    createPlayerList();
   }
 
   //error handling
