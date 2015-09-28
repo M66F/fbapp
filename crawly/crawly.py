@@ -272,6 +272,14 @@ def getName(content, url):
         ret = re.sub('http://www.transfermarkt.de/', '', url)
         ret = re.sub('/profil/spieler/.*', '', ret)
         ret = re.sub('-', ' ', ret)
+        name = list(ret)
+        name[0] = name[0].upper()
+        i = 0
+        while(i < len(name)):
+            if(name[i - 1] == " "):
+                name[i] = name[i].upper()
+            i = i + 1
+        ret = ''.join(name)
         return ret
 
 
