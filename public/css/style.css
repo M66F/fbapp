@@ -10,22 +10,22 @@ a {
 }
 
 .playerColumn {
-    background: #00BFFF;
-    height: 800px;
-    overflow: auto;
-    width: 20%;
-    border-color: #007FFF;
-    border-width: 5px;
-    border-style: solid;
-    float: left;
+    -background: #00BFFF;
+    -height: 800px;
+    -overflow: auto;
+    -width: 20%;
+    -border-color: #007FFF;
+    -border-width: 5px;
+    -border-style: solid;
+    -float: left;
 }
 
 .playerBox {
-    background: #A3D1FF;
-    width: inherit;
-    height: 100px;
-    border-color: #007FFF;
-    border-width: 5px;
+    -background: #A3D1FF;
+    -width: inherit;
+    -height: 100px;
+    -border-color: #007FFF;
+    -border-width: 5px;
     border-style: solid;
     text-align: center;
     font-size: 20px;
@@ -100,7 +100,7 @@ a {
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
-    text-shadow: 1px 1px #07526e;
+    text-shadow: 1px 1px 0px #07526e;
     margin-left: auto;
     margin-right: 5%;
     left: 5%;
@@ -109,7 +109,7 @@ a {
     border: none;
     background: #109bce;
     border-radius: 5px;
-    box-shadow: inset 0px 1px #2ab7ec;
+    box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #07526e, 0px 10px 5px #999;
     max-height: 100px;
     max-width: 100px
 }
@@ -117,5 +117,5 @@ a {
 .socialButton:active {
     top: 3px;
     color: red;
-    box-shadow: inset 0px 1px #2ab7ec;
+    box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
 }
