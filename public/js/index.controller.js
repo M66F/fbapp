@@ -25,7 +25,7 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onresult = function(event) { 
     //write recognised text into input field of search
     searchText.value = event.results[0][0].transcript;
-    //start the search
+    //update PlayerList
     createPlayerList();
   }
 
@@ -58,11 +58,9 @@ function startSpeechRecognition (event) {
   if (recognizing == false) {
 
   speechImage.src = '/static/img/mic-slash.gif';
-  alert('Spracheingabe gestartet!');
-  recognition.start();
+    recognition.start();
   } else {
     recognition.stop();
-    alert("Spracheingabe beendet!");
     speechImage.src = '/static/img/mic.gif';
   }
 }
@@ -135,8 +133,6 @@ function createPlayerList() {
       }
     }
   }
-requestPlayerList();
-
 //**************************************************************************************
 //make httpRequest to server to get detail information JSON for a specific player
   function requestPlayerDetail(filename) {
@@ -192,3 +188,7 @@ document.getElementById("textDetails").innerHTML =
   }
 
 
+//*************************************************************************************
+// Initial Setup
+
+requestPlayerList();
