@@ -1,4 +1,3 @@
-﻿  
 //Speech recognition for search input field
 if (!('webkitSpeechRecognition' in window)) {
   alert('Speech recognition is not enabled in your Browser! Please use the latest Version of Chrome!');
@@ -45,6 +44,7 @@ function startSpeechRecognition (event) {
   recognition.start();
 }
   //**********************************************************************************
+
   //Drag and Drop Event Handling 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -89,11 +89,14 @@ function createPlayerList() {
         //create a string with HTML code, which will turn into a List of all Players from the JSON
         //start of the List
         var out = "<ul style='list-style: none;padding:0;margin:0;'>";
+          // get search string
+          var searchString = document.getElementById('searchText').value;
         //loop through the players in the JSON file
         for (var player in playerList) {
-          //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-          out += "<li><div class= 'playerBox'><img src="+playerList[player].imageurl+" id="+playerList[player].filename+" draggable='true' ondragstart='drag(event)' ></img><p>"+playerList[player].playername+"</p></div></li>";
-
+            if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")))) {
+                //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
+                out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id=" + playerList[player].filename + " draggable='true' ondragstart='drag(event)' ></img><p>" + playerList[player].playername + "</p></div></li>";
+            }
         };
         //end the list
         out += "</ul>"
