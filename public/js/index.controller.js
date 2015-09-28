@@ -66,6 +66,7 @@ function drop(ev) {
 
 
   var httpRequest;
+  var playerList;
 //start httpRequest to server
 function requestPlayerList() {
   httpRequest = new XMLHttpRequest();
@@ -86,7 +87,9 @@ function createPlayerList() {
    if (httpRequest.readyState === 4) {
       if (httpRequest.status === 200) {
         //put received JSON file into variable and parse it
-        var playerList = JSON.parse(httpRequest.responseText);
+          if(playerList == undefined) {
+              playerList = JSON.parse(httpRequest.responseText);
+          }
         //create a string with HTML code, which will turn into a List of all Players from the JSON
         //start of the List
         var out = "<ul style='list-style: none;padding:0;margin:0;'>";
