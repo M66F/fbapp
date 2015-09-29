@@ -7,5 +7,9 @@ router.get('/', function(req, res) {
   res.render('index', {title:"Die Fussball App"});
 });
 
+router.get('/chat', function(req, res) {
+  res.render('wwsChat', {title: "Chat"});
+});
+
 
 module.exports = router;
