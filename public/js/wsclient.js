@@ -24,6 +24,9 @@ socket.on('init', function(data) {
         document.getElementById("name").value = "!";
     }
     document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' +  data.text + '</li>';
+
+    var time = new Date().toLocaleTimeString();
+    socket.emit('init', {name: nameI, text: nameI, time: time});
 });
 
 function send(){
