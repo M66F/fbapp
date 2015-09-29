@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 var app = require('../app');
+var history = [];
 
-app.set('port', process.env.PORT || 3000);
+// port 80 benoetigt sudo
+app.set('port', 80 || process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
@@ -13,6 +15,8 @@ var server = app.listen(app.get('port'), function() {
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
   var authorized = false;
+  var clientIp = socket.request.connection.remoteAddress;
+  console.log(new Date() + " received request from " + clientIp);
 
   socket.emit('authorization', {});
 
@@ -21,9 +25,17 @@ io.sockets.on('connection', function (socket) {
       authorized = true;
       // client connected, fire init event
       socket.emit('init', { time: new Date().toLocaleTimeString(), text: 'Du bist nun mit dem Server verbunden!' });
-      console.log("Client connected ");
+      if(history[0] != undefined && history[0] != null) {
+        for(chatline in history) {
+          json = JSON.parse(history[chatline])
+          socket.emit('chat', {time: json.time, name: json.name, text: json.text});
+        }
+      }
+
+      console.log(new Date() + " successful login from " + clientIp);
     } else {
       socket.emit('alert', {message:"Authorization failed"});
+      console.log(new Date() + " failed login from " + clientIp);
     }
   });
 
@@ -32,8 +44,8 @@ io.sockets.on('connection', function (socket) {
   socket.on('chat', function (data) {
     if(authorized == true) {
       // send to all users
-      console.log(data.time);
       io.sockets.emit('chat', {time: data.time, name: data.name || 'Anonym', text: data.text});
+      history.push(JSON.stringify({"time": data.time, "name": data.name, "text": data.text}));
     }
   });
 });
