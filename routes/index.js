@@ -3,8 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 
+
 router.get('/', function(req, res) {
-  res.render('index', {title:"Die Fussball App"});
+  res.render('index', {title:"Die Fußball Website"});
 });
 
 router.get('/chat', function(req, res) {
