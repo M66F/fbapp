@@ -1,7 +1,6 @@
 <% include header %>
 
-<%# contains scripts for this site %>
-  <script type="text/javascript" src= "./static/js/index.controller.js"></script>
+
 
 
 <%# HTML %>
@@ -29,16 +28,24 @@
 
 	<div id="liveTicker" class = "liveTicker">LiveTicker</div>
 
-	<div id="login" class = "login">
-		<p>Login:</p> <br>
-		<button class="socialButton">Login with Facebook</button>
-		<button class="socialButton">Login with Twitter</button>
-	</div>
+	<div id="login" class = "login"></div>
 
 	<div id= "chat" class = "chat">Websocket Chat</div>
 
 </div>
 
 
+<%# receive variables from server%>
+<SCRIPT TYPE="text/javascript">
+var isAuthenticated = <%- isAuthenticated %>;
+
+if (isAuthenticated) {
+
+	var facebookUser = JSON.parse('<%- user %>');
+};
+</SCRIPT>
+
+<%# contains scripts for this site %>
+  <script type="text/javascript" src= "./static/js/index.controller.js"></script>
 
 <% include footer %>

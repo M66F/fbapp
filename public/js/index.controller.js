@@ -1,3 +1,15 @@
+//**************************************************************************************************
+//create login container 
+
+if (isAuthenticated) {
+  document.getElementById("login").innerHTML = "<p>Willkommen, "+facebookUser.name+" ! :)</p>"+
+"<br><a href='/logout' class='socialButton'>Logout</a>"
+
+} else{
+  document.getElementById("login").innerHTML = "<p>Login:</p> <br>"+
+  "<a class='socialButton' href='/auth/facebook'>Login with Facebook</a>"
+};
+//**************************************************************************************************
 //Speech recognition for search input field
 if (!('webkitSpeechRecognition' in window)) {
   // handling if the browser doesn´t support speech recognition 
@@ -158,8 +170,8 @@ function createPlayerList() {
         var player = JSON.parse(httpRequest.responseText);
 
 //write JSON content into Element on Webpage as a table
-document.getElementById("textDetails").innerHTML =
-"<img src="+player.PictureURL+" style='width:160px;height:200;' draggable = false><img>"+ 
+document.getElementById("textDetails").innerHTML = 
+"<img src="+player.PictureURL+" style='width:160px;height:200;' draggable = false>"+ 
 "<table style='margin-left:auto; margin-right:auto;'>"+
 "<tr><td>Spielername:</td><td>" + player.Name + 
 "</td></tr><tr><td>Größe:</td><td>" + player.Groesse +
