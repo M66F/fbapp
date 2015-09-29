@@ -12,15 +12,28 @@ var server = app.listen(app.get('port'), function() {
 // here begins the WebSocketServer - Magic
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
-  // client connected, fire init event
-  socket.emit('init', { time: new Date().toLocaleTimeString(), text: 'Du bist nun mit dem Server verbunden!' });
-  console.log("Client connected ");
+  var authorized = false;
+
+  socket.emit('authorization', {});
+
+  socket.on('authorization', function(data) {
+    if(data.key == "123456abc") {
+      authorized = true;
+      // client connected, fire init event
+      socket.emit('init', { time: new Date().toLocaleTimeString(), text: 'Du bist nun mit dem Server verbunden!' });
+      console.log("Client connected ");
+    } else {
+      socket.emit('alert', {message:"Authorization failed"});
+    }
+  });
 
 
   // user sends chat message
   socket.on('chat', function (data) {
-    // send to all users
-    console.log(data.time);
-    io.sockets.emit('chat', { time: data.time, name: data.name || 'Anonym', text: data.text });
+    if(authorized == true) {
+      // send to all users
+      console.log(data.time);
+      io.sockets.emit('chat', {time: data.time, name: data.name || 'Anonym', text: data.text});
+    }
   });
 });

@@ -7,10 +7,25 @@ socket.on('chat', function (data) {
 
 });
 
+socket.on('authorization', function(data) {
+    var key = prompt("Enter chat key:");
+    socket.emit('authorization', { key: key });
+});
+
+socket.on('alert', function(data) {
+    alert(data.message);
+    if(data.message == "Authorization failed") {
+        window.location.href='/';
+    }
+});
+
 socket.on('init', function(data) {
     var nameI = prompt("Enter your name:");
     document.getElementById("name").value = nameI;
-    document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="color:red;display: inline;margin-right: 60px">' + nameI + ':</div>' +  data.text + '</li>';
+    if (nameI == null) {
+        document.getElementById("name").value = "!";
+    }
+    document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' +  data.text + '</li>';
 });
 
 function send(){
