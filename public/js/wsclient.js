@@ -1,7 +1,6 @@
 var socket = io.connect();
 
 socket.on('chat', function (data) {
-    console.log(data.time);
     document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="color:red;display: inline;margin-right: 40px">' + data.name + ':</div>' +  data.text + '</li>';
     window.scrollTo(0,document.body.scrollHeight);
 });
