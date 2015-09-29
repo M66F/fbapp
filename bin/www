@@ -44,6 +44,9 @@ io.sockets.on('connection', function (socket) {
   socket.on('chat', function (data) {
     if(authorized == true) {
       // send to all users
+      data.text = data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      data.time = data.time.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
       io.sockets.emit('chat', {time: data.time, name: data.name || 'Anonym', text: data.text});
       history.push(JSON.stringify({"time": data.time, "name": data.name, "text": data.text}));
     }
