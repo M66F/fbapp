@@ -15,6 +15,7 @@ var server = app.listen(app.get('port'), function() {
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
   var authorized = false;
+  var nameOnServer = "unknown";
   var clientIp = socket.request.connection.remoteAddress;
   console.log(new Date() + " received request from " + clientIp);
 
@@ -27,8 +28,9 @@ io.sockets.on('connection', function (socket) {
       socket.emit('init', { time: new Date().toLocaleTimeString(), text: 'Du bist nun mit dem Server verbunden!' });
       if(history[0] != undefined && history[0] != null) {
         for(chatline in history) {
-          json = JSON.parse(history[chatline])
-          socket.emit('chat', {time: json.time, name: json.name, text: json.text});
+          json = JSON.parse(history[chatline]);
+          time = new Date().toLocaleTimeString();
+          socket.emit('chat', {time: time, name: json.name, text: json.text});
         }
       }
 
@@ -43,9 +45,59 @@ io.sockets.on('connection', function (socket) {
   // user sends chat message
   socket.on('chat', function (data) {
     if(authorized == true) {
-      // send to all users
-      io.sockets.emit('chat', {time: data.time, name: data.name || 'Anonym', text: data.text});
-      history.push(JSON.stringify({"time": data.time, "name": data.name, "text": data.text}));
+      if (nameOnServer != data.name) {
+        console.log(new Date() + " Disallowed name change attempt from " + clientIp);
+        socket.emit('alert', {message:"You have been kicked! Reason: Disallowed action"});
+        socket.disconnect();
+        nameOnServer = "unknown";
+        return;
+      }
+
+      if(data.text.length < 100) {
+        // send to all users
+        data.text = data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        time = new Date().toLocaleTimeString();
+        data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        io.sockets.emit('chat', {time: time, name: data.name || 'Anonym', text: data.text});
+        history.push(JSON.stringify({"time": time, "name": data.name, "text": data.text}));
+      } else{
+        // reject (anti-spam)
+        socket.emit('alert', {message:"Message size is limited to 100 characters"});
+        console.log(new Date() + " Anti spam triggered by: " + clientIp)
+      }
+
     }
+  });
+
+
+  // user sends chat message
+  socket.on('init', function (data) {
+    if(authorized == true) {
+      if(data.name.length > 25) {
+        socket.emit('alert', {message:"You have been kicked! Reason: Name length is limited to 25 characters"});
+        socket.disconnect();
+        return;
+      }
+      if(nameOnServer == "unknown") {
+        nameOnServer = data.name;
+      }
+      // send to all users
+      data.text = "CONNECTED";
+      time = new Date().toLocaleTimeString();
+      data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      io.sockets.emit('chat', {time: time, name: data.name || 'Anonym', text: data.text});
+      history.push(JSON.stringify({"time": time, "name": data.name, "text": data.text}));
+
+    }
+  });
+
+  socket.on('disconnect', function () {
+    console.log(new Date() + " Disconnect received from: " + clientIp);
+    time = new Date().toLocaleTimeString();
+    name = nameOnServer;
+    name = name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    text = "DISCONNECTED";
+    io.sockets.emit('chat', {time: time, name: name, text: text});
+    nameOnServer = "unknown";
   });
 });
