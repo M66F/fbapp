@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./static/css/chat.css">
+    <script src="socket.io/socket.io.js"></script>
+    <%# contains scripts for this site %>
+    <script type="text/javascript" src= "./static/js/wsclient.js"></script>
+</head>
+<body>
+<ul id="content"></ul>
+<footer>
+    <input id="name" type="text" placeholder="dein Name" disabled />
+    <input id="text" type="text" placeholder="schreibe etwas..." onkeydown="sendEnter()" />
+    <input id="senden" type="submit" value="senden" onclick="send()" />
+</footer>
+</body>
+</html>

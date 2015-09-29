@@ -4,16 +4,10 @@
 
 
 <%# HTML %>
-<%# the Heading %>
-<div id = "Heading" class="heading">
-  <h1><%-title %></h1></div>
 
-<%# search field on the left and twitter newsfeed on the right%>
-<div id = "searchAndTwitter">
-	<input type="text" id="searchText" onkeyup="createPlayerList()"> <button id="speechButton" onclick="startSpeechRecognition(event)">
-    <img id='speechImage' src="/static/img/mic.gif" title="Starte die Spracheingabe"></button>
-	<LABEL>----twitter zeug----</LABEL>
-</div>
+
+
+
 <%# these will be filled by index.controller.js with players %>
 <div id="playerColumn" class ="playerColumn" style = 'float: left;margin: 30px;'></div>
 
@@ -30,7 +24,10 @@
 
 	<div id="login" class = "login"></div>
 
-	<div id= "chat" class = "chat">Websocket Chat</div>
+	<div id= "chat" class = "chat">Websocket Chat
+		<br>
+		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
+	</div>
 
 </div>
 

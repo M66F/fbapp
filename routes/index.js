@@ -10,7 +10,9 @@ module.exports = function(passport){
 //***********************************************************************************************
 //basic page routing
 
+
 router.get('/', function(req, res) {
+
 	//check if user is authenticated
 	if (req.isAuthenticated()) {
 
@@ -49,6 +51,9 @@ passport.authenticate('facebook', { scope: 'public_profile' })
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
+});
+router.get('/chat', function(req, res) {
+  res.render('wwsChat', {title: "Chat"});
 });
 
 
