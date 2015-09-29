@@ -28,6 +28,10 @@ socket.on('init', function(data) {
     socket.emit('init', {name: nameI, text: nameI});
 });
 
+socket.on('disconnect', function(data) {
+    document.getElementById("content").innerHTML += '<li>' + '<small>[' + new Date().toLocaleTimeString() + ']</small>'  + '<div style="display: inline;margin-left: 75px">' +  "You've been disconnected" + '</div></li>';
+});
+
 function send(){
     // Eingabefelder auslesen
     var name = document.getElementById("name").value;
