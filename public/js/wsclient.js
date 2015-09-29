@@ -25,19 +25,17 @@ socket.on('init', function(data) {
     }
     document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' +  data.text + '</li>';
 
-    var time = new Date().toLocaleTimeString();
-    socket.emit('init', {name: nameI, text: nameI, time: time});
+    socket.emit('init', {name: nameI, text: nameI});
 });
 
 function send(){
     // Eingabefelder auslesen
     var name = document.getElementById("name").value;
     var text = document.getElementById("text").value;
-    var time = new Date().toLocaleTimeString();
 
     if(text != "") {
         // Socket senden
-        socket.emit('chat', {name: name, text: text, time: time});
+        socket.emit('chat', {name: name, text: text});
     }
     // Text-Eingabe leeren
     var obj = document.getElementById("text").value = "";
