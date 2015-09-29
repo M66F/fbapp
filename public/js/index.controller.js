@@ -1,14 +1,13 @@
 //**************************************************************************************************
-//create login container 
-
+//create left container depending on Login Status
+function createRightColumn() {
 if (isAuthenticated) {
-  document.getElementById("login").innerHTML = "<p>Willkommen, "+facebookUser.name+" ! :)</p>"+
-"<br><a href='/logout' class='socialButton'>Logout</a>"
-
+  document.getElementById("login").innerHTML = "<p>Willkommen, "+User.name+" ! :)</p>"+
+"<br><img id='userImage' src="+User.imageURL+" draggable='true' ondragstart='drag(event)'><a href='/logout' class='socialButton' >Logout</a>";
 } else{
   document.getElementById("login").innerHTML = "<p>Login:</p> <br>"+
-  "<a class='socialButton' href='/auth/facebook'>Login with Facebook</a>"
-};
+  "<a class='socialButton' href='/auth/facebook'>Login with Facebook</a>";
+};}
 //**************************************************************************************************
 //Speech recognition for search input field
 if (!('webkitSpeechRecognition' in window)) {
@@ -132,7 +131,7 @@ function createPlayerList() {
         for (var player in playerList) {
             if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")))) {
                 //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-                out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id=" + playerList[player].filename + " draggable='true' ondragstart='drag(event)' ></img><p>" + playerList[player].playername + "</p></div></li>";
+                out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id=" + playerList[player].filename + " draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
             }
         };
         //end the list
@@ -148,6 +147,15 @@ function createPlayerList() {
 //**************************************************************************************
 //make httpRequest to server to get detail information JSON for a specific player
   function requestPlayerDetail(filename) {
+
+    if (filename == "userImage") {
+      document.getElementById("textDetails").innerHTML = 
+"<img src='"+userImage.src+"' style='width:160px;height:200;' draggable = false>"+ 
+"<table style='margin-left:auto; margin-right:auto;'>"+
+"<tr><td>Spielername:</td><td>" + User.name + 
+ "</td></tr></table>";
+
+    } else{
          httpRequest = new XMLHttpRequest();
    
 
@@ -160,7 +168,7 @@ function createPlayerList() {
     httpRequest.open('GET', '/playerdata/' + filename + '.pd');
     httpRequest.send();
   }
-
+}
 //handle Detail JSON file, when it is returned
   function writePlayerDetail() {
     //check if httpRequest was successful
@@ -201,6 +209,19 @@ document.getElementById("textDetails").innerHTML =
 
 
 //*************************************************************************************
+// Welcome Text in textDetails
+
+function writeWelcomeText() {
+  document.getElementById("textDetails").innerHTML = "<p> Hey, das ist die Fußball App!"+
+  "<br><p>Zieht einen Spieler hierher!</p><br><br><p> Meldet euch mit Facebook an oder nutzt den Chat!</p>"
+}
+//*************************************************************************************
 // Initial Setup
 
 requestPlayerList();
+createRightColumn();
+if (isAuthenticated) {
+requestPlayerDetail("userImage");
+} else{
+writeWelcomeText();
+};

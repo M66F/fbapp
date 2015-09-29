@@ -4,4 +4,4 @@ public/components
 .idea/
 .editorconfig
 */__pycache__
-
+.secretConfig.js

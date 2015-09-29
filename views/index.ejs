@@ -24,7 +24,7 @@
 
 	<div id="login" class = "login"></div>
 
-	<div id= "chat" class = "chat">Websocket Chat
+	<div id= "chat" class = "chat">
 		<br>
 		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
 	</div>
@@ -34,11 +34,13 @@
 
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
+
 var isAuthenticated = <%- isAuthenticated %>;
 
 if (isAuthenticated) {
 
-	var facebookUser = JSON.parse('<%- user %>');
+	var User = JSON.parse('<%- user %>');
+	createRightColumn();
 };
 </SCRIPT>
 
