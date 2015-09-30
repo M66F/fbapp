@@ -53,7 +53,7 @@ io.sockets.on('connection', function (socket) {
         return;
       }
 
-      if(data.text.length < 100) {
+      if(data.text.length < 100 || isAdmin) {
         // send to all users
         if(!isAdmin) {
           data.text = data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
