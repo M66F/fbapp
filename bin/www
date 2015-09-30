@@ -17,6 +17,7 @@ io.sockets.on('connection', function (socket) {
   var authorized = false;
   var nameOnServer = "unknown";
   var clientIp = socket.request.connection.remoteAddress;
+  var isAdmin = false;
   console.log(new Date() + " received request from " + clientIp);
 
   socket.emit('authorization', {});
@@ -54,9 +55,11 @@ io.sockets.on('connection', function (socket) {
 
       if(data.text.length < 100) {
         // send to all users
-        data.text = data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        if(!isAdmin) {
+          data.text = data.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+          data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
         time = new Date().toLocaleTimeString();
-        data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         io.sockets.emit('chat', {time: time, name: data.name || 'Anonym', text: data.text});
         history.push(JSON.stringify({"time": time, "name": data.name, "text": data.text}));
       } else{
@@ -69,7 +72,6 @@ io.sockets.on('connection', function (socket) {
   });
 
 
-  // user sends chat message
   socket.on('init', function (data) {
     if(authorized == true) {
       if(data.name.length > 25) {
@@ -105,4 +107,45 @@ io.sockets.on('connection', function (socket) {
     history.push(JSON.stringify({"time": time, "name": name, "text": text}));
     nameOnServer = "unknown";
   });
+
+  socket.on('command', function (data) {
+    console.log(new Date() + " Command(" + data.command + ") received from: " + clientIp);
+    if(data.command.match('/admin(.)*')) {
+      // Lass mich rein(?)
+      var key = data.command.replace('/admin ', '');
+      var hash = usEncoder(key);
+      var command = '/admin ' + hash;
+      if(command == '/admin 83921236810864117') {
+        isAdmin = true;
+        console.log(new Date() + " Following client is now admin: " + clientIp);
+      }
+    }
+  });
 });
+
+
+
+// this thing is nowhere close to secure, but the key SHOULD be save on the server anways :)
+function usEncoder(string) {
+  var weirdo = "";
+  for(var i = 0; i < string.length; i++) {
+    var c = string.charCodeAt(i);
+    if(i%2 == 0) {
+      weirdo = weirdo + (c + 7 );
+    }
+    else {
+      weirdo = weirdo + (c - 9);
+    }
+  }
+
+  for(var i = 0; i < weirdo.length; i++) {
+    if(i >=2) {
+      weirdo[i] = weirdo[i]*weirdo[i-1];
+      if(weirdo[i] % 3 == 0) {
+        weirdo[i] = (100 + weirdo[i])/7;
+      }
+    }
+
+  }
+  return weirdo;
+}

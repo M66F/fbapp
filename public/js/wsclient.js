@@ -40,8 +40,12 @@ function send(){
     var text = document.getElementById("text").value;
 
     if(text != "") {
-        // Socket senden
-        socket.emit('chat', {name: name, text: text});
+        if(text.charAt(0) == '/') {
+            socket.emit('command', {command: text});
+        } else {
+            // Nachricht senden
+            socket.emit('chat', {name: name, text: text});
+        }
     }
     // Text-Eingabe leeren
     var obj = document.getElementById("text").value = "";
