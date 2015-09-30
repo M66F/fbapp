@@ -4,7 +4,7 @@ body{
     font: 16px "Helvetica neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
-header, footer{
+footer{
     display: block;
     position: fixed;
     top: 0;
@@ -18,14 +18,7 @@ header, footer{
     height: 2em;
     color: #fff;
 }
-header{
-    font-weight: bold;
-}
-header > a:last-child{
-    float: right;
-    color: #fff;
-    font-weight: normal;
-}
+
 footer{
     top: auto;
     bottom: 0;
