@@ -69,9 +69,10 @@ io.sockets.on('connection', function (socket) {
         nameOnServer = data.name;
       }
       // send to all users
-      data.text = "CONNECTED";
       time = new Date().toLocaleTimeString();
       data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      data.text = data.name + " CONNECTED";
+      data.name = "MESSAGE";
       io.sockets.emit('chat', {time: time, name: data.name || 'Anonym', text: data.text});
       history.push(JSON.stringify({"time": time, "name": data.name, "text": data.text}));
 
@@ -83,7 +84,9 @@ io.sockets.on('connection', function (socket) {
     time = new Date().toLocaleTimeString();
     name = nameOnServer;
     name = name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    text = "DISCONNECTED";
+    text = name + " DISCONNECTED";
+    name = "MESSAGE";
     io.sockets.emit('chat', {time: time, name: name, text: text});
+    history.push(JSON.stringify({"time": time, "name": name, "text": text}));
   });
 });

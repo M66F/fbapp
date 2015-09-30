@@ -5,6 +5,11 @@ socket.on('chat', function (data) {
     window.scrollTo(0,document.body.scrollHeight);
 });
 
+socket.on('disconnect', function() {
+    document.getElementById("content").innerHTML += '<li>' + '<small>[' + new Date().toLocaleTimeString() + ']</small>' + '<div style="color:red;display: inline;margin-right: 40px">' + 'MESSAGE:' + '</div>' +  "You've been disconnected!" + '</li>';
+    window.scrollTo(0,document.body.scrollHeight);
+});
+
 socket.on('authorization', function(data) {
     var key = prompt("Enter chat key:");
     socket.emit('authorization', { key: key });
@@ -24,7 +29,7 @@ socket.on('init', function(data) {
         document.getElementById("name").value = "!";
     }
     document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' +  data.text + '</li>';
-
+    window.scrollTo(0,document.body.scrollHeight);
     socket.emit('init', {name: nameI, text: nameI});
 });
 
