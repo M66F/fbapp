@@ -110,6 +110,7 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('command', function (data) {
     console.log(new Date() + " Command(" + data.command + ") received from: " + clientIp);
+
     if(data.command.match('/admin(.)*')) {
       // Lass mich rein(?)
       var key = data.command.replace('/admin ', '');
@@ -117,8 +118,14 @@ io.sockets.on('connection', function (socket) {
       var command = '/admin ' + hash;
       if(command == '/admin 83921236810864117') {
         isAdmin = true;
+        socket.emit('alert', {message:"You now have admin privileges"});
         console.log(new Date() + " Following client is now admin: " + clientIp);
       }
+    }
+
+    if(data.command == '/clear' && isAdmin) {
+      socket.emit('alert', {message:"History cleared"});
+      history = [];
     }
   });
 });
