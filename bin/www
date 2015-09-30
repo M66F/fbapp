@@ -29,8 +29,7 @@ io.sockets.on('connection', function (socket) {
       if(history[0] != undefined && history[0] != null) {
         for(chatline in history) {
           json = JSON.parse(history[chatline]);
-          time = new Date().toLocaleTimeString();
-          socket.emit('chat', {time: time, name: json.name, text: json.text});
+          socket.emit('chat', {time: json.time, name: json.name, text: json.text});
         }
       }
 
@@ -97,6 +96,9 @@ io.sockets.on('connection', function (socket) {
     time = new Date().toLocaleTimeString();
     name = nameOnServer;
     name = name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    if (name == "unknown") {
+      return;
+    }
     text = name + " DISCONNECTED";
     name = "MESSAGE";
     io.sockets.emit('chat', {time: time, name: name, text: text});

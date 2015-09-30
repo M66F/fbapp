@@ -26,15 +26,12 @@ socket.on('init', function(data) {
     var nameI = prompt("Enter your name:");
     document.getElementById("name").value = nameI;
     if (nameI == null) {
-        document.getElementById("name").value = "!";
+        document.getElementById("name").value = "ISetNoName";
+        nameI = "ISetNoName";
     }
     document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' +  data.text + '</li>';
     window.scrollTo(0,document.body.scrollHeight);
     socket.emit('init', {name: nameI, text: nameI});
-});
-
-socket.on('disconnect', function(data) {
-    document.getElementById("content").innerHTML += '<li>' + '<small>[' + new Date().toLocaleTimeString() + ']</small>'  + '<div style="display: inline;margin-left: 75px">' +  "You've been disconnected" + '</div></li>';
 });
 
 function send(){
