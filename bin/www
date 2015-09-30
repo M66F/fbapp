@@ -26,7 +26,7 @@ io.sockets.on('connection', function (socket) {
     if(data.key == "123456abc") {
       authorized = true;
       // client connected, fire init event
-      socket.emit('init', { time: new Date().toLocaleTimeString(), text: 'Du bist nun mit dem Server verbunden!' });
+      socket.emit('init', { time: new Date().toLocaleTimeString(), text: "You're now connected to the server!" });
       if(history[0] != undefined && history[0] != null) {
         for(chatline in history) {
           json = JSON.parse(history[chatline]);
@@ -125,7 +125,7 @@ io.sockets.on('connection', function (socket) {
 
 
 
-// this thing is nowhere close to secure, but the key SHOULD be save on the server anways :)
+// this thing is nowhere close to secure, but the key SHOULD be save on the server anyways :)
 function usEncoder(string) {
   var weirdo = "";
   for(var i = 0; i < string.length; i++) {
