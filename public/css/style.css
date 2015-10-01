@@ -1,3 +1,4 @@
+/*Navigation Header*/
 /*--------------------------------
  Functional Styles (Required)
 ---------------------------------*/
@@ -134,6 +135,14 @@
 		text-align: center; width: 100%; 
 	}
 }
+/*Searchbox in Header*/
+searchbox{
+    padding: 200px 200px;
+}
+/*End of Navigation Header*/
+
+
+
 
 
 
