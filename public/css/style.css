@@ -3,7 +3,7 @@
  Functional Styles (Required)
 ---------------------------------*/
 
-.header { position: relative; }
+.header { position: relative;}
 #toggle, .toggle { display: none; }
 .menu > li { list-style: none; float:left;	}
 
@@ -135,24 +135,18 @@
 		text-align: center; width: 100%; 
 	}
 }
-/*Searchbox in Header*/
-searchbox{
-    padding: 200px 200px;
-}
+
+
 /*End of Navigation Header*/
-
-
-
-
-
-
 
 
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #0AAFFF;
     color: white;
+    prev
 }
+
 
 a {
     color: black;
@@ -298,4 +292,7 @@ a {
     box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
     position: relative;
     top: 2%;
+}
+#searchAndTwitter {
+    padding: 20px;
 }
