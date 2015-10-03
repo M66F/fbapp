@@ -23,7 +23,7 @@ io.sockets.on('connection', function (socket) {
   socket.emit('authorization', {});
 
   socket.on('authorization', function(data) {
-    if(data.key == "123456abc") {
+    if(myHash(data.key) == "1628413597910449260129162704492809117649291617270948495369409569801140608806041108965904963594849072716192946711908294407261921062944019795314826116284135979104492601291627044928091176492916172709484953694095698011406088060411089659049635948490727161929467") {
       authorized = true;
       // client connected, fire init event
       socket.emit('init', { time: new Date().toLocaleTimeString(), text: "You're now connected to the server!" });
@@ -114,9 +114,9 @@ io.sockets.on('connection', function (socket) {
     if(data.command.match('/admin(.)*')) {
       // Lass mich rein(?)
       var key = data.command.replace('/admin ', '');
-      var hash = usEncoder(key);
+      var hash = myHash(key);
       var command = '/admin ' + hash;
-      if(command == '/admin 83921236810864117') {
+      if(command == '/admin 8459064384657818013456270459295610201175616532919548974931931210057750012139139479845919235616571102016592954072654310818756483460954884590643846578180134562704592956102011756165329195489749319312100577500121391394798459192356165711020165929540726543108187') {
         isAdmin = true;
         socket.emit('alert', {message:"You now have admin privileges"});
         console.log(new Date() + " Following client is now admin: " + clientIp);
@@ -133,26 +133,34 @@ io.sockets.on('connection', function (socket) {
 
 
 // this thing is nowhere close to secure, but the key SHOULD be save on the server anyways :)
-function usEncoder(string) {
-  var weirdo = "";
-  for(var i = 0; i < string.length; i++) {
-    var c = string.charCodeAt(i);
-    if(i%2 == 0) {
-      weirdo = weirdo + (c + 7 );
+function myHash(string) {
+  var hash = 0;
+  var char = "";
+  var len = 256;
+
+  if(string.length == 0) return hash;
+  for(i=0; i < string.length; i++) {
+    if(i == 0) {
+      char = char + Math.pow(string.charCodeAt(i), 9)
     }
-    else {
-      weirdo = weirdo + (c - 9);
+    else if(i%5 == 0) {
+      char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i-2), 7);
     }
+    else if(i%4 == 0) {
+      char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i-4), 3);
+    }
+    else if(i%3 == 0) {
+      char = char + Math.pow(string.charCodeAt(i), 2)  + Math.pow(char.charCodeAt(i-3), 1);
+    }
+    else if(i%2 == 0) {
+      char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i-1), 2);
+    }
+
   }
 
-  for(var i = 0; i < weirdo.length; i++) {
-    if(i >=2) {
-      weirdo[i] = weirdo[i]*weirdo[i-1];
-      if(weirdo[i] % 3 == 0) {
-        weirdo[i] = (100 + weirdo[i])/7;
-      }
-    }
-
+  while(char.length < len) {
+    char += char.split("").reverse().join("");
   }
-  return weirdo;
+  hash = char.substring(0, len);
+  return hash;
 }
