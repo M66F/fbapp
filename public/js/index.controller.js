@@ -87,11 +87,16 @@ function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
+//Create global variable "target" for the drop location
+var target;
+
 function drop(ev) {
     ev.preventDefault();
     var id = ev.dataTransfer.getData("text");
+    target = ev.currentTarget.className;
     requestPlayerDetail(id);
 }
+
 //****************************************************************************************
 //make httpRequest to get the list of all players and create the list to choose from
 //at the moment a list of buttons is created 
@@ -124,7 +129,7 @@ function createPlayerList() {
           }
         //create a string with HTML code, which will turn into a List of all Players from the JSON
         //start of the List
-        var out = "<ul style='list-style: none;padding:0;margin:0;'>";
+       var out = "<ul style='list-style: none;padding:0;margin:0;'>";
           // get search string
           var searchString = document.getElementById('searchText').value;
         //loop through the players in the JSON file
@@ -147,9 +152,10 @@ function createPlayerList() {
 //**************************************************************************************
 //make httpRequest to server to get detail information JSON for a specific player
   function requestPlayerDetail(filename) {
-
+            
+      
     if (filename == "userImage") {
-      document.getElementById("textDetails").innerHTML = 
+      document.getElementById("textDetailsLeft").innerHTML = 
 "<img src='"+userImage.src+"' style='width:160px;height:200;' draggable = false>"+ 
 "<table style='margin-left:auto; margin-right:auto;'>"+
 "<tr><td>Spielername:</td><td>" + User.name + 
@@ -177,8 +183,19 @@ function createPlayerList() {
         //put JSON into var and parse it
         var player = JSON.parse(httpRequest.responseText);
 
+          
+//Set Target for Drop Event
+if (target == "detailsLeft") {
+        var targetDOM = "textDetailsLeft"
+    }
+else
+    if (target == "detailsRigth") {
+        var targetDOM = "textDetailsRight"
+    }          
+          
+          
 //write JSON content into Element on Webpage as a table
-document.getElementById("textDetails").innerHTML = 
+document.getElementById(targetDOM).innerHTML = 
 "<img src="+player.PictureURL+" style='width:160px;height:200;' draggable = false>"+ 
 "<table style='margin-left:auto; margin-right:auto;'>"+
 "<tr><td>Spielername:</td><td>" + player.Name + 
@@ -199,7 +216,7 @@ document.getElementById("textDetails").innerHTML =
 "</td></tr><tr><td>Spielerberater:</td><td>" + player.Spielerberater +
 "</td></tr><tr><td>Ausruester:</td><td>" + player.Ausruester +
  "</td></tr></table>";
-
+      
 
       } else {
         alert('There was a problem with the playerInfo request.');
@@ -212,7 +229,9 @@ document.getElementById("textDetails").innerHTML =
 // Welcome Text in textDetails
 
 function writeWelcomeText() {
-  document.getElementById("textDetails").innerHTML = "<p> Hey, das ist die Fußball App!"+
+  document.getElementById("textDetailsLeft").innerHTML = "<p> Hey, das ist die Fußball App!"+
+  "<br><p>Zieht einen Spieler hierher!</p><br><br><p> Meldet euch mit Facebook an oder nutzt den Chat!</p>"
+  document.getElementById("textDetailsRight").innerHTML = "<p> Hey, das ist die Fußball App!"+
   "<br><p>Zieht einen Spieler hierher!</p><br><br><p> Meldet euch mit Facebook an oder nutzt den Chat!</p>"
 }
 //*************************************************************************************

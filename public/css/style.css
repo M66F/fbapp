@@ -161,9 +161,10 @@ a {
 
 .playerColumn {
     background: #00BFFF;
-    height: 730px;
+    height: 770px;
     overflow: auto;
-    width: inherit;
+    position:inherit;
+    /*width: inherit;*/
     border-color: #007FFF;
     border-width: 5px;
     border-style: solid;
@@ -191,9 +192,9 @@ a {
 }
 
 
-.details {
+.detailsLeft , .detailsRigth {
     float: left;
-    width: 48%;
+    width: 25%;
     border-right-style: solid;
     border-right-width: 3px;
     border-right-color: white;
@@ -202,8 +203,9 @@ a {
     border-left-color: white;
     font-size: 20px;
     height: 800px;
-    text-align: center;
+    text-align: left;
 }
+
 
 .rightColumn {
     background: #00BFFF;
@@ -307,6 +309,6 @@ a {
     
 }
 
-.leftBox {
+.leftColumn {
     float: left;
 }
