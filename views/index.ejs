@@ -9,7 +9,16 @@
 
 
 <%# these will be filled by index.controller.js with players %>
-<div id="playerColumn" class ="playerColumn" style = 'float: left;margin: 30px;'></div>
+<div id="leftBox" class="leftBox">
+    <div id="searchAndTwitter" class="searchAndTwitter">
+            <input type="text" id="searchText" onkeyup="createPlayerList()">
+            <button id="speechButton" onclick="startSpeechRecognition(event)">
+                <img id='speechImage' src="/static/img/mic.gif" title="Starte die Spracheingabe" width=10 height=relative></button>
+    </div>
+    
+    <div id="playerColumn" class ="playerColumn"></div>
+</div>
+
 
 <%# container with details of players in the middle, it accepts drop events of player images %>
 <div id="details" class ="details" ondrop="drop(event)" ondragover="allowDrop(event)">
