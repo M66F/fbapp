@@ -164,7 +164,7 @@ a {
     height: 770px;
     overflow: auto;
     position:inherit;
-    /*width: inherit;*/
+    width: 98%;
     border-color: #007FFF;
     border-width: 5px;
     border-style: solid;
@@ -311,4 +311,5 @@ a {
 
 .leftColumn {
     float: left;
+    width: 300px;
 }
