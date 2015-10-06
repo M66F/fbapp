@@ -1,12 +1,6 @@
 <% include header %>
 
-
-
-
 <%# HTML %>
-
-
-
 
 <%# these will be filled by index.controller.js with players %>
 <div id="leftColumn" class="leftColumn">
@@ -15,7 +9,7 @@
             <button id="speechButton" onclick="startSpeechRecognition(event)">
                 <img id='speechImage' src="/static/img/mic.gif" title="Starte die Spracheingabe" width=10 height=relative></button>
     </div>
-    
+
     <div id="playerColumn" class ="playerColumn"></div>
 </div>
 
@@ -32,7 +26,6 @@
 
 </div>
 
-
 <%# column on the right with LiveTicker, Login and Websocket Chat %>
 <div id="rightColumn" class = "rightColumn">
 
@@ -47,7 +40,6 @@
 
 </div>
 
-
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
 
@@ -61,6 +53,6 @@ if (isAuthenticated) {
 </SCRIPT>
 
 <%# contains scripts for this site %>
-  <script type="text/javascript" src= "./static/js/index.controller.js"></script>
+<script type="text/javascript" src= "./static/js/index.controller.js"></script>
 
 <% include footer %>
