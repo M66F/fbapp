@@ -13,5 +13,5 @@ Im Directory die Befehle:
      
 ausführen.
 
-Der Server läuft auf dem Port 3000.
+Der Server läuft auf dem Port 80.
 
