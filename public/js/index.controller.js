@@ -146,7 +146,7 @@ function createPlayerList() {
             for (var player in playerList) {
                 if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")))) {
                     //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-                    out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id=" + playerList[player].filename + " draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
+                    out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
                 }
             }
 
