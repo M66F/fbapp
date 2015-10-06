@@ -279,7 +279,7 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
     hoechsterMarktwert2 = hoechsterMarktwert2.replace(re, "0000");
     hoechsterMarktwert2 = hoechsterMarktwert2.replace(re2, "000");
     hoechsterMarktwert2 = hoechsterMarktwert2.replace(re3, "");
-    var hoechsterMarktwert2Nmbrs = parseInt(aktuellerMarktwert2);
+    var hoechsterMarktwert2Nmbrs = parseInt(hoechsterMarktwert2);
     
     //images in string code
     var arrowUp = "<img src='/static/img/arrowUp.png' width=30 height=auto align=right draggable=false>"
