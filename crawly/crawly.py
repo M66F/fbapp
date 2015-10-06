@@ -15,6 +15,7 @@ __status__ = "Development"
 import requests
 import re
 import json
+import unicodedata as ud
 
 
 class bcolors:
@@ -26,6 +27,18 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
+latin_letters= {}
+
+def is_latin(uchr):
+    try: return latin_letters[uchr]
+    except KeyError:
+         return latin_letters.setdefault(uchr, 'LATIN' in ud.name(uchr))
+
+def only_roman_chars(unistr):
+    return all(is_latin(uchr)
+           for uchr in unistr
+           if uchr.isalpha()) # isalpha suggested by John Machin
 
 
 def getAlter(content):
@@ -266,6 +279,13 @@ def getName(content, url):
         # trim white space before and after but not between
         ret = re.sub('\s{2}', '', ret)
         #print('3: ' + ret)
+
+
+        # Änderung für Michael
+        #####################
+        if(only_roman_chars(ret) == False):
+            raise ValueError('cya')
+        #####################
 
         #print(ret)
         return ret
