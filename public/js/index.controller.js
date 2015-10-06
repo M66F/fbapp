@@ -139,11 +139,20 @@ function createPlayerList() {
             var out = "<ul style='list-style: none;padding:0;margin:0;'>";
             // get search string
             var searchString = document.getElementById('searchText').value;
+
+            searchString = searchString.replace(/[Aa]/g, "[ÄäAaÀÁáÂâ]{0,1}");
+            searchString = searchString.replace(/[Ee]/g, "[ÈèÉéÊêE]{0,1}");
+            searchString = searchString.replace(/[Ii]/g, "[IiÍÌíìî]{0,1}");
+            searchString = searchString.replace(/[Oo]/g, "[ÖöOoÓÒóòôÔ]{0,1}");
+            searchString = searchString.replace(/[Uu]/g, "[ÜüUuÙùÚúûÛ]{0,1}");
+            searchString = searchString.replace(/[Cc]/g, "[ÇçCcĈĉ]{0,1}");
+            //searchString = searchString.replace(/[ß]/g, "[ß]{0,1}");
+            //console.log(searchString);
             //loop through the players in the JSON file
             for (var player in playerList) {
                 if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")))) {
                     //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-                    out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id=" + playerList[player].filename + " draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
+                    out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
                 }
             }
 

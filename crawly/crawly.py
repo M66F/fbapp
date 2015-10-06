@@ -15,6 +15,7 @@ __status__ = "Development"
 import requests
 import re
 import json
+import unicodedata as ud
 
 
 class bcolors:
@@ -26,6 +27,18 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
+latin_letters= {}
+
+def is_latin(uchr):
+    try: return latin_letters[uchr]
+    except KeyError:
+         return latin_letters.setdefault(uchr, 'LATIN' in ud.name(uchr))
+
+def only_roman_chars(unistr):
+    return all(is_latin(uchr)
+           for uchr in unistr
+           if uchr.isalpha()) # isalpha suggested by John Machin
 
 
 def getAlter(content):
@@ -267,20 +280,49 @@ def getName(content, url):
         ret = re.sub('\s{2}', '', ret)
         #print('3: ' + ret)
 
+
+        # Änderung für Michael
+        #####################
+        if(only_roman_chars(ret) == False):
+            raise ValueError('cya')
+        #####################
+
+        #print(ret)
         return ret
     except:
-        ret = re.sub('http://www.transfermarkt.de/', '', url)
-        ret = re.sub('/profil/spieler/.*', '', ret)
-        ret = re.sub('-', ' ', ret)
-        name = list(ret)
-        name[0] = name[0].upper()
-        i = 0
-        while(i < len(name)):
-            if(name[i - 1] == " "):
-                name[i] = name[i].upper()
-            i = i + 1
-        ret = ''.join(name)
-        return ret
+        try:
+            m = re.search('Vollständiger Name:(.|\n)*?<\/td>', content).group(0)
+            m2 = re.search('<td>(.|\n)*?<\/td>', m).group(0)
+            ret = re.sub('<(.)*?>', '', m2)
+            # trim white space before and after but not between
+            ret = re.sub('\s{2}', '', ret)
+            #print(ret)
+            return ret
+
+        except:
+            try:
+                m = re.search('<div class="spielername-profil" itemprop="name">(.|\n)*?<\/div>', content).group(0)
+                ret = re.sub('<(.)*?>', '', m)
+                # trim white space before and after but not between
+                ret = re.sub('\s{2}', '', ret)
+                # get rid of tab
+                ret = re.sub('\t', '', ret)
+                #print(ret)
+                return ret
+            except:
+                ret = re.sub('http://www.transfermarkt.de/', '', url)
+                ret = re.sub('/profil/spieler/.*', '', ret)
+                ret = re.sub('-', ' ', ret)
+                name = list(ret)
+                name[0] = name[0].upper()
+                i = 0
+                while(i < len(name)):
+                    if(name[i - 1] == " "):
+                        name[i] = name[i].upper()
+                    i = i + 1
+                ret = ''.join(name)
+                #print(ret)
+                return ret
 
 
 def getSpielerberater(content):
@@ -484,19 +526,17 @@ def getHoechsterMarktwert(content):
 def getPictureURL(content):
     try:
         #EDIT HERE
-        m = re.search('"og:image(.)*\/>', content)
+        m = re.search('<div class="headerfoto">(.|\n)*?<\/div>', content)
         #print('1: ' + m.group(0))
 
         #print('*****************************************')
         ret = m.group(0)
+        #print(ret)
 
-        #remove tags
-        ret = re.sub('\"og:image" content=\"|\" \/>', '', ret)
+        m2 = re.search('http:\/\/(.|\n)*.jpg?', ret)
+        ret = m2.group(0)
 
-        # trim white space before and after but not between
-        ret = re.sub('\s{2}', '', ret)
-        # get rid of tab
-        ret = re.sub('\t*', '', ret)
+        #print(ret)
         #print('2: ' + ret)
 
         return ret
@@ -586,11 +626,7 @@ def savePlayerData(iurl):
     ##save to single player-File
     try:
         print("Saving to file...")
-        n = re.sub('http://www.transfermarkt.de/', '', url)
-        n = re.sub('/profil/spieler/.*', '', n)
-        n = re.sub('-', ' ', n)
-        n = re.sub('\s', '_', n)
-        path = 'data/' + n + '.pd'
+        path = 'data/' + name + '.pd'
 
         ##validation check
         validationCheck(json.dumps(data), path)
@@ -606,10 +642,7 @@ def savePlayerData(iurl):
     ##add to index json file
     try:
         print("Saving to file...")
-        filename = re.sub('http://www.transfermarkt.de/', '', url)
-        filename = re.sub('/profil/spieler/.*', '', filename)
-        filename = re.sub('-', ' ', filename)
-        filename = re.sub('\s', '_', filename)
+        filename = name
         addToIndexJSON(filename, name, pictureURL)
     except:
         print(bcolors.FAIL + "Adding " + name + " to playerData failed!" + bcolors.ENDC)
