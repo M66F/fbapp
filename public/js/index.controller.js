@@ -1,4 +1,13 @@
 //**************************************************************************************************
+//Global Variables
+//"target" for the drop location of drag&drop event
+var target;
+
+//"playerLeft" and "playerRight" for player comparism
+var playerLeft;
+var playerRight;
+
+//**************************************************************************************************
 //create left container depending on Login Status
 function createRightColumn() {
 if (isAuthenticated) {
@@ -87,8 +96,6 @@ function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
-//Create global variable "target" for the drop location
-var target;
 
 function drop(ev) {
     ev.preventDefault();
@@ -186,43 +193,163 @@ function createPlayerList() {
           
 //Set Target for Drop Event
 if (target == "detailsLeft") {
-        var targetDOM = "textDetailsLeft"
+        var targetDOM = "textDetailsLeft";
+        playerLeft = player;
     }
 else
     if (target == "detailsRigth") {
-        var targetDOM = "textDetailsRight"
+        var targetDOM = "textDetailsRight";
+        playerRight = player;
     }          
-          
-          
-//write JSON content into Element on Webpage as a table
-document.getElementById(targetDOM).innerHTML = 
-"<img src="+player.PictureURL+" style='width:160px;height:200;' draggable = false>"+ 
-"<table style='margin-left:auto; margin-right:auto;'>"+
-"<tr><td>Spielername:</td><td>" + player.Name + 
-"</td></tr><tr><td>Größe:</td><td>" + player.Groesse +
-"</td></tr><tr><td>Nationalität:</td><td>" + player.Nationalitaet +
-"</td></tr><tr><td>Verein:</td><td>" + player.Verein +
-"</td></tr><tr><td>Im Team seit:</td><td>" + player.ImTeamSeit +
-"</td></tr><tr><td>Schuhgrösse:</td><td>" + player.Schuhgroesse +
-"</td></tr><tr><td>Schuhmodell:</td><td>" + player.Schuhmodell +
-"</td></tr><tr><td>Position:</td><td>" + player.Position +
-"</td></tr><tr><td>Vertrag bis:</td><td>" + player.VertragBis +
-"</td></tr><tr><td>Aktueller Marktwert:</td><td>" + player.AktuellerMarktwert +
-"</td></tr><tr><td>Geburtsdatum:</td><td>" + player.Geburtsdatum +
-"</td></tr><tr><td>Schussfuss:</td><td>" + player.Schussfuss +
-"</td></tr><tr><td>Alter:</td><td>" + player.Alter +
-"</td></tr><tr><td>Höchster Marktwert:</td><td>" + player.HoechsterMarktwert +
-"</td></tr><tr><td>Geburtsort:</td><td>" + player.Geburtsort +
-"</td></tr><tr><td>Spielerberater:</td><td>" + player.Spielerberater +
-"</td></tr><tr><td>Ausruester:</td><td>" + player.Ausruester +
- "</td></tr></table>";
-      
 
+
+if ((playerLeft != undefined) && (playerRight != undefined)) {
+    //get rating from compareStats and divide into ratingLeft and ratingRight
+    var rating = compareStats(playerLeft.Groesse, playerRight.Groesse, playerLeft.ImTeamSeit, playerRight.ImTeamSeit, playerLeft.Schuhgroesse, playerRight.Schuhgroesse, playerLeft.VertragBis, playerRight.VertragBis, playerLeft.AktuellerMarktwert, playerRight.AktuellerMarktwert, playerLeft.Schussfuss, playerRight.Schussfuss, playerLeft.HoechsterMarktwert, playerRight.HoechsterMarktwert, playerLeft.Alter, playerRight.Alter);
+    var ratingLeft = [rating[0], rating[2], rating[4], rating[6], rating[8], rating[10], rating[12], rating[14]];
+    var ratingRight = [rating[1], rating[3], rating[5], rating[7], rating[9], rating[11], rating[13], rating[15]];
+    //refresh both details
+    refreshDetails(playerLeft, "textDetailsLeft", ratingLeft);
+    refreshDetails(playerRight, "textDetailsRight", ratingRight); 
+}
+else {
+    //create one player without rating
+    var dummy = [];
+    for (var i = 0; i < 8; i++) {
+        dummy[i]='';
+    }
+    refreshDetails(player, targetDOM, dummy);
+}
+
+function refreshDetails(chosenPlayer, Dom, rating) {          
+//write JSON content into Element on Webpage as a table
+document.getElementById(Dom).innerHTML = 
+"<img src="+chosenPlayer.PictureURL+" width=160px height=auto draggable=false>"+ 
+"<table style='margin-left:auto; margin-right:auto;'>"+
+"<tr><td>Spielername:</td><td>" + chosenPlayer.Name + 
+"</td></tr><tr><td>Größe:</td><td>" + chosenPlayer.Groesse + rating[0] +
+"</td></tr><tr><td>Nationalität:</td><td>" + chosenPlayer.Nationalitaet +
+"</td></tr><tr><td>Verein:</td><td>" + chosenPlayer.Verein +
+"</td></tr><tr><td>Im Team seit:</td><td>" + chosenPlayer.ImTeamSeit + rating[1] +
+"</td></tr><tr><td>Schuhgrösse:</td><td>" + chosenPlayer.Schuhgroesse + rating[2] +
+"</td></tr><tr><td>Schuhmodell:</td><td>" + chosenPlayer.Schuhmodell +
+"</td></tr><tr><td>Position:</td><td>" + chosenPlayer.Position +
+"</td></tr><tr><td>Vertrag bis:</td><td>" + chosenPlayer.VertragBis + rating[3] +
+"</td></tr><tr><td>Aktueller Marktwert:</td><td>" + chosenPlayer.AktuellerMarktwert + rating[4] +
+"</td></tr><tr><td>Geburtsdatum:</td><td>" + chosenPlayer.Geburtsdatum +
+"</td></tr><tr><td>Schussfuss:</td><td>" + chosenPlayer.Schussfuss + rating[5] +
+"</td></tr><tr><td>Alter:</td><td>" + chosenPlayer.Alter + rating[7] +
+"</td></tr><tr><td>Höchster Marktwert:</td><td>" + chosenPlayer.HoechsterMarktwert + rating[6] +
+"</td></tr><tr><td>Geburtsort:</td><td>" + chosenPlayer.Geburtsort +
+"</td></tr><tr><td>Spielerberater:</td><td>" + chosenPlayer.Spielerberater +
+"</td></tr><tr><td>Ausruester:</td><td>" + chosenPlayer.Ausruester +
+ "</td></tr></table>";
+}
+          
       } else {
         alert('There was a problem with the playerInfo request.');
       }
     }
   }
+
+//Rate the PlayerStats
+function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse1, schuhgroesse2, vertragBis1, vertragBis2, aktuellerMarktwert1, aktuellerMarktwert2, schussfuss1, schussfuss2, hoechsterMarktwert1, hoechsterMarktwert2, alter1, alter2) {
+    
+    
+    //change Mio. & Tsd. to numbers with regular expressions and parseInt()
+    var re = /( Mio\. €)/;
+    var re2 = /( Tsd\. €)/;
+    var re3 = /(,)/;
+    //aktuellerMarktwert1
+    aktuellerMarktwert1 = aktuellerMarktwert1.replace(re, "0000");
+    aktuellerMarktwert1 = aktuellerMarktwert1.replace(re2, "000");
+    aktuellerMarktwert1 = aktuellerMarktwert1.replace(re3, "");
+    var aktuellerMarktwert1Nmbrs = parseInt(aktuellerMarktwert1);
+    //aktuellerMarktwert2
+    aktuellerMarktwert2 = aktuellerMarktwert2.replace(re, "0000");
+    aktuellerMarktwert2 = aktuellerMarktwert2.replace(re2, "000");
+    aktuellerMarktwert2 = aktuellerMarktwert2.replace(re3, "");
+    var aktuellerMarktwert2Nmbrs = parseInt(aktuellerMarktwert2);
+    //hoechsterMarktwert1
+    hoechsterMarktwert1 = hoechsterMarktwert1.replace(re, "0000");
+    hoechsterMarktwert1 = hoechsterMarktwert1.replace(re2, "000");
+    hoechsterMarktwert1 = hoechsterMarktwert1.replace(re3, "");
+    var hoechsterMarktwert1Nmbrs = parseInt(hoechsterMarktwert1);
+    //hoechsterMarktwert2
+    hoechsterMarktwert2 = hoechsterMarktwert2.replace(re, "0000");
+    hoechsterMarktwert2 = hoechsterMarktwert2.replace(re2, "000");
+    hoechsterMarktwert2 = hoechsterMarktwert2.replace(re3, "");
+    var hoechsterMarktwert2Nmbrs = parseInt(aktuellerMarktwert2);
+    
+    //images in string code
+    var arrowUp = "<img src='/static/img/arrowUp.png' width=30 height=auto align=right draggable=false>"
+    var arrowDown = "<img src='/static/img/arrowDown.png' width=30 height=auto align=right draggable=false>"
+    var equal = "<img src='/static/img/equal.png' width=30 height=auto align=right draggable=false>"
+    //rating array
+    var rating = [];
+        /*
+        0 = groesse1, 
+        1 = groesse2, 
+        2 = imTeamSeit1,
+        3 = imTeamSeit2, 
+        4 = schuhgroesse1, 
+        5 = schuhgroesse2, 
+        6 = vertragBis1, 
+        7 = vertragBis2, 
+        8 = aktuellerMarktwert1, 
+        9 = aktuellerMarktwert2, 
+        10 = schussfuss1, 
+        11 = schussfuss2, 
+        12 = hoechsterMarktwert1, 
+        13 = hoechsterMarktwert2, 
+        14 = alter1, 
+        15 = alter2    
+        */
+    
+    //Comparism
+    switch(true) { //größer => besser
+        case (groesse1=="n.a."||groesse2=="n.a."): rating[0] = ''; rating[1] = ''; break;
+        case (groesse1>groesse2): rating[0] = arrowUp; rating[1] = arrowDown; break;
+        case (groesse1<groesse2): rating[0] = arrowDown; rating[1] = arrowUp; break;
+        case (groesse1==groesse2): rating[0] = equal; rating[1] = equal; break; }
+    switch(true) { //länger im Team => besser
+        case (imTeamSeit1=="n.a."||imTeamSeit2=="n.a."): rating[2] = ''; rating[3] = ''; break;
+        case (imTeamSeit1<imTeamSeit2): rating[2] = arrowUp; rating[3] = arrowDown; break;
+        case (imTeamSeit1>imTeamSeit2): rating[2] = arrowDown; rating[3] = arrowUp; break;
+        case (imTeamSeit1==imTeamSeit2): rating[2] = equal; rating[3] = equal; break; }
+    switch(true) { //größere Schuhgröße => besser
+        case (schuhgroesse1=="n.a."||schuhgroesse2=="n.a."): rating[4] = ''; rating[5] = ''; break;
+        case (schuhgroesse1>schuhgroesse2): rating[4] = arrowUp; rating[5] = arrowDown; break;
+        case (schuhgroesse1<schuhgroesse2): rating[4] = arrowDown; rating[5] = arrowUp; break;
+        case (schuhgroesse1==schuhgroesse2): rating[4] = equal; rating[5] = equal; break; }
+    switch(true) { //längerer Vertrag => besser
+        case (vertragBis1=="n.a."||vertragBis2=="n.a."): rating[6] = ''; rating[7] = ''; break;
+        case (vertragBis1>vertragBis2): rating[6] = arrowUp; rating[7] = arrowDown; break;
+        case (vertragBis1<vertragBis2): rating[6] = arrowDown; rating[7] = arrowUp; break;
+        case (vertragBis1==vertragBis2): rating[6] = equal; rating[7] = equal; break; }
+    switch(true) { //hoher Marktwert => besser
+        case (aktuellerMarktwert1Nmbrs=="n.a."||aktuellerMarktwert2Nmbrs=="n.a."): rating[8] = ''; rating[9] = ''; break;
+        case (aktuellerMarktwert1Nmbrs>aktuellerMarktwert2Nmbrs): rating[8] = arrowUp; rating[9] = arrowDown; break;
+        case (aktuellerMarktwert1Nmbrs<aktuellerMarktwert2Nmbrs): rating[8] = arrowDown; rating[9] = arrowUp; break;
+        case (aktuellerMarktwert1Nmbrs==aktuellerMarktwert2Nmbrs): rating[8] = equal; rating[9] = equal; break; }
+    switch(true) { //beidfüßig => besser als rechts/links
+        case (schussfuss1=="n.a."||schussfuss2=="n.a."): rating[10] = ''; rating[11] = ''; break;
+        case (schussfuss1=='beidfüßig'&&(schussfuss2=='links'||schussfuss2=='rechts')): rating[10] = arrowUp; rating[11] = arrowDown; break;
+        case (schussfuss2=='beidfüßig'&&(schussfuss1=='links'||schussfuss1=='rechts')): rating[10] = arrowDown; rating[11] = arrowUp; break;
+        case (schussfuss1==schussfuss2||(schussfuss1=='links'&&schussfuss2=='rechts')||(schussfuss2=='links'&&schussfuss1=='rechts')): rating[10] = equal; rating[11] = equal; break; }
+    switch(true) { //hoher Marktwert => besser
+        case (hoechsterMarktwert1Nmbrs=="n.a."||hoechsterMarktwert2Nmbrs=="n.a."): rating[12] = ''; rating[13] = ''; break;
+        case (hoechsterMarktwert1Nmbrs>hoechsterMarktwert2Nmbrs): rating[12] = arrowUp; rating[13] = arrowDown; break;
+        case (hoechsterMarktwert1Nmbrs<hoechsterMarktwert2Nmbrs): rating[12] = arrowDown; rating[13] = arrowUp; break;
+        case (hoechsterMarktwert1Nmbrs==hoechsterMarktwert2Nmbrs): rating[12] = equal; rating[13] = equal; break; }
+    switch(true) { //junges Alter => besser
+        case (alter1=="n.a."||alter2=="n.a."): rating[14] = ''; rating[15] = ''; break;
+        case (alter1<alter2): rating[14] = arrowUp; rating[15] = arrowDown; break;
+        case (alter1>alter2): rating[14] = arrowDown; rating[15] = arrowUp; break;
+        case (alter1==alter2): rating[14] = equal; rating[15] = equal; break; }
+    
+    return rating;
+}
 
 
 //*************************************************************************************
