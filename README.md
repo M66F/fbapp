@@ -13,7 +13,7 @@ Im Directory die Befehle:
 
 ausführen.
 
-Der Server läuft auf dem Port 80.
+Der Server läuft auf dem Port 3000.
 
 # To-Do
 * Responive Design
@@ -22,4 +22,4 @@ Der Server läuft auf dem Port 80.
 * Chat in die Seite einbauen
 * Create your player
 * Neuste Tweets #bundesliga
-* Impressum 
+* Impressum
