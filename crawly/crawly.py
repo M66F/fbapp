@@ -484,19 +484,17 @@ def getHoechsterMarktwert(content):
 def getPictureURL(content):
     try:
         #EDIT HERE
-        m = re.search('"og:image(.)*\/>', content)
+        m = re.search('<div class="headerfoto">(.|\n)*?<\/div>', content)
         #print('1: ' + m.group(0))
 
         #print('*****************************************')
         ret = m.group(0)
+        #print(ret)
 
-        #remove tags
-        ret = re.sub('\"og:image" content=\"|\" \/>', '', ret)
+        m2 = re.search('http:\/\/(.|\n)*.jpg?', ret)
+        ret = m2.group(0)
 
-        # trim white space before and after but not between
-        ret = re.sub('\s{2}', '', ret)
-        # get rid of tab
-        ret = re.sub('\t*', '', ret)
+        #print(ret)
         #print('2: ' + ret)
 
         return ret
@@ -586,11 +584,7 @@ def savePlayerData(iurl):
     ##save to single player-File
     try:
         print("Saving to file...")
-        n = re.sub('http://www.transfermarkt.de/', '', url)
-        n = re.sub('/profil/spieler/.*', '', n)
-        n = re.sub('-', ' ', n)
-        n = re.sub('\s', '_', n)
-        path = 'data/' + n + '.pd'
+        path = 'data/' + name + '.pd'
 
         ##validation check
         validationCheck(json.dumps(data), path)
@@ -606,10 +600,7 @@ def savePlayerData(iurl):
     ##add to index json file
     try:
         print("Saving to file...")
-        filename = re.sub('http://www.transfermarkt.de/', '', url)
-        filename = re.sub('/profil/spieler/.*', '', filename)
-        filename = re.sub('-', ' ', filename)
-        filename = re.sub('\s', '_', filename)
+        filename = name
         addToIndexJSON(filename, name, pictureURL)
     except:
         print(bcolors.FAIL + "Adding " + name + " to playerData failed!" + bcolors.ENDC)
