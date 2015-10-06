@@ -267,20 +267,42 @@ def getName(content, url):
         ret = re.sub('\s{2}', '', ret)
         #print('3: ' + ret)
 
+        #print(ret)
         return ret
     except:
-        ret = re.sub('http://www.transfermarkt.de/', '', url)
-        ret = re.sub('/profil/spieler/.*', '', ret)
-        ret = re.sub('-', ' ', ret)
-        name = list(ret)
-        name[0] = name[0].upper()
-        i = 0
-        while(i < len(name)):
-            if(name[i - 1] == " "):
-                name[i] = name[i].upper()
-            i = i + 1
-        ret = ''.join(name)
-        return ret
+        try:
+            m = re.search('Vollständiger Name:(.|\n)*?<\/td>', content).group(0)
+            m2 = re.search('<td>(.|\n)*?<\/td>', m).group(0)
+            ret = re.sub('<(.)*?>', '', m2)
+            # trim white space before and after but not between
+            ret = re.sub('\s{2}', '', ret)
+            #print(ret)
+            return ret
+
+        except:
+            try:
+                m = re.search('<div class="spielername-profil" itemprop="name">(.|\n)*?<\/div>', content).group(0)
+                ret = re.sub('<(.)*?>', '', m)
+                # trim white space before and after but not between
+                ret = re.sub('\s{2}', '', ret)
+                # get rid of tab
+                ret = re.sub('\t', '', ret)
+                #print(ret)
+                return ret
+            except:
+                ret = re.sub('http://www.transfermarkt.de/', '', url)
+                ret = re.sub('/profil/spieler/.*', '', ret)
+                ret = re.sub('-', ' ', ret)
+                name = list(ret)
+                name[0] = name[0].upper()
+                i = 0
+                while(i < len(name)):
+                    if(name[i - 1] == " "):
+                        name[i] = name[i].upper()
+                    i = i + 1
+                ret = ''.join(name)
+                #print(ret)
+                return ret
 
 
 def getSpielerberater(content):
