@@ -20,6 +20,6 @@ Der Server läuft auf dem Port 3000.
 * Schönes CSS/Design
 * Twitter und Facebook Login
 * Chat in die Seite einbauen
-* Create your player
+* Create your player mit Hilfe von Browser Localstorage
 * Neuste Tweets #bundesliga
 * Impressum
