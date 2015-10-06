@@ -139,8 +139,8 @@ function createPlayerList() {
             var out = "<ul style='list-style: none;padding:0;margin:0;'>";
             // get search string
             var searchString = document.getElementById('searchText').value;
-            // replace [?:ÄäÖöÜüÀÁáÂâÈèÉéÊêÙùÚúßÇç]
-            searchString = searchString.replace(/[AaEeOoUußCcIi]/g, "[?:ÄäAaÖöOoÜüUuÀÁáÂâÈèÉéÊêÙùÚúßÇçCcIiíìî]*");
+
+            searchString = searchString.replace(/[AaEeOoUußCcIi]/g, "[ÄäAaÖöOoÜüUuÀÁáÂâÈèÉéÊêEeÙùÚúßÇçCcIiíìî]{0,1}");
             //console.log(searchString);
             //loop through the players in the JSON file
             for (var player in playerList) {
