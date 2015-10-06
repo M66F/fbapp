@@ -10,8 +10,16 @@ Im Directory die Befehle:
      npm install
 
      grunt
-     
+
 ausführen.
 
 Der Server läuft auf dem Port 3000.
 
+# To-Do
+* Responive Design
+* Schönes CSS/Design
+* Twitter und Facebook Login
+* Chat in die Seite einbauen
+* Create your player
+* Neuste Tweets #bundesliga
+* Impressum 
