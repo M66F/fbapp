@@ -141,7 +141,7 @@ function createPlayerList() {
             var searchString = document.getElementById('searchText').value;
             // replace [?:ÄäÖöÜüÀÁáÂâÈèÉéÊêÙùÚúßÇç]
             searchString = searchString.replace(/[AaEeOoUußCcIi]/g, "[?:ÄäAaÖöOoÜüUuÀÁáÂâÈèÉéÊêÙùÚúßÇçCcIiíìî]*");
-            console.log(searchString);
+            //console.log(searchString);
             //loop through the players in the JSON file
             for (var player in playerList) {
                 if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")))) {
