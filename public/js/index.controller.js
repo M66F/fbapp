@@ -148,11 +148,15 @@ function createPlayerList() {
             searchString = searchString.replace(/[Cc]/g, "[ÇçCcĈĉ]{0,1}");
             //searchString = searchString.replace(/[ß]/g, "[ß]{0,1}");
             //console.log(searchString);
+
+            var limitSize = 20;
+            var i = 0;
             //loop through the players in the JSON file
             for (var player in playerList) {
-                if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")))) {
+                if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*"))) && i < limitSize) {
                     //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
                     out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
+                    i++;
                 }
             }
 
