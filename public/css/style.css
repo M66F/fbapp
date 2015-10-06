@@ -31,20 +31,20 @@
 
 .header > h1 {
 	float: left;
-	padding: 30px 0 0;		
+	padding: 30px 0 0;
 	font-style: italic;
 	font-family: Georgia;
 	font-size: 28px;
 	color: #DFDFDF;
 }
 
-.nav{ 
-	display: block; 
-	float: right; 
+.nav{
+	display: block;
+	float: right;
 }
 
-.nav, .menu, .menu > li, .menu > li > a{ 
-	height: 100%; 
+.nav, .menu, .menu > li, .menu > li > a{
+	height: 100%;
 }
 
 .menu > li > a{
@@ -55,7 +55,7 @@
 	font-size: 16px;
 	line-height: 1;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	-webkit-transition: all 0.25s linear;
 	-moz-transition: all 0.25s linear;
@@ -70,8 +70,8 @@
 	padding: 50px 20px 34px;
 }
 
-.toggle{ 
-	z-index: 2; 
+.toggle{
+	z-index: 2;
 }
 
 @media only screen and (max-width: 768px){
@@ -79,21 +79,21 @@
 		background: #FFFFFF;
 		border-top: 1px solid #51C1F1;
 	}
-	
+
 	.menu, .menu > li, .menu > li > a{
 		height: auto;
 	}
-	
+
 	.menu > li > a{
 		padding: 15px 15px;
 	}
-	
+
 	.menu > li > a:hover, .menu > li > a:focus{
 		background: #F2F2F2;
 		box-shadow: inset 5px 0px #51C1F1;
 		padding: 15px 15px 15px 25px;
 	}
-	
+
 	.toggle:after {
 		content: attr(data-open);
 		display: block;
@@ -112,27 +112,27 @@
 		transition: all 0.5s linear;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
-		box-sizing: border-box; 
+		box-sizing: border-box;
 	}
-	
+
 	.toggle:hover:after{
 		background: #45ABD6;
 	}
-	
+
 	#toggle:checked + div .toggle:after{
 		content: attr(data-close);
 	}
 }
 
 @media only screen and (max-width: 479px){
-	.header > h1 { 
+	.header > h1 {
 		text-align: center;
 	}
-	.header > h1, .nav, .toggle:after{ 
-		float: none; 
+	.header > h1, .nav, .toggle:after{
+		float: none;
 	}
-	.toggle:after { 
-		text-align: center; width: 100%; 
+	.toggle:after {
+		text-align: center; width: 100%;
 	}
 }
 /*End of Navigation Header*/
@@ -142,7 +142,7 @@
 /*Prevent default space on top/left/right both sides*/
 * {
 margin: 0;
-padding: 0; 
+padding: 0;
 }
 
 
@@ -306,10 +306,20 @@ a {
 }
 
 .logo {
-    
+
 }
 
 .leftColumn {
     float: left;
     width: 300px;
+}
+
+div#impwrap{
+    width: 100%;
+    text-align: justify;
+}
+
+p.impressum {
+    padding-bottom: 1em;
+
 }
