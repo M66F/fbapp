@@ -140,15 +140,14 @@ function createPlayerList() {
             // get search string
             var searchString = document.getElementById('searchText').value;
 
-            searchString = searchString.replace(/[Aa]/g, "[ÄäAaÀÁáÂâ]{0,1}");
-            searchString = searchString.replace(/[Ee]/g, "[ÈèÉéÊêE]{0,1}");
-            searchString = searchString.replace(/[Ii]/g, "[IiÍÌíìî]{0,1}");
-            searchString = searchString.replace(/[Oo]/g, "[ÖöOoÓÒóòôÔ]{0,1}");
-            searchString = searchString.replace(/[Uu]/g, "[ÜüUuÙùÚúûÛ]{0,1}");
-            searchString = searchString.replace(/[Cc]/g, "[ÇçCcĈĉ]{0,1}");
+            searchString = searchString.replace(/[Aa]/g, "[ÄäAaÀÁáÂâ]");
+            searchString = searchString.replace(/[Ee]/g, "[ÈèÉéÊêEe]");
+            searchString = searchString.replace(/[Ii]/g, "[IiÍÌíìî]");
+            searchString = searchString.replace(/[Oo]/g, "[ÖöOoÓÒóòôÔ]");
+            searchString = searchString.replace(/[Uu]/g, "[ÜüUuÙùÚúûÛ]");
+            searchString = searchString.replace(/[Cc]/g, "[ÇçCcĈĉ]");
             //searchString = searchString.replace(/[ß]/g, "[ß]{0,1}");
             //console.log(searchString);
-
             var limitSize = 20;
             var i = 0;
             //loop through the players in the JSON file
