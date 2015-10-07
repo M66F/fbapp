@@ -148,15 +148,25 @@ function createPlayerList() {
             searchString = searchString.replace(/[Cc]/g, "[ÇçCcĈĉ]");
             //searchString = searchString.replace(/[ß]/g, "[ß]{0,1}");
             //console.log(searchString);
+
+            var numberOfPlayers = playerList.length;
             var limitSize = 20;
             var i = 0;
+            var j = 0;
+            var random = Math.floor(Math.random()*((numberOfPlayers-limitSize)-0+1)+0);
             //loop through the players in the JSON file
             for (var player in playerList) {
-                if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*"))) && i < limitSize) {
+                if (searchString == "") {
+                    if(j >= random && j < random+limitSize) {
+                        out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
+                        i++;
+                    }
+                } else if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*"))) && i < limitSize) {
                     //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
                     out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
                     i++;
                 }
+                j++; // loop counter for random start
             }
 
             //end the list
