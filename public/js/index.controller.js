@@ -147,12 +147,15 @@ function createPlayerList() {
             searchString = searchString.replace(/[Uu]/g, "[ÜüUuÙùÚúûÛ]");
             searchString = searchString.replace(/[Cc]/g, "[ÇçCcĈĉ]");
             //searchString = searchString.replace(/[ß]/g, "[ß]{0,1}");
-            console.log(searchString);
+            //console.log(searchString);
+            var limitSize = 20;
+            var i = 0;
             //loop through the players in the JSON file
             for (var player in playerList) {
-                if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")))) {
+                if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*"))) && i < limitSize) {
                     //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
                     out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
+                    i++;
                 }
             }
 
@@ -273,22 +276,35 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
     aktuellerMarktwert1 = aktuellerMarktwert1.replace(re, "0000");
     aktuellerMarktwert1 = aktuellerMarktwert1.replace(re2, "000");
     aktuellerMarktwert1 = aktuellerMarktwert1.replace(re3, "");
-    var aktuellerMarktwert1Nmbrs = parseInt(aktuellerMarktwert1);
+    aktuellerMarktwert1 = parseInt(aktuellerMarktwert1);
     //aktuellerMarktwert2
     aktuellerMarktwert2 = aktuellerMarktwert2.replace(re, "0000");
     aktuellerMarktwert2 = aktuellerMarktwert2.replace(re2, "000");
     aktuellerMarktwert2 = aktuellerMarktwert2.replace(re3, "");
-    var aktuellerMarktwert2Nmbrs = parseInt(aktuellerMarktwert2);
+    aktuellerMarktwert2 = parseInt(aktuellerMarktwert2);
     //hoechsterMarktwert1
     hoechsterMarktwert1 = hoechsterMarktwert1.replace(re, "0000");
     hoechsterMarktwert1 = hoechsterMarktwert1.replace(re2, "000");
     hoechsterMarktwert1 = hoechsterMarktwert1.replace(re3, "");
-    var hoechsterMarktwert1Nmbrs = parseInt(hoechsterMarktwert1);
+    hoechsterMarktwert1 = parseInt(hoechsterMarktwert1);
     //hoechsterMarktwert2
     hoechsterMarktwert2 = hoechsterMarktwert2.replace(re, "0000");
     hoechsterMarktwert2 = hoechsterMarktwert2.replace(re2, "000");
     hoechsterMarktwert2 = hoechsterMarktwert2.replace(re3, "");
-    var hoechsterMarktwert2Nmbrs = parseInt(hoechsterMarktwert2);
+    hoechsterMarktwert2 = parseInt(hoechsterMarktwert2);
+    
+    //Dates 
+    var re4 = /(\d{1,2})\.(\d{1,2})\.(\d{2,4})/;
+    //var re4 = /\b(0?[1–9]|[12][0–9]|3[01])\.(0?[1–9]|1[0–2])\.(\d?\d?\d\d)\b/
+    imTeamSeit1 = imTeamSeit1.replace(re4, "$3/$2/$1 00:00:00");
+    imTeamSeit2 = imTeamSeit2.replace(re4, "$3/$2/$1 00:00:00");
+    vertragBis1 = vertragBis1.replace(re4, "$3/$2/$1 00:00:00");
+    vertragBis2 = vertragBis2.replace(re4, "$3/$2/$1 00:00:00");
+    
+    var imTeamSeit1Date = new Date(imTeamSeit1);
+    var imTeamSeit2Date = new Date(imTeamSeit2);
+    var vertragBis1Date = new Date(vertragBis1);
+    var vertragBis2Date = new Date(vertragBis2);
 
     //images in string code
     var arrowUp = "<img src='/static/img/arrowUp.png' width=30 height=auto align=right draggable=false>"
@@ -335,15 +351,15 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //länger im Team => besser
-        case (imTeamSeit1 == "n.a." || imTeamSeit2 == "n.a."):
+        case (imTeamSeit1Date == "n.a." || imTeamSeit2Date == "n.a."):
             rating[2] = '';
             rating[3] = '';
             break;
-        case (imTeamSeit1 < imTeamSeit2):
+        case (imTeamSeit1Date < imTeamSeit2Date):
             rating[2] = arrowUp;
             rating[3] = arrowDown;
             break;
-        case (imTeamSeit1 > imTeamSeit2):
+        case (imTeamSeit1Date > imTeamSeit2Date):
             rating[2] = arrowDown;
             rating[3] = arrowUp;
             break;
@@ -371,15 +387,15 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //längerer Vertrag => besser
-        case (vertragBis1 == "n.a." || vertragBis2 == "n.a."):
+        case (vertragBis1Date == "n.a." || vertragBis2Date == "n.a."):
             rating[6] = '';
             rating[7] = '';
             break;
-        case (vertragBis1 > vertragBis2):
+        case (vertragBis1Date > vertragBis2Date):
             rating[6] = arrowUp;
             rating[7] = arrowDown;
             break;
-        case (vertragBis1 < vertragBis2):
+        case (vertragBis1Date < vertragBis2Date):
             rating[6] = arrowDown;
             rating[7] = arrowUp;
             break;
@@ -389,19 +405,19 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //hoher Marktwert => besser
-        case (aktuellerMarktwert1Nmbrs == "n.a." || aktuellerMarktwert2Nmbrs == "n.a."):
+        case (aktuellerMarktwert1 == "n.a." || aktuellerMarktwert2 == "n.a."):
             rating[8] = '';
             rating[9] = '';
             break;
-        case (aktuellerMarktwert1Nmbrs > aktuellerMarktwert2Nmbrs):
+        case (aktuellerMarktwert1 > aktuellerMarktwert2):
             rating[8] = arrowUp;
             rating[9] = arrowDown;
             break;
-        case (aktuellerMarktwert1Nmbrs < aktuellerMarktwert2Nmbrs):
+        case (aktuellerMarktwert1 < aktuellerMarktwert2):
             rating[8] = arrowDown;
             rating[9] = arrowUp;
             break;
-        case (aktuellerMarktwert1Nmbrs == aktuellerMarktwert2Nmbrs):
+        case (aktuellerMarktwert1 == aktuellerMarktwert2):
             rating[8] = equal;
             rating[9] = equal;
             break;
@@ -425,19 +441,19 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //hoher Marktwert => besser
-        case (hoechsterMarktwert1Nmbrs == "n.a." || hoechsterMarktwert2Nmbrs == "n.a."):
+        case (hoechsterMarktwert1 == "n.a." || hoechsterMarktwert2 == "n.a."):
             rating[12] = '';
             rating[13] = '';
             break;
-        case (hoechsterMarktwert1Nmbrs > hoechsterMarktwert2Nmbrs):
+        case (hoechsterMarktwert1 > hoechsterMarktwert2):
             rating[12] = arrowUp;
             rating[13] = arrowDown;
             break;
-        case (hoechsterMarktwert1Nmbrs < hoechsterMarktwert2Nmbrs):
+        case (hoechsterMarktwert1 < hoechsterMarktwert2):
             rating[12] = arrowDown;
             rating[13] = arrowUp;
             break;
-        case (hoechsterMarktwert1Nmbrs == hoechsterMarktwert2Nmbrs):
+        case (hoechsterMarktwert1 == hoechsterMarktwert2):
             rating[12] = equal;
             rating[13] = equal;
             break;
