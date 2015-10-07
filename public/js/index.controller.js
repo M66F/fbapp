@@ -364,7 +364,7 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             rating[2] = arrowDown;
             rating[3] = arrowUp;
             break;
-        case (imTeamSeit1Date == imTeamSeit2Date):
+        case (imTeamSeit1 == imTeamSeit2):
             rating[2] = equal;
             rating[3] = equal;
             break;
@@ -400,7 +400,7 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             rating[6] = arrowDown;
             rating[7] = arrowUp;
             break;
-        case (vertragBis1Date == vertragBis2Date):
+        case (vertragBis1 == vertragBis2):
             rating[6] = equal;
             rating[7] = equal;
             break;
