@@ -38,7 +38,7 @@ module.exports = function (passport) {
                 }
             );
         }
-        ;
+
     });
 
 //***********************************************************************************************
@@ -79,7 +79,9 @@ module.exports = function (passport) {
     router.get('/chat', function (req, res) {
         res.render('wwsChat', {title: "Chat"});
     });
-
+    router.get('/impressum', function (req, res) {
+        res.render('impressum', {title: "Impressum"});
+    });
 
     return router;
 }
