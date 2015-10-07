@@ -20,13 +20,8 @@ module.exports = function (passport) {
 
             //user is authenticated -> send his user profile
             res.render('index', {
-                    title: "Die Fußball App",
                     isAuthenticated: req.isAuthenticated(),
-                    user: JSON.stringify({
-                        "id": req.user.id,
-                        "name": req.user.name.givenName,
-                        "imageURL": req.user.photos[0].value
-                    })
+                    user: req.user
                 }
             );
         } else {

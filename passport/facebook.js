@@ -13,16 +13,18 @@ module.exports = function(passport) {
     // facebook will send back the tokens and profile
     function(access_token, refresh_token, profile, done) {
 
-    	console.log('profile', profile);
-
-        console.log(JSON.stringify(profile));
+var user = JSON.stringify({
+                        "id": profile.id,
+                        "name": profile.name.givenName,
+                        "imageURL": profile.photos[0].value
+                    })
 
 		// asynchronous
 		process.nextTick(function() {
 
 
                     // if successful, return the profile
-                    return done(null, profile);
+                    return done(null, user);
                 });
             }
 

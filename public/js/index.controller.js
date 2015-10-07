@@ -16,7 +16,7 @@ function createRightColumn() {
     } else {
         document.getElementById("login").innerHTML = "<p>Login:</p> <br>" +
             "<a class='socialButton' href='/auth/facebook'>Login with Facebook</a>";
-    }
+    }  
 }
 //**************************************************************************************************
 //Speech recognition for search input field

@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 //provide data to clients
 //passport session initialization
-app.use(session({ secret: secretConfig.SESSION_SECRET }));
+app.use(session({ secret: secretConfig.SESSION_SECRET ,  saveUninitialized: true }));
   app.use(passport.initialize());
   app.use(passport.session());
 var routes = require('./routes/index.js')(passport);

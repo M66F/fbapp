@@ -1,4 +1,5 @@
 var facebook = require('./facebook');
+var twitter = require('./twitter');
 
 module.exports = function(passport){
 
@@ -14,5 +15,5 @@ module.exports = function(passport){
 
     // Setting up Passport Strategies for Facebook and Twitter
     facebook(passport);
-
+    twitter(passport);
 }
