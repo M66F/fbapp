@@ -56,6 +56,21 @@ module.exports = function (passport) {
         })
     );
 
+    //***********************************************************************************************
+//twitter routing
+    router.get('/auth/twitter',
+        passport.authenticate('twitter', {scope: 'public_profile'})
+    );
+
+
+// handle the callback after twitter has authenticated the user
+    router.get('/auth/twitter/callback',
+        passport.authenticate('twitter', {
+            successRedirect: '/',
+            failureRedirect: '/'
+        })
+    );
+
 //***********************************************************************************************
     router.get('/logout', function (req, res) {
         req.logout();
