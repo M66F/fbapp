@@ -305,7 +305,6 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
     
     //Dates 
     var re4 = /(\d{1,2})\.(\d{1,2})\.(\d{2,4})/;
-    //var re4 = /\b(0?[1–9]|[12][0–9]|3[01])\.(0?[1–9]|1[0–2])\.(\d?\d?\d\d)\b/
     imTeamSeit1 = imTeamSeit1.replace(re4, "$3/$2/$1 00:00:00");
     imTeamSeit2 = imTeamSeit2.replace(re4, "$3/$2/$1 00:00:00");
     vertragBis1 = vertragBis1.replace(re4, "$3/$2/$1 00:00:00");
