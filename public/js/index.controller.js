@@ -246,7 +246,7 @@ function writePlayerDetail() {
             function refreshDetails(chosenPlayer, Dom, rating) {
 //write JSON content into Element on Webpage as a table
                 document.getElementById(Dom).innerHTML =
-                    "<img src=" + chosenPlayer.PictureURL + " width=160px height=auto draggable=false>" +
+                    "<img src=" + chosenPlayer.PictureURL + " width=auto height=208px draggable=false>" +
                     "<table style='margin-left:auto; margin-right:auto;'>" +
                     "<tr><td>Spielername:</td><td>" + chosenPlayer.Name +
                     "</td></tr><tr><td>Größe:</td><td>" + chosenPlayer.Groesse + rating[0] +
