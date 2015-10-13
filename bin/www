@@ -22,7 +22,7 @@ io.sockets.on('connection', function (socket) {
     socket.emit('authorization', {});
 
     socket.on('authorization', function (data) {
-        if (myHash(data.key) == "1628413597910449125000260129162704492809117649291617270948495369409569411929801140608806041108929114965904963594849072716192946711908294407261921062000521944019795314826116284135979104491250002601291627044928091176492916172709484953694095694119298011406088") {
+        //if (myHash(data.key) == "1628413597910449125000260129162704492809117649291617270948495369409569411929801140608806041108929114965904963594849072716192946711908294407261921062000521944019795314826116284135979104491250002601291627044928091176492916172709484953694095694119298011406088") {
             authorized = true;
             // client connected, fire init event
             socket.emit('init', {time: new Date().toLocaleTimeString(), text: "You're now connected to the server!"});
@@ -34,10 +34,10 @@ io.sockets.on('connection', function (socket) {
             }
 
             console.log(new Date() + " successful login from " + clientIp);
-        } else {
-            socket.emit('alert', {message: "Authorization failed"});
-            console.log(new Date() + " failed login from " + clientIp);
-        }
+        //} else {
+        //    socket.emit('alert', {message: "Authorization failed"});
+        //    console.log(new Date() + " failed login from " + clientIp);
+        //}
     });
 
 
