@@ -513,7 +513,20 @@ if (isAuthenticated) {
 
 
 //----------------
-window.onmousemove = function (e) {
-    if (!e) e = window.event;
-    if (e.altKey) {document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";}
+
+
+window.onkeypress = listenToTheKey;
+var parrot = 0;
+function listenToTheKey(e) {
+        // If delete key is pressed calls delete
+        if (e.keyCode == 35) {
+            if(parrot == 0) {
+                document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";
+                parrot = 1;
+            }
+            else {
+                document.getElementById("thelogo").style.background = "url('')";
+                parrot = 0;
+            }
+        }
 }
