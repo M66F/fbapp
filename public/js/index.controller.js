@@ -509,3 +509,11 @@ if (isAuthenticated) {
 } else {
     writeWelcomeText();
 }
+
+
+
+//----------------
+window.onmousemove = function (e) {
+    if (!e) e = window.event;
+    if (e.altKey) {document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";}
+}
