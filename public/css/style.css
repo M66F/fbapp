@@ -242,37 +242,6 @@ a {
     float: top;
 }
 
-.socialButton {
-    width: 40%;
-    height: 40%;
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 100%;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-    text-shadow: 1px 1px 0px #07526e;
-    margin-left: auto;
-    margin-right: 5%;
-    left: 5%;
-    position: relative;
-    cursor: pointer;
-    border: none;
-    background: #109bce;
-    border-radius: 5px;
-    box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #07526e, 0px 10px 5px #999;
-    max-height: 100px;
-    max-width: 100px
-}
-
-.socialButton:active {
-    top: 3px;
-    color: red;
-    box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #07526e, 0px 5px 3px #999;
-}
-
 
 .chatButton {
     position: relative;

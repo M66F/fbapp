@@ -15,7 +15,7 @@ function createRightColumn() {
             "<br><img id='userImage' src=" + user.imageURL + " draggable='true' ondragstart='drag(event)'><a href='/logout' class='socialButton' >Logout</a>";
     } else {
         document.getElementById("login").innerHTML = "<p>Login:</p> <br>" +
-            "<a class='socialButton' href='/auth/facebook'>Login with Facebook</a>";
+            "<a href='/auth/facebook'><img src='/static/img/LoginWithFacebookButton.jpg' /></a><a href='/auth/twitter'><img src='/static/img/Sign-in-with-Twitter.png' /></a>";
     }  
 }
 //**************************************************************************************************

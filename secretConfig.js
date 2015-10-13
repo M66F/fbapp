@@ -9,6 +9,6 @@ module.exports = {
 	'FACEBOOK_CALLBACK_URL' : 'http://localhost:80/auth/facebook/callback',
 
 	'TWITTER_APP_ID' : 'Ask me!',
-	'TWITTER_APP_SECRET' : '**************',
+	'TWITTER_APP_SECRET' : '*******',
 	'TWITTER_CALLBACK_URL' : 'http://127.0.0.1/auth/twitter/callback'
 }
