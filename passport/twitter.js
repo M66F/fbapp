@@ -13,13 +13,18 @@ module.exports = function(passport) {
     // twitter will send back the tokens and profile
     function(token, tokenSecret, profile, done) {
 
+var user = JSON.stringify({
+                        "id": profile.id,
+                        "name": profile.name.displayName,
+                        "imageURL": profile.photos[0].value
+                    })
 
 		// asynchronous
 		process.nextTick(function() {
 
 
                     // if successful, return the profile
-                    return done(null, profile);
+                    return done(null, user);
                 });
             }
 

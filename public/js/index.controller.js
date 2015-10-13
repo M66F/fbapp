@@ -11,8 +11,8 @@ var playerRight;
 //create left container depending on Login Status
 function createRightColumn() {
     if (isAuthenticated) {
-        document.getElementById("login").innerHTML = "<p>Willkommen, " + User.name + " ! :)</p>" +
-            "<br><img id='userImage' src=" + User.imageURL + " draggable='true' ondragstart='drag(event)'><a href='/logout' class='socialButton' >Logout</a>";
+        document.getElementById("login").innerHTML = "<p>Willkommen, " + user.name + " ! :)</p>" +
+            "<br><img id='userImage' src=" + user.imageURL + " draggable='true' ondragstart='drag(event)'><a href='/logout' class='socialButton' >Logout</a>";
     } else {
         document.getElementById("login").innerHTML = "<p>Login:</p> <br>" +
             "<a class='socialButton' href='/auth/facebook'>Login with Facebook</a>";
@@ -93,13 +93,13 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("playerID", ev.target.id);
 }
 
 
 function drop(ev) {
     ev.preventDefault();
-    var id = ev.dataTransfer.getData("text");
+    var id = ev.dataTransfer.getData("playerID");
     target = ev.currentTarget.className;
     requestPlayerDetail(id);
 }
@@ -176,9 +176,9 @@ function requestPlayerDetail(filename) {
 
     if (filename == "userImage") {
         document.getElementById("textDetailsLeft").innerHTML =
-            "<img src='" + userImage.src + "' style='width:160px;height:200;' draggable = false>" +
+            "<img src='" + user.imageURL + "' style='width:160px;height:200;' draggable = false>" +
             "<table style='margin-left:auto; margin-right:auto;'>" +
-            "<tr><td>Spielername:</td><td>" + User.name +
+            "<tr><td>Spielername:</td><td>" + user.name +
             "</td></tr></table>";
 
     } else {
@@ -196,7 +196,7 @@ function requestPlayerDetail(filename) {
     }
 }
 //handle Detail JSON file, when it is returned
-function writePlayerDetail() {
+function writePlayerDetail() { 
     //check if httpRequest was successful
     if (httpRequest.readyState === 4) {
         if (httpRequest.status === 200) {

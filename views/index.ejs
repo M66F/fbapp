@@ -47,7 +47,7 @@ var isAuthenticated = <%- isAuthenticated %>;
 
 if (isAuthenticated) {
 
-	var User = JSON.parse('<%- user %>');
+	var user = JSON.parse('<%- user %>');
 	createRightColumn();
 };
 </SCRIPT>
