@@ -63,16 +63,31 @@
 	transition: all 0.25s linear;
 }
 
+.rare {
+    opacity: 0;
+}
+
 .menu > li > a:hover, .menu > li > a:focus{
 	background: #F2F2F2;
 	box-shadow: inset 0px 5px #51C1F1;
 	color: #51C1F1;
 	padding: 50px 20px 34px;
     opacity: 1;
+    background: url("http://i.imgur.com/2czseQm.gif") no-repeat 6px center;
+    background-size: 150px auto;
+    background-position: center;
 }
 
 
 
+.menu > li > .rare:hover{
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+}
+    
 /*drop down sub menu*/
 .menu ul {
     top: 100px;
@@ -356,8 +371,4 @@ p.impressum {
     padding-bottom: 1em;
 
 }
-.rare {
-    background: url("http://i.imgur.com/2czseQm.gif") no-repeat 6px center;
-    background-size: 150px auto;
-    background-position: center;
-}
+
