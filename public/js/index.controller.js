@@ -444,7 +444,7 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //hoher Marktwert => besser
-        case (aktuellerMarktwert1 == "n.a." || aktuellerMarktwert2 == "n.a."):
+        case (isNaN(aktuellerMarktwert1) || isNaN(aktuellerMarktwert2)):
             rating[8] = '';
             rating[9] = '';
             break;
@@ -480,7 +480,7 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //hoher Marktwert => besser
-        case (hoechsterMarktwert1 == "n.a." || hoechsterMarktwert2 == "n.a."):
+        case (isNaN(hoechsterMarktwert1) || isNaN(hoechsterMarktwert2)):
             rating[12] = '';
             rating[13] = '';
             break;
