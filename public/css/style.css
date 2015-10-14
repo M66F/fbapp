@@ -260,9 +260,6 @@ a {
     overflow: auto;
     position:inherit;
     width: 98%;
-    border-color: #007FFF;
-    border-width: 5px;
-    border-style: solid;
     float: left;
 }
 
@@ -370,7 +367,7 @@ a {
 
 .leftColumn {
     float: left;
-    width: 300px;
+    width: 30%;
 }
 
 div#impwrap{
