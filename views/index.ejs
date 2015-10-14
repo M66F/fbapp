@@ -1,6 +1,17 @@
 <% include header %>
 
 <%# HTML %>
+<%# column on the right with LiveTicker, Login and Websocket Chat %>
+<div id="rightColumn" class = "rightColumn" style="max-width:300px;">
+
+	<div id="login" class = "login"></div>
+
+	<div id= "chat" class = "chat">
+		<br>
+		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
+	</div>
+
+</div>
 
 <%# these will be filled by index.controller.js with players %>
 <div id="leftColumn" class="leftColumn" style="max-width:300px;">
@@ -23,18 +34,6 @@
 <%# container 2 - right side %>
 <div id="detailsRight" class ="detailsRigth" ondrop="drop(event)" ondragover="allowDrop(event)">
 	<div id="textDetailsRight"></div>
-
-</div>
-
-<%# column on the right with LiveTicker, Login and Websocket Chat %>
-<div id="rightColumn" class = "rightColumn">
-
-	<div id="login" class = "login"></div>
-
-	<div id= "chat" class = "chat">
-		<br>
-		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
-	</div>
 
 </div>
 
