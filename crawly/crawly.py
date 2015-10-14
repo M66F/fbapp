@@ -2,13 +2,10 @@
 /data/. The list of players is stored in /start.py
 Start with python3.4 crawly.py"""
 
-__author__      = "Peter"
-__version__ = "0.2.0"
-__maintainer__ = "Peter"
+__version__ = "0.3.0"
 __status__ = "Development"
 
 # To-Do: improved validation check, error log
-# Only touch if you know what you are doing
 
 # ADD PLAYERS IN start.py
 
@@ -16,6 +13,18 @@ import requests
 import re
 import json
 import unicodedata as ud
+import sys
+import os
+
+
+# If you use Windows, the console has to be disabled
+class DevNull(object):
+    def write(self, arg):
+        pass
+
+if os.name == "nt":
+    sys.stdout = DevNull()
+################
 
 
 class bcolors:
@@ -38,7 +47,7 @@ def is_latin(uchr):
 def only_roman_chars(unistr):
     return all(is_latin(uchr)
            for uchr in unistr
-           if uchr.isalpha()) # isalpha suggested by John Machin
+           if uchr.isalpha())
 
 
 def getAlter(content):
@@ -281,7 +290,7 @@ def getName(content, url):
         #print('3: ' + ret)
 
 
-        # Änderung für Michael
+
         #####################
         if(only_roman_chars(ret) == False):
             raise ValueError('cya')
