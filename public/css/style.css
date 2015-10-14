@@ -57,12 +57,19 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-transition: all 0.25s linear;
-	-moz-transition: all 0.25s linear;
-	-o-transition: all 0.25s linear;
-	transition: all 0.25s linear;
+	-webkit-transition: all .25s linear;
+	-moz-transition: all .25s linear;
+	-o-transition: all .25s linear;
+	transition: all .25s linear;
 }
-/*Hover action handled in Javascript*/
+
+.menu > li > a:hover, .menu > li > a:focus{
+	background: #F2F2F2;
+	box-shadow: inset 0px 5px #51C1F1;
+	color: #51C1F1;
+	padding: 50px 20px 34px;
+}
+/*Hover action regarding relationship between button & drop down menu handled in Javascript*/
 
 /*********************rarestuff**********************
 ****************************************************/
