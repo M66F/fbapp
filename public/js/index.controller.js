@@ -289,8 +289,8 @@ function writePlayerDetail() {
                     "</td></tr><tr><td>Vertrag bis:</td><td>" + chosenPlayer.VertragBis + rating[3] +
                     "</td></tr><tr><td>Aktueller Marktwert:</td><td>" + chosenPlayer.AktuellerMarktwert + rating[4] +
                     "</td></tr><tr><td>Geburtsdatum:</td><td>" + chosenPlayer.Geburtsdatum +
-                    "</td></tr><tr><td>Schussfuss:</td><td>" + chosenPlayer.Schussfuss + rating[5] +
                     "</td></tr><tr><td>Alter:</td><td>" + chosenPlayer.Alter + rating[7] +
+                    "</td></tr><tr><td>Schussfuss:</td><td>" + chosenPlayer.Schussfuss + rating[5] +
                     "</td></tr><tr><td>Höchster Marktwert:</td><td>" + chosenPlayer.HoechsterMarktwert + rating[6] +
                     "</td></tr><tr><td>Geburtsort:</td><td>" + chosenPlayer.Geburtsort +
                     "</td></tr><tr><td>Spielerberater:</td><td>" + chosenPlayer.Spielerberater +
