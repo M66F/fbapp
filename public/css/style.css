@@ -62,17 +62,10 @@
 	-o-transition: all 0.25s linear;
 	transition: all 0.25s linear;
 }
+/*Hover action handled in Javascript*/
 
-
-
-.menu > li > a:hover, .menu > li > a:focus{
-	background: #F2F2F2;
-	box-shadow: inset 0px 5px #51C1F1;
-	color: #51C1F1;
-	padding: 50px 20px 34px;
-}
-
-
+/*********************rarestuff**********************
+****************************************************/
 .rare {
     opacity: 0;
 }
@@ -87,11 +80,13 @@
     background-size: 150px auto;
     background-position: center;
 }
-    
+/****************************************************
+**********************rarestuff*********************/
+
+
 /*drop down sub menu*/
 .menu ul {
-    top: 100px;
-    left: 0;
+    position: relative;
  
     opacity: 0;
     background: #F2F2F2;
@@ -114,42 +109,57 @@
 .menu ul li {
     height: 0;
     overflow: hidden;
-    padding: 0;
+    padding: 10px;
     list-style-type:none;
  
+    border-top: 1px solid #353539;
+    
     -webkit-transition: height .25s ease .1s;
     -moz-transition: height .25s ease .1s;
     -o-transition: height .25s ease .1s;
     -ms-transition: height .25s ease .1s;
-    transition: height .25s ease .1s;
-}
- 
-.menu li:hover > ul li {
-    height: 36px;
-    overflow: visible;
-    padding: 0;
+    transition: height .25s ease .1s;   
 }
 
+/*Drop Down Boxes*/
+.menu li:hover > ul li {
+    height: 20px;
+    overflow: visible;
+}
+
+/*Drop Down text*/
 .menu ul li a {
-    width: 100px;
-    margin: 0;
-    color: #51C1F1;
- 
-    border: none;
-    border-bottom: 1px solid #353539;
+    padding-left: 25px;
 }
  
+.menu ul li a:hover {
+    color: #51C1F1;
+}
+
 .menu ul li:last-child a { 
     border: none; 
 }
+
+.menu a.facebook{
+    background: url(/static/img/facebook.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.menu a.twitter{
+    background: url(/static/img/twitter.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
 /*end of drop down sub menu*/
+
+
+
 
 
 .toggle{
 	z-index: 2;
 }
-
-
 
 /*make Menu responsive*/
 @media only screen and (max-width: 768px){
@@ -213,7 +223,7 @@
 		text-align: center; width: 100%;
 	}
 }
-/*End of Menu*/
+/************End of Menu******************/
 
 
 
@@ -296,12 +306,7 @@ a {
     float: right;
 }
 
-.liveTicker {
-    height: 20%;
-    border-bottom-style: solid;
-    border-bottom-width: 3px;
-    border-bottom-color: white;
-}
+
 
 .login {
     height: 30%;
