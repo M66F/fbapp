@@ -518,7 +518,7 @@ if (isAuthenticated) {
 window.onkeypress = listenToTheKey;
 var parrot = 0;
 function listenToTheKey(e) {
-        if (e.keyCode == 35) {
+        if (e.keyCode == 35 || e.charCode == 35) {
             if(parrot == 0) {
                 document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";
                 parrot = 1;
