@@ -249,7 +249,7 @@ function writePlayerDetail() {
                 var targetDOM = "textDetailsLeft";
                 playerLeft = player;
             }
-            else if (target == "detailsRigth") {
+            else if (target == "detailsRight") {
                 var targetDOM = "textDetailsRight";
                 playerRight = player;
             }
