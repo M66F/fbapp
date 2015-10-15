@@ -301,10 +301,13 @@ a {
 }
 
 .rightColumn {
-    height: 800px;
+    height: 845px;
     overflow: auto;
     width: 20%;
     float: right;
+    border-left-color: white;
+    border-left-width: 3px;
+    border-left-style: solid;
 }
 
 .login {
@@ -355,6 +358,7 @@ a {
 }
 
 .logo {
+    padding-top: 6px;
 }
 
 .leftColumn {
