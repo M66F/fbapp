@@ -9,11 +9,11 @@ Im Directory die Befehle:
 
      npm install
 
-     grunt
+     grunt (auf Unix Geräten(Mac/Linux) sudo Grunt)
 
 ausführen.
 
-Der Server läuft auf dem Port 3000.
+Der Server läuft auf dem Port 80.
 
 # To-Do
 * Responive Design
