@@ -286,7 +286,7 @@ a {
 
 .detailsLeft , .detailsRight {
     float: left;
-    width: 29%;
+    width: 27%;
     border-right-style: solid;
     border-right-width: 3px;
     border-right-color: white;
