@@ -30,8 +30,11 @@
 <div id="rightColumn" class = "rightColumn">
 
 	<div id="liveTicker" class = "liveTicker">LiveTicker</div>
+<%# userimage and logout button, visible if user is logged in %>
+	<div id="login" class = "login">
+		<br><img id='userImage' src=" + user.imageURL + " draggable='true' ondragstart='drag(event)'><a href='/logout' >Logout</a>
+	</div>
 
-	<div id="login" class = "login"></div>
 
 	<div id= "chat" class = "chat">
 		<br>
@@ -40,6 +43,7 @@
 
 </div>
 
+<%# ***********************************************************************%>
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
 
@@ -48,7 +52,6 @@ var isAuthenticated = <%- isAuthenticated %>;
 if (isAuthenticated) {
 
 	var user = JSON.parse('<%- user %>');
-	createRightColumn();
 };
 </SCRIPT>
 

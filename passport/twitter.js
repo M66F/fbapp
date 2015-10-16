@@ -9,13 +9,13 @@ module.exports = function(passport) {
         callbackURL     : secretConfig.TWITTER_CALLBACK_URL //,
   //      profileFields   : ['id', 'email', 'gender', 'picture', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
     },
-
+ 
     // twitter will send back the tokens and profile
     function(token, tokenSecret, profile, done) {
-
+console.log(profile);
 var user = JSON.stringify({
                         "id": profile.id,
-                        "name": profile.name.displayName,
+                        "name": profile.name,
                         "imageURL": profile.photos[0].value
                     })
 

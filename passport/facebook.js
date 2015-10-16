@@ -12,11 +12,11 @@ module.exports = function(passport) {
 
     // facebook will send back the tokens and profile
     function(access_token, refresh_token, profile, done) {
-
 var user = JSON.stringify({
                         "id": profile.id,
                         "name": profile.name.givenName,
-                        "imageURL": profile.photos[0].value
+                        // request for a fitting resolution of the profile picture
+                        "imageURL": "https://graph.facebook.com/" + profile.id + "/picture" + "?width=160&height=208" + "&access_token=" + access_token
                     })
 
 		// asynchronous

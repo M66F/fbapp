@@ -11,12 +11,10 @@ var playerRight;
 //create left container depending on Login Status
 function createRightColumn() {
     if (isAuthenticated) {
-        document.getElementById("login").innerHTML = "<p>Willkommen, " + user.name + " ! :)</p>" +
-            "<br><img id='userImage' src=" + user.imageURL + " draggable='true' ondragstart='drag(event)'><a href='/logout' class='socialButton' >Logout</a>";
+         document.getElementById("login").style.display = "block";
     } else {
-        document.getElementById("login").innerHTML = "<p>Login:</p> <br>" +
-            "<a href='/auth/facebook'><img src='/static/img/LoginWithFacebookButton.jpg' /></a><a href='/auth/twitter'><img src='/static/img/Sign-in-with-Twitter.png' /></a>";
-    }  
+         document.getElementById("login").style.display = "none";
+   }  
 }
 //**************************************************************************************************
 //Speech recognition for search input field
@@ -264,7 +262,7 @@ function writePlayerDetail() {
                     "</td></tr><tr><td>Höchster Marktwert:</td><td>" + chosenPlayer.HoechsterMarktwert + rating[6] +
                     "</td></tr><tr><td>Geburtsort:</td><td>" + chosenPlayer.Geburtsort +
                     "</td></tr><tr><td>Spielerberater:</td><td>" + chosenPlayer.Spielerberater +
-                    "</td></tr><tr><td>Ausruester:</td><td>" + chosenPlayer.Ausruester +
+                    "</td></tr><tr><td>Ausrüster:</td><td>" + chosenPlayer.Ausruester +
                     "</td></tr></table>";
             }
 
