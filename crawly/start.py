@@ -6,6 +6,18 @@
 
 import crawly
 import time
+import sys
+import os
+
+# If you use Windows, the console has to be disabled
+class DevNull(object):
+    def write(self, arg):
+        pass
+
+if os.name == "nt":
+    sys.stdout = DevNull()
+################
+
 
 start_time = time.time()
 
@@ -78,7 +90,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# clear file (get rid of old data, but just ONCE, thats why we do it here and not in crawly.py, awesome idea right?)
+# clear file (get rid of old data, but just ONCE, thats why we do it here and not in crawly.py)
 try:
     print("Clearing file ...")
     n = "playerData"

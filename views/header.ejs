@@ -20,21 +20,21 @@
             <input type="checkbox" id="toggle" />
             <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick></label>
             <ul class="menu">
-                <li><a href="http://i.imgur.com/2czseQm.gif" class="rare">Rare</a></li>
+                <li><a class="rare">Rare</a></li>
                 <li><a href="#">Create Your Player</a></li>
                 <li><a href="/impressum">Impressum</a></li>
-                <li><a href="#">Login</a>
+                <li><a style="cursor: pointer;" ID="loginButton">Login</a>
                 
-                <ul>
-                    <li><a href="#">via Facebook</a></li>
-                    <li><a href="#">via Twitter</a></li>
+                <ul ID="dropdown">
+                    <li><a href="/auth/facebook" class="facebook">Facebook</a></li>
+                    <li><a href="/auth/twitter" class="twitter">Twitter</a></li>
                 </ul>
 
                 </li>
             </ul>
 
         </div>
-        <div class="logo">
-            <img src="/static/img/logo.png" height="90" width=auto></img>
+        <div class="logo" ID="thelogo" href="/">
+            <a href="/"><img src="/static/img/logo.png" height="90" width=auto></img></a>
         </div>
     </div>

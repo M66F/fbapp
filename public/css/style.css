@@ -3,9 +3,9 @@
  Functional Styles (Required)
 ---------------------------------*/
 
-.header { position: relative;}
+.header { position: relative; }
 #toggle, .toggle { display: none; }
-.menu > li { list-style: none; float:left;	}
+.menu > li { list-style: none; float:left; }
 
 .clearfix:before, .clearfix:after { display: table; content: ""; }
 .clearfix:after { clear: both; }
@@ -22,6 +22,10 @@
 /*--------------------------------
  Presentation Styles (Editable)
 ---------------------------------*/
+
+/*
+Reset Backgrounds to enable the backgroundpicture
+*/
 .header{
 	min-height: 100px;
 	height: 100%;
@@ -57,13 +61,11 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-transition: all 0.25s linear;
-	-moz-transition: all 0.25s linear;
-	-o-transition: all 0.25s linear;
-	transition: all 0.25s linear;
+	-webkit-transition: all .25s linear;
+	-moz-transition: all .25s linear;
+	-o-transition: all .25s linear;
+	transition: all .25s linear;
 }
-
-
 
 .menu > li > a:hover, .menu > li > a:focus{
 	background: #F2F2F2;
@@ -71,8 +73,10 @@
 	color: #51C1F1;
 	padding: 50px 20px 34px;
 }
+/*Hover action regarding relationship between button & drop down menu handled in Javascript*/
 
-
+/*********************rarestuff**********************
+****************************************************/
 .rare {
     opacity: 0;
 }
@@ -87,11 +91,13 @@
     background-size: 150px auto;
     background-position: center;
 }
-    
+/****************************************************
+**********************rarestuff*********************/
+
+
 /*drop down sub menu*/
 .menu ul {
-    top: 100px;
-    left: 0;
+    position: relative;
  
     opacity: 0;
     background: #F2F2F2;
@@ -114,42 +120,53 @@
 .menu ul li {
     height: 0;
     overflow: hidden;
-    padding: 0;
+    padding: 10px;
     list-style-type:none;
  
+    border-top: 1px solid #353539;
+    
     -webkit-transition: height .25s ease .1s;
     -moz-transition: height .25s ease .1s;
     -o-transition: height .25s ease .1s;
     -ms-transition: height .25s ease .1s;
-    transition: height .25s ease .1s;
-}
- 
-.menu li:hover > ul li {
-    height: 36px;
-    overflow: visible;
-    padding: 0;
+    transition: height .25s ease .1s;   
 }
 
+/*Drop Down Boxes*/
+.menu li:hover > ul li {
+    height: 20px;
+    overflow: visible;
+}
+
+/*Drop Down text*/
 .menu ul li a {
-    width: 100px;
-    margin: 0;
-    color: #51C1F1;
- 
-    border: none;
-    border-bottom: 1px solid #353539;
+    padding-left: 25px;
 }
  
+.menu ul li a:hover {
+    color: #51C1F1;
+}
+
 .menu ul li:last-child a { 
     border: none; 
 }
-/*end of drop down sub menu*/
 
+.menu a.facebook{
+    background: url(/static/img/facebook.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.menu a.twitter{
+    background: url(/static/img/twitter.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+/*end of drop down sub menu*/
 
 .toggle{
 	z-index: 2;
 }
-
-
 
 /*make Menu responsive*/
 @media only screen and (max-width: 768px){
@@ -213,7 +230,7 @@
 		text-align: center; width: 100%;
 	}
 }
-/*End of Menu*/
+/************End of Menu******************/
 
 
 
@@ -223,37 +240,34 @@ margin: 0;
 padding: 0;
 }
 
-
+ 
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-color: #0AAFFF;
     color: white;
+    background-image: url(/static/img/background.jpg);
+    background-repeat: space;
+    background-position: center top;
 }
-
 
 a {
     color: black;
     text-decoration: none;
 }
 
-
 .playerColumn {
-    background: #00BFFF;
     height: 770px;
     overflow: auto;
     position:inherit;
     width: 98%;
-    border-color: #007FFF;
-    border-width: 5px;
-    border-style: solid;
     float: left;
+    color: white;
 }
 
 .playerBox {
-    background: #A3D1FF;
+    background: transparent;
     width: inherit;
     heigth: 100px;
-    border-color: #007FFF;
+    border-color: transparent;
     border-width: 5px;
     border-style: solid;
     text-align: center;
@@ -270,9 +284,9 @@ a {
 }
 
 
-.detailsLeft , .detailsRigth {
+.detailsLeft , .detailsRight {
     float: left;
-    width: 25%;
+    width: 27%;
     border-right-style: solid;
     border-right-width: 3px;
     border-right-color: white;
@@ -282,32 +296,22 @@ a {
     font-size: 20px;
     height: 800px;
     text-align: left;
+    font-weight: bold;
+    padding: 1em;
 }
-
 
 .rightColumn {
-    background: #00BFFF;
-    height: 800px;
+    height: 845px;
     overflow: auto;
     width: 20%;
-    border-color: #007FFF;
-    border-width: 5px;
-    border-style: solid;
     float: right;
-}
-
-.liveTicker {
-    height: 20%;
-    border-bottom-style: solid;
-    border-bottom-width: 3px;
-    border-bottom-color: white;
+    border-left-color: white;
+    border-left-width: 3px;
+    border-left-style: solid;
 }
 
 .login {
-    height: 30%;
-    border-bottom-style: solid;
-    border-bottom-width: 3px;
-    border-bottom-color: white;
+    height: 15%;
 }
 
 #dropContainer {
@@ -346,19 +350,21 @@ a {
     box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
     position: relative;
     top: 2%;
+}
 
-}/*Searchbar in Header*/
+/*Searchbar in Header*/
 .searchAndTwitter {
     padding: 0px 10px;
 }
 
 .logo {
-
+    padding-top: 6px;
 }
 
 .leftColumn {
     float: left;
-    width: 300px;
+    width: 30%;
+    margin-left: 0.5%;
 }
 
 div#impwrap{
@@ -369,6 +375,9 @@ div#impwrap{
 
 p.impressum {
     padding-bottom: 1em;
-
 }
 
+
+.playerDetails {
+    align: center;
+}

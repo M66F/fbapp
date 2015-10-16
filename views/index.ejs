@@ -1,9 +1,22 @@
 <% include header %>
 
 <%# HTML %>
+<%# column on the right with LiveTicker, Login and Websocket Chat %>
+<div id="rightColumn" class = "rightColumn" style="max-width:300px;">
+
+	<div id="login" class = "login">
+		<img id='userImage' src=" + user.imageURL + " draggable='true' ondragstart='drag(event)'><a href='/logout' >Logout</a>
+	</div>
+
+	<div id= "chat" class = "chat">
+		<br>
+		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
+	</div>
+
+</div>
 
 <%# these will be filled by index.controller.js with players %>
-<div id="leftColumn" class="leftColumn">
+<div id="leftColumn" class="leftColumn" style="max-width:300px;">
     <div id="searchAndTwitter" class="searchAndTwitter">
             <input type="text" id="searchText" onkeyup="createPlayerList()">
             <button id="speechButton" onclick="startSpeechRecognition(event)">
@@ -14,6 +27,7 @@
 </div>
 
 <%# container with details of players in the middle, it accepts drop events of player images %>
+<div id="playerDetails" class="playerDetails">
 <%# container 1 - left side %>
 <div id="detailsLeft" class ="detailsLeft" ondrop="drop(event)" ondragover="allowDrop(event)">
 	<div id="textDetailsLeft"></div>
@@ -21,29 +35,11 @@
 </div>
 
 <%# container 2 - right side %>
-<div id="detailsRight" class ="detailsRigth" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div id="detailsRight" class ="detailsRight" ondrop="drop(event)" ondragover="allowDrop(event)">
 	<div id="textDetailsRight"></div>
 
 </div>
 
-<%# column on the right with LiveTicker, Login and Websocket Chat %>
-<div id="rightColumn" class = "rightColumn">
-
-	<div id="liveTicker" class = "liveTicker">LiveTicker</div>
-<%# userimage and logout button, visible if user is logged in %>
-	<div id="login" class = "login">
-		<br><img id='userImage' src=" + user.imageURL + " draggable='true' ondragstart='drag(event)'><a href='/logout' >Logout</a>
-	</div>
-
-
-	<div id= "chat" class = "chat">
-		<br>
-		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
-	</div>
-
-</div>
-
-<%# ***********************************************************************%>
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
 

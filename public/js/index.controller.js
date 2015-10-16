@@ -1,4 +1,37 @@
 //**************************************************************************************************
+//CSS
+var one = document.getElementById('dropdown'),
+    two = document.getElementById('loginButton');
+
+two.addEventListener('mouseover', function(){
+    two.style.background = "#F2F2F2";
+	two.style.boxShadow = "inset 0px 5px #51C1F1";
+	two.style.color = "#51C1F1";
+	two.style.padding = "50px 20px 34px";
+}, true);
+two.addEventListener('mouseout', function(){
+    two.style.display = "block";
+	two.style.padding = "42px 20px";
+    two.style.background = "white";
+	two.style.boxShadow = "inset 0px 0px";
+    two.style.color = "black";
+}, true);
+one.addEventListener('mouseover', function(){
+    two.style.background = "#F2F2F2";
+	two.style.boxShadow = "inset 0px 5px #51C1F1";
+	two.style.color = "#51C1F1";
+	two.style.padding = "50px 20px 34px";
+}, true);
+one.addEventListener('mouseout', function(){
+    two.style.display = "block";
+	two.style.padding = "42px 20px";
+    two.style.background = "white";
+	two.style.boxShadow = "inset 0px 0px";
+    two.style.color = "black";
+}, true);
+
+
+//**************************************************************************************************
 //Global Variables
 //"target" for the drop location of drag&drop event
 var target;
@@ -217,7 +250,7 @@ function writePlayerDetail() {
                 var targetDOM = "textDetailsLeft";
                 playerLeft = player;
             }
-            else if (target == "detailsRigth") {
+            else if (target == "detailsRight") {
                 var targetDOM = "textDetailsRight";
                 playerRight = player;
             }
@@ -244,7 +277,9 @@ function writePlayerDetail() {
             function refreshDetails(chosenPlayer, Dom, rating) {
 //write JSON content into Element on Webpage as a table
                 document.getElementById(Dom).innerHTML =
-                    "<img src=" + chosenPlayer.PictureURL + " width=160px height=auto draggable=false>" +
+                    "<div align='center'>" +
+                    "<img src=" + chosenPlayer.PictureURL + " width=auto height=208px draggable=false>" +
+                        "</div>" +
                     "<table style='margin-left:auto; margin-right:auto;'>" +
                     "<tr><td>Spielername:</td><td>" + chosenPlayer.Name +
                     "</td></tr><tr><td>Größe:</td><td>" + chosenPlayer.Groesse + rating[0] +
@@ -257,8 +292,8 @@ function writePlayerDetail() {
                     "</td></tr><tr><td>Vertrag bis:</td><td>" + chosenPlayer.VertragBis + rating[3] +
                     "</td></tr><tr><td>Aktueller Marktwert:</td><td>" + chosenPlayer.AktuellerMarktwert + rating[4] +
                     "</td></tr><tr><td>Geburtsdatum:</td><td>" + chosenPlayer.Geburtsdatum +
-                    "</td></tr><tr><td>Schussfuss:</td><td>" + chosenPlayer.Schussfuss + rating[5] +
                     "</td></tr><tr><td>Alter:</td><td>" + chosenPlayer.Alter + rating[7] +
+                    "</td></tr><tr><td>Schussfuss:</td><td>" + chosenPlayer.Schussfuss + rating[5] +
                     "</td></tr><tr><td>Höchster Marktwert:</td><td>" + chosenPlayer.HoechsterMarktwert + rating[6] +
                     "</td></tr><tr><td>Geburtsort:</td><td>" + chosenPlayer.Geburtsort +
                     "</td></tr><tr><td>Spielerberater:</td><td>" + chosenPlayer.Spielerberater +
@@ -412,7 +447,7 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //hoher Marktwert => besser
-        case (aktuellerMarktwert1 == "n.a." || aktuellerMarktwert2 == "n.a."):
+        case (isNaN(aktuellerMarktwert1) || isNaN(aktuellerMarktwert2)):
             rating[8] = '';
             rating[9] = '';
             break;
@@ -448,7 +483,7 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
             break;
     }
     switch (true) { //hoher Marktwert => besser
-        case (hoechsterMarktwert1 == "n.a." || hoechsterMarktwert2 == "n.a."):
+        case (isNaN(hoechsterMarktwert1) || isNaN(hoechsterMarktwert2)):
             rating[12] = '';
             rating[13] = '';
             break;
@@ -506,4 +541,24 @@ if (isAuthenticated) {
     requestPlayerDetail("userImage");
 } else {
     writeWelcomeText();
+}
+
+
+
+//----------------
+
+
+window.onkeypress = listenToTheKey;
+var parrot = 0;
+function listenToTheKey(e) {
+        if (e.keyCode == 35 || e.charCode == 35) {
+            if(parrot == 0) {
+                document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";
+                parrot = 1;
+            }
+            else {
+                document.getElementById("thelogo").style.background = "url('')";
+                parrot = 0;
+            }
+        }
 }

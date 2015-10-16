@@ -11,8 +11,8 @@ socket.on('disconnect', function () {
 });
 
 socket.on('authorization', function (data) {
-    var key = prompt("Enter chat key:");
-    socket.emit('authorization', {key: key});
+    //var key = prompt("Enter chat key:");
+    socket.emit('authorization', {});
 });
 
 socket.on('alert', function (data) {
