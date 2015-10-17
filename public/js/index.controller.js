@@ -45,6 +45,8 @@ var playerRight;
 function createRightColumn() {
     if (isAuthenticated) {
          document.getElementById("login").style.display = "block";
+         document.getElementById("userImage").src = user.imageURL;
+         
     } else {
          document.getElementById("login").style.display = "none";
    }  
