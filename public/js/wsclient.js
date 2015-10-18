@@ -1,13 +1,13 @@
 var socket = io.connect();
-
+var chat = document.getElementById("content");
 socket.on('chat', function (data) {
-    document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="color:red;display: inline;margin-right: 40px">' + data.name + ':</div>' + data.text + '</li>';
-    window.scrollTo(0, document.body.scrollHeight);
+    chat.innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="color:red;display: inline;margin-right: 40px">' + data.name + ':</div>' + data.text + '</li>';
+    chat.scrollTop = chat.scrollHeight;
 });
 
 socket.on('disconnect', function () {
-    document.getElementById("content").innerHTML += '<li>' + '<small>[' + new Date().toLocaleTimeString() + ']</small>' + '<div style="color:red;display: inline;margin-right: 40px">' + 'MESSAGE:' + '</div>' + "You've been disconnected!" + '</li>';
-    window.scrollTo(0, document.body.scrollHeight);
+    chat.innerHTML += '<li>' + '<small>[' + new Date().toLocaleTimeString() + ']</small>' + '<div style="color:red;display: inline;margin-right: 40px">' + 'MESSAGE:' + '</div>' + "You've been disconnected!" + '</li>';
+    chat.scrollTop = chat.scrollHeight;
 });
 
 socket.on('authorization', function (data) {
@@ -27,8 +27,8 @@ socket.on('init', function (data) {
     if (nameI == null) {
         nameI = "ISetNoName";
     }
-    document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' + data.text + '</li>';
-    window.scrollTo(0, document.body.scrollHeight);
+    chat.innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' + data.text + '</li>';
+    chat.scrollTop = chat.scrollHeight;
     socket.emit('init', {name: nameI, text: nameI});
 });
 

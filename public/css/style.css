@@ -239,7 +239,7 @@ Reset Backgrounds to enable the backgroundpicture
 margin: 0;
 padding: 0;
 }
-
+html, body { min-height: 100%; }
  
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -266,7 +266,6 @@ a {
 .playerBox {
     background: transparent;
     width: inherit;
-    heigth: 100px;
     border-color: transparent;
     border-width: 5px;
     border-style: solid;
@@ -294,13 +293,14 @@ a {
     border-left-width: 3px;
     border-left-color: white;
     font-size: 20px;
-    height: 800px;
+    height: inherit;
     text-align: left;
     font-weight: bold;
+
 }
 
 .rightColumn {
-    height: 845px;
+    height: calc(100%-100px);
     overflow: auto;
     width: 20%;
     float: right;
@@ -309,38 +309,6 @@ a {
     border-left-style: solid;
 }
 
-.login {
-    height: 15%;
-}
-
-
-
-.chatButton {
-    position: relative;
-    color: rgba(255,255,255,1);
-    text-decoration: none;
-    background-color: rgba(219,87,5,1);
-    font-family: 'Yanone Kaffeesatz';
-    font-weight: 700;
-    font-size: 3em;
-    display: block;
-    padding: 4px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-    -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-    box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-    margin: 20% auto;
-    width: auto;
-    text-align: center;
-}
-
-.chatButton:active {
-    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
-    position: relative;
-    top: 2%;
-}
 
 /*Searchbar in Header*/
 .searchAndTwitter {
@@ -355,7 +323,7 @@ a {
     float: left;
     width: 20%;
     border-right-style: solid;
-    border-right-width: 3px;
+    border-right-width: 3px; 
     border-right-color: white;
 
 }
@@ -375,4 +343,6 @@ p.impressum {
     align: center;
     width: calc(60% - 6px);
     float: left;
+    height: 100%;
+    bottom:0px;
 }

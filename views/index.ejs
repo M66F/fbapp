@@ -2,15 +2,19 @@
 
 <%# HTML %>
 <%# column on the right with LiveTicker, Login and Websocket Chat %>
+<div id="wrapper">
 <div id="rightColumn" class = "rightColumn">
 
 	<div id="login" class = "login">
-		<img id='userImage' draggable='true' ondragstart='drag(event)'><a href='/logout' >Logout</a>
+		<img id='userImage' draggable='true' ondragstart='drag(event)'>
+		<div id='userInfo'>
+			<div id='userName'></div>
+
+			<a id='logoutButton' href='/logout' >Logout</a>
+		</div>
 	</div>
 
 	<div id= "chat" class = "chat">
-		<br>
-		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
 		<ul id= "content"></ul>
 	
 	<div id= "chatInput">
@@ -48,6 +52,7 @@
 
 </div>
 </div>
+</div>
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
 
@@ -60,7 +65,7 @@ if (isAuthenticated) {
 </SCRIPT>
 
 <%# contains scripts for this site %>
-
+<SCRIPT TYPE="text/javascript" src="./static/js/verticalResize.js"></SCRIPT>
 <script type="text/javascript" src="./static/js/getPlayerlist.js"></script>
 <script type="text/javascript" src="./static/js/writeDetails.js"></script>
 <script type="text/javascript" src="./static/js/compareStats.js"></script>
