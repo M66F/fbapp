@@ -286,7 +286,7 @@ a {
 
 .detailsLeft , .detailsRight {
     float: left;
-    width: 27%;
+    width: calc(50% - 6px);
     border-right-style: solid;
     border-right-width: 3px;
     border-right-color: white;
@@ -297,7 +297,6 @@ a {
     height: 800px;
     text-align: left;
     font-weight: bold;
-    padding: 1em;
 }
 
 .rightColumn {
@@ -314,15 +313,6 @@ a {
     height: 15%;
 }
 
-#dropContainer {
-    width: 100%;
-    height: 200px;
-    border-color: #007FFF;
-    border-width: 5px;
-    border-style: solid;
-    text-align: center;
-    float: top;
-}
 
 
 .chatButton {
@@ -363,8 +353,11 @@ a {
 
 .leftColumn {
     float: left;
-    width: 30%;
-    margin-left: 0.5%;
+    width: 20%;
+    border-right-style: solid;
+    border-right-width: 3px;
+    border-right-color: white;
+
 }
 
 div#impwrap{
@@ -380,4 +373,6 @@ p.impressum {
 
 .playerDetails {
     align: center;
+    width: calc(60% - 6px);
+    float: left;
 }

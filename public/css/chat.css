@@ -1,28 +1,3 @@
-body{
-    margin: 0;
-    padding: 0;
-    font: 16px "Helvetica neue", Helvetica, Arial, sans-serif;
-    color: #333;
-}
-footer{
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    padding: 0 0.5em;
-    background-color: #8BC84B;
-    font-size: 24px;
-    line-height: 2em;
-    height: 2em;
-    color: #fff;
-}
-
-footer{
-    top: auto;
-    bottom: 0;
-}
 input{
     height: 1.5em;
     font-size: 14px;
@@ -30,4 +5,9 @@ input{
 #content{
     margin: 48px 0.5em;
     list-style: none;
+}
+
+#chatInput{
+    background-color: white;
+    bottom: 0;
 }

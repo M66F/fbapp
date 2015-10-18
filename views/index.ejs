@@ -2,7 +2,7 @@
 
 <%# HTML %>
 <%# column on the right with LiveTicker, Login and Websocket Chat %>
-<div id="rightColumn" class = "rightColumn" style="max-width:300px;">
+<div id="rightColumn" class = "rightColumn">
 
 	<div id="login" class = "login">
 		<img id='userImage' draggable='true' ondragstart='drag(event)'><a href='/logout' >Logout</a>
@@ -11,12 +11,18 @@
 	<div id= "chat" class = "chat">
 		<br>
 		<button class="chatButton" onclick="window.location.href='/chat'">Chat</button>
+		<ul id= "content"></ul>
+	
+	<div id= "chatInput">
+    <input id="text" type="text" placeholder="schreibe etwas..." onkeydown="sendEnter()" />
+    <input id="senden" type="submit" value="senden" onclick="send()" />
+	</div>
 	</div>
 
 </div>
 
 <%# these will be filled by index.controller.js with players %>
-<div id="leftColumn" class="leftColumn" style="max-width:300px;">
+<div id="leftColumn" class="leftColumn">
     <div id="searchAndTwitter" class="searchAndTwitter">
             <input type="text" id="searchText" onkeyup="createPlayerList()">
             <button id="speechButton" onclick="startSpeechRecognition(event)">
@@ -24,6 +30,8 @@
     </div>
 
     <div id="playerColumn" class ="playerColumn"></div>
+
+
 </div>
 
 <%# container with details of players in the middle, it accepts drop events of player images %>
@@ -39,7 +47,7 @@
 	<div id="textDetailsRight"></div>
 
 </div>
-
+</div>
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
 
@@ -57,8 +65,10 @@ if (isAuthenticated) {
 <script type="text/javascript" src="./static/js/writeDetails.js"></script>
 <script type="text/javascript" src="./static/js/compareStats.js"></script>
 <script type="text/javascript" src="./static/js/getPlayerDetail.js"></script>
-<script type="text/javascript" src= "./static/js/index.controller.js"></script>
+<script type="text/javascript" src="./static/js/index.controller.js"></script>
 <script type="text/javascript" src="./static/js/speechRecognition.js"></script>
 <script type="text/javascript" src="./static/js/dragAndDrop.js"></script>
 
+
+<script type="text/javascript" src="./static/js/wsclient.js"></script>
 <% include footer %>

@@ -23,10 +23,8 @@ socket.on('alert', function (data) {
 });
 
 socket.on('init', function (data) {
-    var nameI = prompt("Enter your name:");
-    document.getElementById("name").value = nameI;
+    var nameI = user.name;
     if (nameI == null) {
-        document.getElementById("name").value = "ISetNoName";
         nameI = "ISetNoName";
     }
     document.getElementById("content").innerHTML += '<li>' + '<small>[' + data.time + ']</small>' + '<div style="display: inline;margin-right: 75px">' + ':</div>' + data.text + '</li>';
@@ -36,7 +34,7 @@ socket.on('init', function (data) {
 
 function send() {
     // Eingabefelder auslesen
-    var name = document.getElementById("name").value;
+    var name =user.name;
     var text = document.getElementById("text").value;
 
     if (text != "") {
