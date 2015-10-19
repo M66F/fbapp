@@ -1,3 +1,5 @@
+if (isAuthenticated) {
+
 var socket = io.connect();
 var chat = document.getElementById("content");
 socket.on('chat', function (data) {
@@ -54,3 +56,5 @@ function sendEnter() {
         send();
     }
 }
+
+};

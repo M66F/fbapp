@@ -10,7 +10,7 @@
     <div id="searchAndTwitter" class="searchAndTwitter">
             <input type="text" id="searchText" onkeyup="createPlayerList()">
             <button id="speechButton" onclick="startSpeechRecognition(event)">
-                <img id='speechImage' src="/static/img/mic.gif" title="Starte die Spracheingabe" width=10 height=relative></button>
+                <img id='speechImage' src="/static/img/mic.gif" title="Starte die Spracheingabe"></button>
     </div>
 
     <div id="playerColumn" class ="playerColumn"></div>
@@ -71,6 +71,8 @@ if (isAuthenticated) {
 };
 </SCRIPT>
 
+<script type="text/javascript" src="./static/js/wsclient.js"></script>
+
 <%# contains scripts for this site %>
 <SCRIPT TYPE="text/javascript" src="./static/js/verticalResize.js"></SCRIPT>
 <script type="text/javascript" src="./static/js/getPlayerlist.js"></script>
@@ -82,5 +84,4 @@ if (isAuthenticated) {
 <script type="text/javascript" src="./static/js/dragAndDrop.js"></script>
 
 
-<script type="text/javascript" src="./static/js/wsclient.js"></script>
 <% include footer %>

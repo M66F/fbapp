@@ -239,6 +239,7 @@ Reset Backgrounds to enable the backgroundpicture
 margin: 0;
 padding: 0;
 }
+/*make the page fill the whole client browser*/
 html, body { min-height: 100%; }
  
 body {
@@ -282,15 +283,38 @@ a {
     border-bottom-color: white;
 }
 
-
+.playerDetails {
+    align: center;
+    width: calc(60% - 6px);
+    float: left;
+    height: 100%;
+    bottom:0px;
+    border-right-style: solid;
+    border-right-width: 3px;
+    border-right-color: white;
+    border-left-style: solid;
+    border-left-width: 3px;
+    border-left-color: white;
+}
 .detailsLeft , .detailsRight {
     float: left;
-    width: calc(50% - 6px);
+    width: calc(50% - 3px);
     font-size: 20px;
-    height: inherit;
+    height: calc(100% - 20px);
     text-align: left;
     font-weight: bold;
 
+}
+.detailsLeft{
+    border-right-style: solid;
+    border-right-width: 3px;
+    border-right-color: white;
+
+}
+.detailsRight{
+    border-left-style: solid;
+    border-left-width: 3px;
+    border-left-color: white;
 }
 
 .rightColumn {
@@ -305,15 +329,6 @@ a {
 }
 
 
-/*Searchbar in Header*/
-.searchAndTwitter {
-    padding: 0px 10px;
-}
-
-.logo {
-    padding-top: 6px;
-}
-
 .leftColumn {
     float: left;
     width: 20%;
@@ -324,6 +339,28 @@ a {
 
 }
 
+/*Searchbar in Header*/
+.searchAndTwitter {
+    padding: 10px 10px;
+        border-bottom-style: solid;
+    border-bottom-width: 3px; 
+    border-bottom-color: white;
+}
+#searchText {
+    width:calc(100% - 30px);
+}
+#speechButton {
+    vertical-align: middle;
+}
+#speechImage {
+    width:18px;
+    height: relative;
+}
+.logo {
+    padding-top: 6px;
+}
+
+
 div#impwrap{
     width: 95%;
     text-align: justify;
@@ -332,21 +369,6 @@ div#impwrap{
 
 p.impressum {
     padding-bottom: 1em;
-}
-
-
-.playerDetails {
-    align: center;
-    width: calc(60% - 6px);
-    float: left;
-    height: 100%;
-    bottom:0px;
-    border-right-style: solid;
-    border-right-width: 3px;
-    border-right-color: white;
-    border-left-style: solid;
-    border-left-width: 3px;
-    border-left-color: white;
 }
 
 .scrollingText {
