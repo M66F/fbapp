@@ -62,10 +62,16 @@ function createRightColumn() {
 // Welcome Text in textDetails
 
 function writeWelcomeText() {
-    document.getElementById("textDetailsLeft").innerHTML = "<p> Hey, das ist die Fußball App!" +
-        "<br><p>Zieht einen Spieler hierher!</p><br><br><p> Meldet euch mit Facebook an oder nutzt den Chat!</p>"
-    document.getElementById("textDetailsRight").innerHTML = "<p> Hey, das ist die Fußball App!" +
-        "<br><p>Zieht einen Spieler hierher!</p><br><br><p> Meldet euch mit Facebook an oder nutzt den Chat!</p>"
+    document.getElementById("textDetailsLeft").innerHTML = "<div align='center' style='padding-top:20px'" + 
+        "<p>Ziehe einen Spieler hierher!</p>" +
+        "<br>" +
+        "<img src='/static/img/dragDropFile.png' height='470px' width='auto'>" +
+        "</div>";
+    document.getElementById("textDetailsRight").innerHTML = "<div align='center' style='padding-top:20px'" + 
+        "<p>Ziehe einen Spieler hierher!</p>" +
+        "<br>" +
+        "<img src='/static/img/dragDropFile.png' height='470px' width='auto'>" +
+        "</div>";
 }
 //*************************************************************************************
 // Initial Setup

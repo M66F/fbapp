@@ -303,18 +303,6 @@ a {
     height: calc(100% - 20px);
     text-align: left;
     font-weight: bold;
-
-}
-.detailsLeft{
-    border-right-style: solid;
-    border-right-width: 3px;
-    border-right-color: white;
-
-}
-.detailsRight{
-    border-left-style: solid;
-    border-left-width: 3px;
-    border-left-color: white;
 }
 
 .rightColumn {
