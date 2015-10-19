@@ -287,8 +287,7 @@ a {
     align: center;
     width: calc(60% - 12px);
     float: left;
-<<<<<<< HEAD
-    height: 100%;
+    height: inherit;
     border-left-color: white;
     border-left-width: 3px;
     border-left-style: solid;
@@ -299,11 +298,8 @@ a {
 .detailsLeft , .detailsRight {
     float: left;
     width: calc(50% - 3px);
-=======
-    width: calc(50% - 6px);
->>>>>>> 24f91b6212308aa10985164d6cf53e07aecdd552
     font-size: 20px;
-    height: inherit;
+    height: calc(100% - 20px);
     text-align: left;
     font-weight: bold;
 
