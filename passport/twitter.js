@@ -11,10 +11,12 @@ module.exports = function(passport) {
  
     // twitter will send back the tokens and profile
     function(token, tokenSecret, profile, done) {
-
+    var name = profile.displayName;
+    var re = /(')/;
+    name = name.replace(re, "");
 var user = JSON.stringify({
                         "id": profile.id,
-                        "name": profile.displayName,
+                        "name": name,
                         "imageURL": profile.photos[0].value.replace("_normal","")
                     })
 

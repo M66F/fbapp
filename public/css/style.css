@@ -307,6 +307,7 @@ a {
     border-left-color: white;
     border-left-width: 3px;
     border-left-style: solid;
+    background-color: rgba(17, 19, 22, 0.85);
 }
 
 
@@ -325,6 +326,7 @@ a {
     border-right-style: solid;
     border-right-width: 3px; 
     border-right-color: white;
+    background-color: rgba(17, 19, 22, 0.85);
 
 }
 

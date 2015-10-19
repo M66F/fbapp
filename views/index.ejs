@@ -3,27 +3,6 @@
 <%# HTML %>
 <%# column on the right with LiveTicker, Login and Websocket Chat %>
 <div id="wrapper">
-<div id="rightColumn" class = "rightColumn">
-
-	<div id="login" class = "login">
-		<img id='userImage' draggable='true' ondragstart='drag(event)'>
-		<div id='userInfo'>
-			<div id='userName'></div>
-
-			<a id='logoutButton' href='/logout' >Logout</a>
-		</div>
-	</div>
-
-	<div id= "chat" class = "chat">
-		<ul id= "content"></ul>
-	
-	<div id= "chatInput">
-    <input id="text" type="text" placeholder="schreibe etwas..." onkeydown="sendEnter()" />
-    <input id="senden" type="submit" value="senden" onclick="send()" />
-	</div>
-	</div>
-
-</div>
 
 <%# these will be filled by index.controller.js with players %>
 <div id="leftColumn" class="leftColumn">
@@ -52,6 +31,29 @@
 
 </div>
 </div>
+ 
+    
+<div id="rightColumn" class = "rightColumn">
+
+	<div id="login" class = "login">
+		<img id='userImage' draggable='true' ondragstart='drag(event)'>
+		<div id='userInfo'>
+			<div id='userName'></div>
+
+			<a id='logoutButton' href='/logout' >Logout</a>
+		</div>
+	</div>
+
+	<div id= "chat" class = "chat">
+		<ul id= "content"></ul>
+	
+	<div id= "chatInput">
+    <input id="text" type="text" placeholder="schreibe etwas..." onkeydown="sendEnter()" />
+    <input id="senden" type="submit" value="senden" onclick="send()" />
+	</div>
+	</div>
+
+</div>
 </div>
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
@@ -59,7 +61,6 @@
 var isAuthenticated = <%- isAuthenticated %>;
 
 if (isAuthenticated) {
-
 	var user = JSON.parse('<%- user %>');
 };
 </SCRIPT>
