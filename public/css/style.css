@@ -348,3 +348,11 @@ p.impressum {
     border-left-width: 3px;
     border-left-color: white;
 }
+
+.scrollingText {
+    height: 20px;
+    background-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: white;
+}
