@@ -23,3 +23,4 @@ Der Server läuft auf dem Port 80.
 * Create your player mit Hilfe von Browser Localstorage
 * Neuste Tweets #bundesliga
 * Impressum
+* links/ rechts einklappen

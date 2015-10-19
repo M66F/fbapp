@@ -286,12 +286,6 @@ a {
 .detailsLeft , .detailsRight {
     float: left;
     width: calc(50% - 6px);
-    border-right-style: solid;
-    border-right-width: 3px;
-    border-right-color: white;
-    border-left-style: solid;
-    border-left-width: 3px;
-    border-left-color: white;
     font-size: 20px;
     height: inherit;
     text-align: left;
@@ -347,4 +341,10 @@ p.impressum {
     float: left;
     height: 100%;
     bottom:0px;
+    border-right-style: solid;
+    border-right-width: 3px;
+    border-right-color: white;
+    border-left-style: solid;
+    border-left-width: 3px;
+    border-left-color: white;
 }

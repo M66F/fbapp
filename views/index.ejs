@@ -1,9 +1,10 @@
 <% include header %>
 
 <%# HTML %>
-<%# column on the right with LiveTicker, Login and Websocket Chat %>
 <div id="wrapper">
 
+
+    
 <%# these will be filled by index.controller.js with players %>
 <div id="leftColumn" class="leftColumn">
     <div id="searchAndTwitter" class="searchAndTwitter">
@@ -14,11 +15,16 @@
 
     <div id="playerColumn" class ="playerColumn"></div>
 
-
-</div>
-
+</div>  
+    
 <%# container with details of players in the middle, it accepts drop events of player images %>
 <div id="playerDetails" class="playerDetails">
+
+<%# scrolling text with twitter livefeed%> 
+<div style="height: 20px">
+    <marquee behavior="scroll" scrollamount="20" direction="left" width="100%" height="20px" bgcolor="black"><font size="3" display="block"><b>LOGIN TO RECEAIVE A TWITTER LIVEFEED</b></font></marquee>      
+</div>      
+
 <%# container 1 - left side %>
 <div id="detailsLeft" class ="detailsLeft" ondrop="drop(event)" ondragover="allowDrop(event)">
 	<div id="textDetailsLeft"></div>
@@ -32,7 +38,7 @@
 </div>
 </div>
  
-    
+<%# column on the right with LiveTicker, Login and Websocket Chat %>
 <div id="rightColumn" class = "rightColumn">
 
 	<div id="login" class = "login">
