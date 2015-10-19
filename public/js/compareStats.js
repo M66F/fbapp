@@ -212,4 +212,3 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
 
     return rating;
 }
-

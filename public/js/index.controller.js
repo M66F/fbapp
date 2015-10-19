@@ -30,7 +30,6 @@ one.addEventListener('mouseout', function(){
     two.style.color = "black";
 }, true);
 
-
 //**************************************************************************************************
 //Global Variables
 //"target" for the drop location of drag&drop event
@@ -47,8 +46,6 @@ function createRightColumn() {
          document.getElementById("login").style.display = "block";
          document.getElementById("userImage").src = user.imageURL;
          document.getElementById("userName").innerHTML = "Eingeloggt als "+user.name+".";
-
-         
     } else {
          document.getElementById("login").style.display = "none";
          document.getElementById("chat").style.display = "none";
@@ -60,17 +57,19 @@ function createRightColumn() {
 
 //*************************************************************************************
 // Welcome Text in textDetails
+var dragDropImg = "<img src='/static/img/dragFile.png' draggable=false height='470px' width='auto'>";
+
 
 function writeWelcomeText() {
     document.getElementById("textDetailsLeft").innerHTML = "<div align='center' style='padding-top:20px'" + 
         "<p>Ziehe einen Spieler hierher!</p>" +
         "<br>" +
-        "<img src='/static/img/dragDropFile.png' height='470px' width='auto'>" +
+        "<img src='/static/img/dragFile.png' ID='dragDropLeft' draggable=false height='470px' width='auto'>" +
         "</div>";
     document.getElementById("textDetailsRight").innerHTML = "<div align='center' style='padding-top:20px'" + 
         "<p>Ziehe einen Spieler hierher!</p>" +
         "<br>" +
-        "<img src='/static/img/dragDropFile.png' height='470px' width='auto'>" +
+        "<img src='/static/img/dragFile.png' ID='dragDropRight' draggable=false height='470px' width='auto'>" +
         "</div>";
 }
 //*************************************************************************************
