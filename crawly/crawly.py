@@ -552,7 +552,7 @@ def getPictureURL(content):
 
     except:
         print(bcolors.WARNING + "Couldn't find picture url." + bcolors.ENDC)
-        return "n.a."
+        return "http://akacdn.transfermarkt.de/images/portrait/medium/default.jpg"
 
 
 def validationCheck(data, filepath):

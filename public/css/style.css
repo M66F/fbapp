@@ -287,6 +287,7 @@ a {
     align: center;
     width: calc(60% - 12px);
     float: left;
+<<<<<<< HEAD
     height: 100%;
     border-left-color: white;
     border-left-width: 3px;
@@ -298,6 +299,9 @@ a {
 .detailsLeft , .detailsRight {
     float: left;
     width: calc(50% - 3px);
+=======
+    width: calc(50% - 6px);
+>>>>>>> 24f91b6212308aa10985164d6cf53e07aecdd552
     font-size: 20px;
     height: inherit;
     text-align: left;
@@ -324,6 +328,7 @@ a {
     border-left-color: white;
     border-left-width: 3px;
     border-left-style: solid;
+    background-color: rgba(17, 19, 22, 0.85);
 }
 
 
@@ -333,6 +338,7 @@ a {
     border-right-style: solid;
     border-right-width: 3px; 
     border-right-color: white;
+    background-color: rgba(17, 19, 22, 0.85);
 
 }
 
@@ -369,4 +375,20 @@ p.impressum {
 }
 
 
+<<<<<<< HEAD
 
+=======
+.playerDetails {
+    align: center;
+    width: calc(60% - 6px);
+    float: left;
+    height: 100%;
+    bottom:0px;
+    border-right-style: solid;
+    border-right-width: 3px;
+    border-right-color: white;
+    border-left-style: solid;
+    border-left-width: 3px;
+    border-left-color: white;
+}
+>>>>>>> 24f91b6212308aa10985164d6cf53e07aecdd552

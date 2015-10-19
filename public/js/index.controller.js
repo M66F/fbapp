@@ -58,9 +58,6 @@ function createRightColumn() {
 
 
 
-
-
-
 //*************************************************************************************
 // Welcome Text in textDetails
 

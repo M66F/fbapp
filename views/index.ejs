@@ -1,8 +1,44 @@
 <% include header %>
 
 <%# HTML %>
-<%# column on the right with LiveTicker, Login and Websocket Chat %>
 <div id="wrapper">
+
+
+    
+<%# these will be filled by index.controller.js with players %>
+<div id="leftColumn" class="leftColumn">
+    <div id="searchAndTwitter" class="searchAndTwitter">
+            <input type="text" id="searchText" onkeyup="createPlayerList()">
+            <button id="speechButton" onclick="startSpeechRecognition(event)">
+                <img id='speechImage' src="/static/img/mic.gif" title="Starte die Spracheingabe"></button>
+    </div>
+
+    <div id="playerColumn" class ="playerColumn"></div>
+
+</div>  
+    
+<%# container with details of players in the middle, it accepts drop events of player images %>
+<div id="playerDetails" class="playerDetails">
+
+<%# scrolling text with twitter livefeed%> 
+<div style="height: 20px">
+    <marquee behavior="scroll" scrollamount="20" direction="left" width="100%" height="20px" bgcolor="black"><font size="3" display="block"><b>LOGIN TO RECEAIVE A TWITTER LIVEFEED</b></font></marquee>      
+</div>      
+
+<%# container 1 - left side %>
+<div id="detailsLeft" class ="detailsLeft" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<div id="textDetailsLeft"></div>
+
+</div>
+
+<%# container 2 - right side %>
+<div id="detailsRight" class ="detailsRight" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<div id="textDetailsRight"></div>
+
+</div>
+</div>
+ 
+<%# column on the right with LiveTicker, Login and Websocket Chat %>
 <div id="rightColumn" class = "rightColumn">
 
 	<div id="login" class = "login">
@@ -24,34 +60,6 @@
 	</div>
 
 </div>
-
-<%# these will be filled by index.controller.js with players %>
-<div id="leftColumn" class="leftColumn">
-    <div id="searchAndTwitter" class="searchAndTwitter">
-            <input type="text" id="searchText" onkeyup="createPlayerList()">
-            <button id="speechButton" onclick="startSpeechRecognition(event)">
-                <img id='speechImage' src="/static/img/mic.gif" title="Starte die Spracheingabe"></button>
-    </div>
-
-    <div id="playerColumn" class ="playerColumn"></div>
-
-
-</div>
-
-<%# container with details of players in the middle, it accepts drop events of player images %>
-<div id="playerDetails" class="playerDetails">
-<%# container 1 - left side %>
-<div id="detailsLeft" class ="detailsLeft" ondrop="drop(event)" ondragover="allowDrop(event)">
-	<div id="textDetailsLeft"></div>
-
-</div>
-
-<%# container 2 - right side %>
-<div id="detailsRight" class ="detailsRight" ondrop="drop(event)" ondragover="allowDrop(event)">
-	<div id="textDetailsRight"></div>
-
-</div>
-</div>
 </div>
 <%# receive variables from server%>
 <SCRIPT TYPE="text/javascript">
@@ -59,7 +67,6 @@
 var isAuthenticated = <%- isAuthenticated %>;
 
 if (isAuthenticated) {
-
 	var user = JSON.parse('<%- user %>');
 };
 </SCRIPT>
