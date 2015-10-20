@@ -1,5 +1,4 @@
 //**********************************************************************************
-
 //Drag and Drop Event Handling
 function allowDrop(ev) {
     ev.preventDefault();
