@@ -295,6 +295,7 @@ a {
     border-left-style: solid;
     border-left-width: 3px;
     border-left-color: white;
+    overflow: auto;
 }
 .detailsLeft , .detailsRight {
     float: left;

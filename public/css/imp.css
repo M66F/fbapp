@@ -5,13 +5,13 @@ hr{
 }
 #impwrap{
     overflow: auto;
+    width: 50%;
+    float: left;
 }
 b{
     font-style:italic;
 }
-.right{
-    float: right;
-    width: 50%;
+.haftung{
     text-align: inherit
 }
 a:link{
@@ -22,5 +22,7 @@ a:hover{
 }
 
 .autoren{
-list-style-type: none;}
+list-style-type: none;
+float: right;
+width: 50%;}
 
