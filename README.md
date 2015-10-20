@@ -17,9 +17,7 @@ Der Server läuft auf dem Port 80.
 
 # To-Do
 * Responive Design
-* Schönes CSS/Design
-* Twitter und Facebook Login
-* Chat in die Seite einbauen
+* mobile + Tablet view
 * Create your player
 * Neuste Tweets #bundesliga
 * Impressum überarbeiten
