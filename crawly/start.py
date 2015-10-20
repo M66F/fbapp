@@ -9,6 +9,13 @@ import time
 import sys
 import os
 
+
+########FLAGS########
+#                   #
+getPictures = True  #   be careful with this one, takes aaaaaages
+#                   #
+#####################
+
 # If you use Windows, the console has to be disabled
 class DevNull(object):
     def write(self, arg):
@@ -104,7 +111,7 @@ except:
 print(bcolors.OKGREEN + "Clearing file " + n + " successful" + bcolors.ENDC)
 
 for player in players:
-    crawly.savePlayerData(player)
+    crawly.savePlayerData(player, getPictures)
 
 print('--- %s seconds for %s players ---' % (round((time.time() - start_time), 2), len(players)))
 

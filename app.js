@@ -45,6 +45,7 @@ app.use('/', routes);
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use('/playerdata', express.static(path.join(__dirname, 'crawly/data')));
+app.use('/playerimg', express.static(path.join(__dirname, 'crawly/data/img')));
 
 
 /// catch 404 and forward to error handler

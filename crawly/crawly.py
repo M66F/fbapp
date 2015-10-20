@@ -2,7 +2,7 @@
 /data/. The list of players is stored in /start.py
 Start with python3.4 crawly.py"""
 
-__version__ = "0.3.0"
+__version__ = "0.5.0"
 __status__ = "Development"
 
 # To-Do: improved validation check, error log
@@ -15,6 +15,7 @@ import json
 import unicodedata as ud
 import sys
 import os
+import urllib.parse
 
 
 # If you use Windows, the console has to be disabled
@@ -531,8 +532,7 @@ def getHoechsterMarktwert(content):
         print(bcolors.WARNING + "Couldn't find highest market value." + bcolors.ENDC)
         return "n.a."
 
-
-def getPictureURL(content):
+def getPictureURL(content, filename, getPictures):
     try:
         #EDIT HERE
         m = re.search('<div class="headerfoto">(.|\n)*?<\/div>', content)
@@ -548,11 +548,30 @@ def getPictureURL(content):
         #print(ret)
         #print('2: ' + ret)
 
+        # express says no!
+        #filename = urllib.parse.quote(filename)
+
+        if(getPictures):
+            filepath = 'data/img/' + filename + '.jpg'
+            f = open(filepath, 'wb')
+            f.write(requests.get(ret).content)
+            f.close
+
+
+            print(bcolors.OKGREEN + "Saving file to local storage [" + filepath + "] successful" + bcolors.ENDC)
+            filename = urllib.parse.quote(filename)
+            filepath = 'playerimg/' + filename + '.jpg'
+            ret = filepath
+        else:
+            filename = urllib.parse.quote(filename)
+            filepath = 'playerimg/' + filename + '.jpg'
+            ret = filepath
+
         return ret
 
     except:
         print(bcolors.WARNING + "Couldn't find picture url." + bcolors.ENDC)
-        return "http://akacdn.transfermarkt.de/images/portrait/medium/default.jpg"
+        return "playerimg/default/default.jpg"
 
 
 def validationCheck(data, filepath):
@@ -588,7 +607,7 @@ def addToIndexJSON(filename, playername, imageurl):
     file.close()
 
 
-def savePlayerData(iurl):
+def savePlayerData(iurl, getPictures):
     try:
         ##############################################
         s = requests.Session()
@@ -620,7 +639,7 @@ def savePlayerData(iurl):
     schuhmodell = getSchuhmodell(content)
     aktuellerMarktwert = getAktuellerMarktwert(content)
     hoechsterMarktwert = getHoechsterMarktwert(content)
-    pictureURL = getPictureURL(content)
+    pictureURL = getPictureURL(content, name, getPictures)
 
 
     ##collect all Data
