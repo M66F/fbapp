@@ -33,6 +33,10 @@ function drop(ev) {
 }
 
 function onDragLeave(){
+    if (playerLeft == undefined) {
     document.getElementById("dragDropLeft").src = "/static/img/dragFile.png";
+    }
+    if (playerRight == undefined) {
     document.getElementById("dragDropRight").src = "/static/img/dragFile.png";
+    }
 }
