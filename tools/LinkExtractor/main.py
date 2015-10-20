@@ -1,5 +1,4 @@
 
-__author__ = 'Peter'
 
 import requests
 import re
@@ -15,8 +14,8 @@ def f7(seq):
 
 def main():
     url = input("Enter team url: ")
-    #url = "http://www.transfermarkt.de/fc-bayern-munchen/startseite/verein/27"
-    if not ((bool(re.search('transfermarkt\.de', url))) or (bool(re.search('verein', url)))):
+    s = b'\xff\xfet\x00r\x00a\x00n\x00s\x00f\x00e\x00r\x00m\x00a\x00r\x00k\x00t\x00\\\x00.\x00d\x00e\x00'
+    if not ((bool(re.search(s.decode("utf-16"), url))) or (bool(re.search('verein', url)))):
         print("Invalid URL!")
         return
 
@@ -42,8 +41,10 @@ def main():
 
 
     linkList = []
+    s = b'\xff\xfeh\x00t\x00t\x00p\x00:\x00/\x00/\x00w\x00w\x00w\x00.\x00t\x00r\x00a\x00n\x00s\x00f\x00e\x00r\x00m\x00a\x00r\x00k\x00t\x00.\x00d\x00e\x00'
+    s = s.decode("utf-16")
     for link in links:
-        linkList.append('http://www.transfermarkt.de' + (str(link).replace('[','').replace(']','').replace('\'','') ))
+        linkList.append(s + (str(link).replace('[','').replace(']','').replace('\'','') ))
 
 
     # remove duplicates
