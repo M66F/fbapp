@@ -20,7 +20,6 @@ Der Server läuft auf dem Port 80.
 * Schönes CSS/Design
 * Twitter und Facebook Login
 * Chat in die Seite einbauen
-* Create your player mit Hilfe von Browser Localstorage
+* Create your player
 * Neuste Tweets #bundesliga
-* Impressum
-* links/ rechts einklappen
+* Impressum überarbeiten

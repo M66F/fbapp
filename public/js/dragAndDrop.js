@@ -18,9 +18,6 @@ function allowDrop(ev) {
         } else {
             document.getElementById("dragDropRight").src = "/static/img/dragFile.png";
         }
-        /*
-        document.getElementById("dragDropRight").src = "/static/img/dragFile.png";
-        document.getElementById("dragDropLeft").src = "/static/img/dragFile.png";*/
     }
 }
 
@@ -34,4 +31,9 @@ function drop(ev) {
     ev.preventDefault();
     var id = ev.dataTransfer.getData("playerID");
     requestPlayerDetail(id);
+}
+
+function onDragLeave(){
+    document.getElementById("dragDropLeft").src = "/static/img/dragFile.png";
+    document.getElementById("dragDropRight").src = "/static/img/dragFile.png";
 }
