@@ -1,0 +1,1 @@
+document.getElementById("impwrap").style.height = (window.innerHeight-100)+"px";

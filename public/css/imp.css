@@ -1,0 +1,26 @@
+hr{
+    noshade size="2";
+    color: white;
+    background-color: white;
+}
+#impwrap{
+    overflow: auto;
+}
+b{
+    font-style:italic;
+}
+.right{
+    float: right;
+    width: 50%;
+    text-align: inherit
+}
+a:link{
+    color: white;
+}
+a:hover{
+    color: #51C1F1;
+}
+
+.autoren{
+list-style-type: none;}
+
