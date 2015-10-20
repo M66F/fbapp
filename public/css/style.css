@@ -285,7 +285,7 @@ a {
 
 .playerDetails {
     align: center;
-    width: calc(60% - 6px);
+    width: calc(60% - 12px);
     float: left;
     height: 100%;
     bottom:0px;
@@ -300,7 +300,7 @@ a {
     float: left;
     width: calc(50% - 3px);
     font-size: 20px;
-    height: calc(100% - 20px);
+    height: calc(100% - 22px);
     text-align: left;
     font-weight: bold;
 
