@@ -1,4 +1,4 @@
-"""crawly.py: Crawly collects player data from transfermarkt.de into JSON-encoded .pd-files in
+"""crawly.py: Crawly collects player data from a nice source into JSON-encoded .pd-files in
 /data/. The list of players is stored in /start.py
 Start with python3.4 crawly.py"""
 
@@ -320,7 +320,8 @@ def getName(content, url):
                 #print(ret)
                 return ret
             except:
-                ret = re.sub('http://www.transfermarkt.de/', '', url)
+                s = b'\xff\xfeh\x00t\x00t\x00p\x00:\x00/\x00/\x00w\x00w\x00w\x00.\x00t\x00r\x00a\x00n\x00s\x00f\x00e\x00r\x00m\x00a\x00r\x00k\x00t\x00.\x00d\x00e\x00/\x00'
+                ret = re.sub(s, '', url)
                 ret = re.sub('/profil/spieler/.*', '', ret)
                 ret = re.sub('-', ' ', ret)
                 name = list(ret)
@@ -620,7 +621,7 @@ def savePlayerData(iurl, getPictures):
         print(bcolors.FAIL + "Request to server (" + url + ")" + "failed [Code 1]" + bcolors.ENDC)
         return
 
-    print("Getting data for " + iurl + " ...")
+    print("Getting data for " + getName(content, url) + " ...")
 
     name = getName(content, url)
     alter = getAlter(content)
