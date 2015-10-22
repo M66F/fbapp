@@ -34,6 +34,12 @@ socket.on('init', function (data) {
     socket.emit('init', {name: nameI, text: nameI});
 });
 
+
+
+
+    var commandHistory = [];
+    var commandPointer = 0;
+
 function send() {
     // Eingabefelder auslesen
     var name =user.name;
@@ -46,15 +52,30 @@ function send() {
             // Nachricht senden
             socket.emit('chat', {name: name, text: text});
         }
+        commandPointer++;
+        commandHistory.push(document.getElementById("text").value);
     }
     // Text-Eingabe leeren
-    var obj = document.getElementById("text").value = "";
+    document.getElementById("text").value = "";
 }
 
-function sendEnter() {
-    if (event.keyCode == 13) {
+
+function checkKey() {
+    if (event.keyCode == 13 || event.charCode == 13) {
         send();
+    } else if (event.keyCode == 38 || event.charCode == 38) {
+        if(commandPointer > 0) {
+            commandPointer--;
+            document.getElementById("text").value = commandHistory[commandPointer];
+        }
+    } else if (event.keyCode == 40 || event.charCode == 40) {
+        if (commandPointer < commandHistory.length - 1) {
+            commandPointer++;
+            document.getElementById("text").value = commandHistory[commandPointer];
+        } else if (commandPointer == commandHistory.length - 1) {
+            document.getElementById("text").value = "";
+        }
     }
-}
+    }
 
 };
