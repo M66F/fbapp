@@ -52,6 +52,7 @@ function send() {
             // Nachricht senden
             socket.emit('chat', {name: name, text: text});
         }
+        commandPointer = commandHistory.length;
         commandPointer++;
         commandHistory.push(document.getElementById("text").value);
     }
