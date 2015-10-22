@@ -74,6 +74,7 @@ function checkKey() {
             document.getElementById("text").value = commandHistory[commandPointer];
         } else if (commandPointer == commandHistory.length - 1) {
             document.getElementById("text").value = "";
+            commandPointer++;
         }
     }
     }
