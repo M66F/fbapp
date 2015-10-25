@@ -5,7 +5,6 @@ Start with python3.4 crawly.py"""
 __version__ = "0.5.0"
 __status__ = "Development"
 
-# To-Do: improved validation check, error log
 
 # ADD PLAYERS IN start.py
 
