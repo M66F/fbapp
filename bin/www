@@ -2,6 +2,7 @@
 
 var app = require('../app');
 var history = [];
+var currentlyOnline = [];
 
 // port 80 benoetigt sudo
 app.set('port', 80 || process.env.PORT || 3000);
@@ -26,20 +27,15 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('authorization', function (data) {
         //if (myHash(data.key) == "1628413597910449125000260129162704492809117649291617270948495369409569411929801140608806041108929114965904963594849072716192946711908294407261921062000521944019795314826116284135979104491250002601291627044928091176492916172709484953694095694119298011406088") {
-        authorized = true;
-        // client connected, fire init event
-        socket.emit('init', {
-            time: new Date().toLocaleTimeString(),
-            text: "You're now connected to the server!"
-        });
-        if (history[0] != undefined && history[0] != null) {
-            for (chatline in history) {
-                json = JSON.parse(history[chatline]);
-                socket.emit('chat', {
-                    time: json.time,
-                    name: json.name,
-                    text: json.text
-                });
+
+            authorized = true;
+            // client connected, fire init event
+            socket.emit('init', {time: new Date().toLocaleTimeString(), text: "You're now connected to the server! Type /online to see who's online."});
+            if (history[0] != undefined && history[0] != null) {
+                for (chatline in history) {
+                    json = JSON.parse(history[chatline]);
+                    socket.emit('chat', {time: json.time, name: json.name, text: json.text});
+                }
             }
         }
 
@@ -61,6 +57,14 @@ io.sockets.on('connection', function (socket) {
                 });
                 socket.disconnect();
                 nameOnServer = "unknown";
+                return;
+            }
+
+            if(data.text.toUpperCase() == "STAR WARS") {
+                time = new Date().toLocaleTimeString();
+                text = "<img src='https://media.giphy.com/media/gqztW5MLVNnFe/giphy.gif' height='50%' width='50%'>";
+                io.sockets.emit('chat', {time: time, name: 'THE FORCE', text: text});
+                history.push(JSON.stringify({"time": time, "name": 'THE FORCE', "text": text}));
                 return;
             }
 
@@ -105,6 +109,10 @@ io.sockets.on('connection', function (socket) {
             if (nameOnServer == "unknown") {
                 nameOnServer = data.name;
             }
+            currentlyOnline.push(data.name);
+
+
+            // removed and replaced with /online for now
             // send to all users
             time = new Date().toLocaleTimeString();
             data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -121,7 +129,9 @@ io.sockets.on('connection', function (socket) {
                 "text": data.text
             }));
             
+            //Send TwitterFeed to Client
             getTwitterFeed(socket);
+
 
 
 
@@ -129,26 +139,30 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function () {
-        console.log(new Date() + " Disconnect received from: " + clientIp);
-        time = new Date().toLocaleTimeString();
-        name = nameOnServer;
-        name = name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        if (name == "unknown") {
-            return;
+        // replaced with /online for now
+        //console.log(new Date() + " Disconnect received from: " + clientIp);
+        //time = new Date().toLocaleTimeString();
+        //name = nameOnServer;
+        //name = name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        //if (name == "unknown") {
+        //    return;
+        //}
+        //text = name + " DISCONNECTED";
+        //
+        //
+        //name = "MESSAGE";
+        //io.sockets.emit('chat', {time: time, name: name, text: text});
+        //history.push(JSON.stringify({"time": time, "name": name, "text": text}));
+
+        for (var i = 0; i <= currentlyOnline.length - 1; i++) {
+            if(currentlyOnline[i] == nameOnServer) {
+                currentlyOnline.splice(i, 1);
+                break;
+            }
         }
-        text = name + " DISCONNECTED";
-        name = "MESSAGE";
-        io.sockets.emit('chat', {
-            time: time,
-            name: name,
-            text: text
-        });
-        history.push(JSON.stringify({
-            "time": time,
-            "name": name,
-            "text": text
-        }));
         nameOnServer = "unknown";
+
+
     });
 
     socket.on('command', function (data) {
@@ -168,11 +182,15 @@ io.sockets.on('connection', function (socket) {
             }
         }
 
-        if (data.command == '/clear' && isAdmin) {
-            socket.emit('alert', {
-                message: "History cleared"
-            });
+
+        else if (data.command == '/clear' && isAdmin) {
+            socket.emit('alert', {message: "History cleared"});
             history = [];
+        }
+
+        else if (data.command == '/online') {
+            text = 'Currently online: ' + currentlyOnline;
+            socket.emit('chat', {time: new Date().toLocaleTimeString(), name: 'SYSTEM', text: text});
         }
     });
 });

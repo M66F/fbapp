@@ -9,10 +9,12 @@
     <script type="text/javascript" src= "./static/js/wsclient.js"></script>
 </head>
 <body>
+<span id="replace-me">
 <ul id="content"></ul>
+</span>
 <footer>
     <input id="name" type="text" placeholder="dein Name" disabled />
-    <input id="text" type="text" placeholder="schreibe etwas..." onkeydown="sendEnter()" />
+    <input id="text" type="text" placeholder="schreibe etwas..." onkeydown="checkKey()" />
     <input id="senden" type="submit" value="senden" onclick="send()" />
 </footer>
 </body>

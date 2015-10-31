@@ -1,0 +1,28 @@
+hr{
+    noshade size="2";
+    color: white;
+    background-color: white;
+}
+#impwrap{
+    overflow: auto;
+    width: 50%;
+    float: left;
+}
+b{
+    font-style:italic;
+}
+.haftung{
+    text-align: inherit
+}
+a:link{
+    color: white;
+}
+a:hover{
+    color: #51C1F1;
+}
+
+.autoren{
+list-style-type: none;
+float: right;
+width: 50%;}
+
