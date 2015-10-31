@@ -52,9 +52,6 @@ function createRightColumn() {
    }  
 }
 
-
-
-
 //*************************************************************************************
 // Welcome Text in textDetails
 var dragDropImg = "<img src='/static/img/dragFile.png' draggable=false height='470px' width='auto'>";
@@ -85,9 +82,7 @@ if (isAuthenticated) {
 
 
 
-//----------------
-
-
+//*************************************************************************************
 window.onkeypress = listenToTheKey;
 var parrot = 0;
 function listenToTheKey(e) {

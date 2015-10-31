@@ -34,6 +34,11 @@ socket.on('init', function (data) {
     socket.emit('init', {name: nameI, text: nameI});
 });
 
+    socket.on('twitterFeed', function (data) {
+    console.log(data.feed);
+    parseTwitterFeed(data.feed);
+});
+    
 function send() {
     // Eingabefelder auslesen
     var name =user.name;

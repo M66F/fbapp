@@ -22,7 +22,7 @@
 
 <%# scrolling text with twitter livefeed%> 
 <div class="scrollingText">
-    <marquee behavior="slide" scrollamount="3" direction="down" style="text-align:center"><font size="3" display="block"><b>LOGIN TO RECEIVE A TWITTER LIVEFEED</b></font></marquee>      
+    <marquee behavior="slide" scrollamount="3" direction="down" style="text-align:center" ID="twitterFeed"><font size="3" display="block"><b>LOGIN TO RECEIVE A TWITTER LIVEFEED</b></font></marquee>      
 </div>      
 
 <%# container 1 - left side %>
@@ -82,6 +82,7 @@ if (isAuthenticated) {
 <script type="text/javascript" src="./static/js/index.controller.js"></script>
 <script type="text/javascript" src="./static/js/speechRecognition.js"></script>
 <script type="text/javascript" src="./static/js/dragAndDrop.js"></script>
+<script type="text/javascript" src="./static/js/parseTwitterFeed.js"></script>
 
 
 <% include footer %>
