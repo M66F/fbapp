@@ -128,20 +128,20 @@ io.sockets.on('connection', function (socket) {
 
             // removed and replaced with /online for now
             // send to all users
-            time = new Date().toLocaleTimeString();
-            data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            data.text = data.name + " CONNECTED";
-            data.name = "MESSAGE";
-            io.sockets.emit('chat', {
-                time: time,
-                name: data.name || 'Anonym',
-                text: data.text
-            });
-            history.push(JSON.stringify({
-                "time": time,
-                "name": data.name,
-                "text": data.text
-            }));
+            //time = new Date().toLocaleTimeString();
+            //data.name = data.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            //data.text = data.name + " CONNECTED";
+            //data.name = "MESSAGE";
+            //io.sockets.emit('chat', {
+            //    time: time,
+            //    name: data.name || 'Anonym',
+            //    text: data.text
+            //});
+            //history.push(JSON.stringify({
+            //    "time": time,
+            //    "name": data.name,
+            //    "text": data.text
+            //}));
 
             //Send TwitterFeed to Client
             getTwitterFeed(socket);
