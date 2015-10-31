@@ -367,3 +367,16 @@ p.impressum {
     border-bottom-width: 2px;
     border-bottom-color: white;
 }
+.logoutButton {
+    display: block;
+    width: 80px;
+    height: 15px;
+    margin-top: 1px;
+    text-align: center;
+    background: #800000;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 3px;
+}
