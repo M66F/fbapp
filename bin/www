@@ -282,7 +282,7 @@ io.sockets.on('connection', function (socket) {
                             console.log(error);
 
                         } else {
-                            var bundesligaFeed = JSON.stringify(body);
+                            var bundesligaFeed = JSON.parse(body);
                             console.log('Get Successful');
                             socket.emit('twitterFeed', {
                                 feed: bundesligaFeed

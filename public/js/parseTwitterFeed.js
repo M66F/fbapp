@@ -1,9 +1,13 @@
 function parseTwitterFeed(twitterFeed) {
-    var re = /(\\)/g; //remove Backslash
-    var re2 = /"text":(.)*?(",)/g; //get "text"
-    var feed = twitterFeed.replace(re, "");
-    feed = feed.match(re2);
-    console.log('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' + feed);
-    document.getElementById('twitterFeed').innerHTML = '<font size="3" display="block"><b>' + feed + '</b></font>';
+    var feed = twitterFeed.statuses;
+    var returnString = "";
+    console.log(feed);
+    for(var i = 0; i < feed.length; i++) {
+        //console.log(feed[i].text);
+            returnString += feed[i].text + '<br>';
+    }
+
+
+    document.getElementById('twitterFeed').innerHTML = '<font size="3" display="block"><b>' + returnString + '</b></font>';
 
 }

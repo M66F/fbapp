@@ -35,7 +35,6 @@ socket.on('init', function (data) {
 });
 
     socket.on('twitterFeed', function (data) {
-    console.log(data.feed);
     parseTwitterFeed(data.feed);
 });
     
