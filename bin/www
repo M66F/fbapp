@@ -28,28 +28,34 @@ io.sockets.on('connection', function (socket) {
     socket.on('authorization', function (data) {
         //if (myHash(data.key) == "1628413597910449125000260129162704492809117649291617270948495369409569411929801140608806041108929114965904963594849072716192946711908294407261921062000521944019795314826116284135979104491250002601291627044928091176492916172709484953694095694119298011406088") {
 
-            authorized = true;
-            // client connected, fire init event
-            socket.emit('init', {time: new Date().toLocaleTimeString(), text: "You're now connected to the server! Type /online to see who's online."});
-            if (history[0] != undefined && history[0] != null) {
-                for (chatline in history) {
-                    json = JSON.parse(history[chatline]);
-                    socket.emit('chat', {time: json.time, name: json.name, text: json.text});
-                }
+        authorized = true;
+        // client connected, fire init event
+        socket.emit('init', {
+            time: new Date().toLocaleTimeString(),
+            text: "You're now connected to the server! Type /online to see who's online."
+        });
+        if (history[0] !== undefined && history[0] !== null) {
+            for (chatline in history) {
+                json = JSON.parse(history[chatline]);
+                socket.emit('chat', {
+                    time: json.time,
+                    name: json.name,
+                    text: json.text
+                });
             }
         }
+    })
 
-        console.log(new Date() + " successful login from " + clientIp);
-        //} else {
-        //    socket.emit('alert', {message: "Authorization failed"});
-        //    console.log(new Date() + " failed login from " + clientIp);
-        //}
-    });
+    console.log(new Date() + " successful login from " + clientIp);
+    //} else {
+    //    socket.emit('alert', {message: "Authorization failed"});
+    //    console.log(new Date() + " failed login from " + clientIp);
+    //}
 
 
     // user sends chat message
     socket.on('chat', function (data) {
-        if (authorized == true) {
+        if (authorized === true) {
             if (nameOnServer != data.name) {
                 console.log(new Date() + " Disallowed name change attempt from " + clientIp);
                 socket.emit('alert', {
@@ -60,11 +66,19 @@ io.sockets.on('connection', function (socket) {
                 return;
             }
 
-            if(data.text.toUpperCase() == "STAR WARS") {
+            if (data.text.toUpperCase() == "STAR WARS") {
                 time = new Date().toLocaleTimeString();
                 text = "<img src='https://media.giphy.com/media/gqztW5MLVNnFe/giphy.gif' height='50%' width='50%'>";
-                io.sockets.emit('chat', {time: time, name: 'THE FORCE', text: text});
-                history.push(JSON.stringify({"time": time, "name": 'THE FORCE', "text": text}));
+                io.sockets.emit('chat', {
+                    time: time,
+                    name: 'THE FORCE',
+                    text: text
+                });
+                history.push(JSON.stringify({
+                    "time": time,
+                    "name": 'THE FORCE',
+                    "text": text
+                }));
                 return;
             }
 
@@ -98,7 +112,7 @@ io.sockets.on('connection', function (socket) {
 
 
     socket.on('init', function (data) {
-        if (authorized == true) {
+        if (authorized === true) {
             if (data.name.length > 25) {
                 socket.emit('alert', {
                     message: "You have been kicked! Reason: Name length is limited to 25 characters"
@@ -128,7 +142,7 @@ io.sockets.on('connection', function (socket) {
                 "name": data.name,
                 "text": data.text
             }));
-            
+
             //Send TwitterFeed to Client
             getTwitterFeed(socket);
 
@@ -155,7 +169,7 @@ io.sockets.on('connection', function (socket) {
         //history.push(JSON.stringify({"time": time, "name": name, "text": text}));
 
         for (var i = 0; i <= currentlyOnline.length - 1; i++) {
-            if(currentlyOnline[i] == nameOnServer) {
+            if (currentlyOnline[i] == nameOnServer) {
                 currentlyOnline.splice(i, 1);
                 break;
             }
@@ -180,102 +194,105 @@ io.sockets.on('connection', function (socket) {
                 });
                 console.log(new Date() + " Following client is now admin: " + clientIp);
             }
-        }
-
-
-        else if (data.command == '/clear' && isAdmin) {
-            socket.emit('alert', {message: "History cleared"});
+        } else if (data.command == '/clear' && isAdmin) {
+            socket.emit('alert', {
+                message: "History cleared"
+            });
             history = [];
-        }
-
-        else if (data.command == '/online') {
+        } else if (data.command == '/online') {
             text = 'Currently online: ' + currentlyOnline;
-            socket.emit('chat', {time: new Date().toLocaleTimeString(), name: 'SYSTEM', text: text});
+            socket.emit('chat', {
+                time: new Date().toLocaleTimeString(),
+                name: 'SYSTEM',
+                text: text
+            });
         }
     });
+
+
+    // this thing is nowhere close to secure, but the key SHOULD be save on the server anyways :)
+    function myHash(string) {
+        var hash = 0;
+        var char = "";
+        var len = 256;
+
+        if (string.length == 0) return hash;
+        for (i = 0; i < string.length; i++) {
+            if (i == 0) {
+                char = char + Math.pow(string.charCodeAt(i), 9)
+            } else if (i % 5 == 0) {
+                char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 2), 7);
+            } else if (i % 4 == 0) {
+                char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 4), 3);
+            } else if (i % 3 == 0) {
+                char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 3), 1);
+            } else if (i % 2 == 0) {
+                char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 1), 2);
+            } else {
+                char = char + Math.pow(string.charCodeAt(i), 3);
+            }
+
+        }
+
+        while (char.length < len) {
+            char += char.split("").reverse().join("");
+        }
+        hash = char.substring(0, len);
+        return hash;
+    }
+
+    //***********************************************************************************************
+
+    function getTwitterFeed(socket) {
+        //Twitter Newsfeed # Bundesliga
+        //Get Twitter Credentials
+        var secretConfig = require('../secretConfig.js');
+        var key = secretConfig.TWITTER_APP_ID;
+        var secret = secretConfig.TWITTER_APP_SECRET;
+        var cat = key + ":" + secret;
+        var credentials = new Buffer(cat).toString('base64');
+
+        //Request Bearer Token HTTP-POST
+        request({
+            url: 'https://api.twitter.com/oauth2/token',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'Authorization': "Basic " + credentials
+            },
+            body: 'grant_type=client_credentials' //Set the body as a string
+        }, function (error, response, body) {
+            if (error) {
+                console.log(error);
+            } else {
+                var authJSON = JSON.parse(body);
+                console.log('Post Successful ' + new Date().getMilliseconds());
+
+                //Get #Bundesliga LiveFeed
+                request({
+                        url: 'https://api.twitter.com/1.1/search/tweets.json?q=%23Bundesliga&lang=de&result_type=recent',
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + authJSON.access_token
+                        }
+
+                    },
+                    function (error, response, body) {
+                        if (error) {
+                            console.log(error);
+
+                        } else {
+                            var bundesligaFeed = JSON.stringify(body);
+                            console.log('Get Successful');
+                            socket.emit('twitterFeed', {
+                                feed: bundesligaFeed
+                            });
+
+                        }
+                    });
+            };
+        });
+    };
+
+
 });
-
-
-// this thing is nowhere close to secure, but the key SHOULD be save on the server anyways :)
-function myHash(string) {
-    var hash = 0;
-    var char = "";
-    var len = 256;
-
-    if (string.length == 0) return hash;
-    for (i = 0; i < string.length; i++) {
-        if (i == 0) {
-            char = char + Math.pow(string.charCodeAt(i), 9)
-        } else if (i % 5 == 0) {
-            char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 2), 7);
-        } else if (i % 4 == 0) {
-            char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 4), 3);
-        } else if (i % 3 == 0) {
-            char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 3), 1);
-        } else if (i % 2 == 0) {
-            char = char + Math.pow(string.charCodeAt(i), 2) + Math.pow(char.charCodeAt(i - 1), 2);
-        } else {
-            char = char + Math.pow(string.charCodeAt(i), 3);
-        }
-
-    }
-
-    while (char.length < len) {
-        char += char.split("").reverse().join("");
-    }
-    hash = char.substring(0, len);
-    return hash;
-}
-
-//***********************************************************************************************
-
-function getTwitterFeed(socket) {
-    //Twitter Newsfeed # Bundesliga
-    //Get Twitter Credentials
-    var secretConfig = require('../secretConfig.js');
-    var key = secretConfig.TWITTER_APP_ID;
-    var secret = secretConfig.TWITTER_APP_SECRET;
-    var cat = key + ":" + secret;
-    var credentials = new Buffer(cat).toString('base64');
-
-    //Request Bearer Token HTTP-POST
-    request({
-        url: 'https://api.twitter.com/oauth2/token',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-            'Authorization': "Basic " + credentials
-        },
-        body: 'grant_type=client_credentials' //Set the body as a string
-    }, function (error, response, body) {
-        if (error) {
-            console.log(error);
-        } else {
-            var authJSON = JSON.parse(body);
-            console.log('Post Successful ' + new Date().getMilliseconds());
-
-            //Get #Bundesliga LiveFeed
-            request({
-                    url: 'https://api.twitter.com/1.1/search/tweets.json?q=%23Bundesliga&lang=de&result_type=recent',
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + authJSON.access_token
-                    }
-
-                },
-                function (error, response, body) {
-                    if (error) {
-                        console.log(error);
-
-                    } else {
-                        var bundesligaFeed = JSON.stringify(body);
-                        console.log('Get Successful');
-                        socket.emit('twitterFeed', {
-                            feed: bundesligaFeed
-                        });
-
-                    }
-                });
-        };
-    });
-}
