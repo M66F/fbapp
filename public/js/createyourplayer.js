@@ -1,5 +1,3 @@
-document.getElementById("spielername").value = user.name;
-
 //**************************************************************************************************
 //CSS
 var one = document.getElementById('dropdown'),
@@ -7,30 +5,36 @@ var one = document.getElementById('dropdown'),
 
 two.addEventListener('mouseover', function(){
     two.style.background = "#F2F2F2";
-    two.style.boxShadow = "inset 0px 5px #51C1F1";
-    two.style.color = "#51C1F1";
-    two.style.padding = "50px 20px 34px";
+	two.style.boxShadow = "inset 0px 5px #51C1F1";
+	two.style.color = "#51C1F1";
+	two.style.padding = "50px 20px 34px";
 }, true);
 two.addEventListener('mouseout', function(){
     two.style.display = "block";
-    two.style.padding = "42px 20px";
+	two.style.padding = "42px 20px";
     two.style.background = "white";
-    two.style.boxShadow = "inset 0px 0px";
+	two.style.boxShadow = "inset 0px 0px";
     two.style.color = "black";
 }, true);
 one.addEventListener('mouseover', function(){
     two.style.background = "#F2F2F2";
-    two.style.boxShadow = "inset 0px 5px #51C1F1";
-    two.style.color = "#51C1F1";
-    two.style.padding = "50px 20px 34px";
+	two.style.boxShadow = "inset 0px 5px #51C1F1";
+	two.style.color = "#51C1F1";
+	two.style.padding = "50px 20px 34px";
 }, true);
 one.addEventListener('mouseout', function(){
     two.style.display = "block";
-    two.style.padding = "42px 20px";
+	two.style.padding = "42px 20px";
     two.style.background = "white";
-    two.style.boxShadow = "inset 0px 0px";
+	two.style.boxShadow = "inset 0px 0px";
     two.style.color = "black";
 }, true);
+
+
+
+document.getElementById("spielername").value = user.name;
+
+
 
 //**************************************************************************************************
 //Global Variables
@@ -64,7 +68,7 @@ if (isAuthenticated) {
     writeWelcomeText();
 }
 
-
+// Function to save player into local storage
 function saveToLS() {
 
     if(document.getElementById("spielername").value == "" || document.getElementById("imTeamSeit").value == "" || document.getElementById("geburtsdatum").value == "" || document.getElementById("vertragBis").value == "") {
@@ -101,6 +105,7 @@ function saveToLS() {
     }
 }
 
+// calculate age from inserted date
 function calcAge(input) {
     if (input.value != undefined) {
         if(new Date().getMonth() > new Date(input.value).getMonth() ) {
@@ -122,7 +127,7 @@ function calcAge(input) {
     }
 }
 
-// parse date from american to german format :)
+// parse date from american to german format
 function parseDate(input) {
     if(input != "") {
         var split = input.split('-');

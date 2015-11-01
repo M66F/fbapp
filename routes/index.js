@@ -22,12 +22,10 @@ module.exports = function (passport) {
         if (req.isAuthenticated()) {
             //user is authenticated -> send his user profile
             
-        console.log("TESTETESTESTSETSTESTESTESTSET");
             res.render('index', {
                 
                 isAuthenticated: req.isAuthenticated(),
-                user: req.user,
-                bundesligaFeed: JSON.stringify({bundesligaFeed:'test'})
+                user: req.user
             });
         } else {
             // user is not authenticated

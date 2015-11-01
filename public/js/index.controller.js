@@ -97,3 +97,13 @@ function listenToTheKey(e) {
             }
         }
 }
+
+
+function checkAuth() {
+    if (isAuthenticated) {
+        window.location.href="/cyp";
+    }
+    else {
+        alert('Login to use this feature');
+    }
+}
