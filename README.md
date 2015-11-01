@@ -15,9 +15,22 @@ ausführen.
 
 Der Server läuft auf dem Port 80.
 
-# To-Do
-* Responive Design
-* mobile + Tablet view
-* Create your player
-* Neuste Tweets #bundesliga
-* Impressum überarbeiten
+# Features
+*   Datenstamm: 
+    *   Die komplette erste Bundesliga in der Form von JSON formatierten Dateien (keine Datenbank!)
+*   Arbeit mit dem Datenstamm:
+    *   Drag & Drop der Spielerbilder
+    *   Vergleich verschiedener Spieler untereinander
+    *   Zufallsbasierte ausgabe einer Spielerliste beim Aufrufen der Seite
+    *   Live Suchfunktion der Spielerliste mit Spracheingabe
+*   zusätzlich verfügbare Features bei Login (über Facebook und Twitter):
+    *   Create Your Player: Erstellen eines eigenen Spielers(Ablage im Localstorage) und Vergleich mit anderen Spielern
+    *   Twitter Livefeed unter dem #Bundesliga
+*   weiteres:
+    *   Impressum
+    
+
+    
+
+    
+
