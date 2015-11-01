@@ -366,6 +366,7 @@ p.impressum {
     border-bottom-style: solid;
     border-bottom-width: 2px;
     border-bottom-color: white;
+    text-align: center;
 }
 .logoutButton {
     display: block;
