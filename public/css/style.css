@@ -317,7 +317,11 @@ a {
     background-color: rgba(17, 19, 22, 0.85);
 }
 
-
+.ratingImage{
+    width:30px; 
+    height:auto;
+    align:right;
+}
 .leftColumn {
     float: left;
     width: 20%;

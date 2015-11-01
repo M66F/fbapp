@@ -28,7 +28,7 @@ function createRightColumn() {
     if (isAuthenticated) {
         document.getElementById("login").style.display = "block";
         document.getElementById("userImage").src = user.imageURL;
-        document.getElementById("userName").innerHTML = "Eingeloggt als "+user.name+".";
+        document.getElementById("userName").appendChild(document.createTextNode("Eingeloggt als "+user.name+"."));
     } else {
         document.getElementById("login").style.display = "none";
         document.getElementById("chat").style.display = "none";

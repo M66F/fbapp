@@ -40,9 +40,9 @@ function compareStats(groesse1, groesse2, imTeamSeit1, imTeamSeit2, schuhgroesse
     var vertragBis2Date = new Date(vertragBis2);
 
     //images in string code
-    var arrowUp = "<img src='/static/img/arrowUp.png' width=30 height=auto align=right draggable=false>"
-    var arrowDown = "<img src='/static/img/arrowDown.png' width=30 height=auto align=right draggable=false>"
-    var equal = "<img src='/static/img/equal.png' width=30 height=auto align=right draggable=false>"
+    var arrowUp = "/static/img/arrowUp.png"
+    var arrowDown = "/static/img/arrowDown.png"
+    var equal = "/static/img/equal.png"
     //rating array
     var rating = [];
     /*
