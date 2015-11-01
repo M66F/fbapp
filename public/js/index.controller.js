@@ -37,9 +37,6 @@ divElementLeft.style.paddingTop ='20px';
 imgElement.src = '/static/img/dragFile.png';
 imgElement.id = 'dragDropLeft';
 
-imgElement.style.height = '470px';
-imgElement.style.width = 'auto';
-
 divElementLeft.appendChild(welcomeText);
 divElementLeft.appendChild(brElement);
 divElementLeft.appendChild(brElement.cloneNode(true));

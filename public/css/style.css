@@ -328,7 +328,7 @@ a {
 
 }
 
-.dragDropLeft,.dragDropRight{
+#dragDropLeft,#dragDropRight{
 height:470px;
 width:auto;
 }
