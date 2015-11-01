@@ -48,20 +48,26 @@ function createPlayerList() {
             var i = 0;
             var j = 0;
             var random = Math.floor(Math.random()*((numberOfPlayers-limitSize)-0+1)+0);
+            var includeOwnPlayer = false;
 
-            if(localStorage.getItem("saveFlag") == "true" && localStorage.getItem("pictureURL")) {
-                out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
-                i++;
-            }
 
             //loop through the players in the JSON file
             for (var player in playerList) {
                 if (searchString == "") {
+                    if(localStorage.getItem("saveFlag") == "true" && localStorage.getItem("pictureURL") && i == 0) {
+                        out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
+                        i++;
+                    }
                     if(j >= random && j < random+limitSize) {
                         out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
                         i++;
                     }
-                } else if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*"))) && i < limitSize) {
+                } else if (localStorage.getItem("spielername").toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")) && includeOwnPlayer == false) {
+                    out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
+                    i++;
+                    includeOwnPlayer = true;
+                }
+                else if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*"))) && i < limitSize) {
                     //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
                     out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
                     i++;
