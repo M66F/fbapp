@@ -74,11 +74,7 @@ function writeWelcomeText() {
 verticalResize();
 requestPlayerList();
 createRightColumn();
-if (isAuthenticated) {
-    //requestPlayerDetail("userImage"); //not used
-} else {
-    writeWelcomeText();
-}
+writeWelcomeText();
 
 
 
