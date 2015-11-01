@@ -22,7 +22,6 @@ function createRightColumn() {
 
 //*************************************************************************************
 // Welcome Text in textDetails
-var dragDropImg = "<img src='/static/img/dragFile.png' draggable=false height='470px' width='auto'>";
 
 
 function writeWelcomeText() {
