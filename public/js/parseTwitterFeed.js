@@ -18,8 +18,9 @@ function parseTwitterFeed(twitterFeed) {
                 myLoop();
             } else {
                 i = 0;
+                myLoop();
             }
-        }, 50)
+        }, 8000)
     }
 
     myLoop(); //  start the loop
