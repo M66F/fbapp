@@ -11,9 +11,7 @@ function requestPlayerDetail(filename) {
                 document.getElementById("textDetailsLeft").innerHTML =
                     "<img src='" + img.src + "' style='width:100px;height:120;' draggable = false id = 'playerPic'>" + "<br>" +
                     "<input type='file' name='file' id='fileSelect' accept='image/x-png, image/gif, image/jpeg' />" +
-                    "<table style='margin-left:auto; margin-right:auto;'>" +
-                    "<tr><td>Spielername:</td><td>" + user.name +
-                    "</td></tr></table>";
+                        "<input type='button' id='reset' onclick='resetPlayerImage()' value='reset' />";
                 document.getElementById('fileSelect').onchange = function(evt) {
                     handleFileSelect(evt.srcElement.files[0]);
                 };
@@ -24,10 +22,7 @@ function requestPlayerDetail(filename) {
         else {
             document.getElementById("textDetailsLeft").innerHTML =
                 "<img src='" + user.imageURL + "' style='width:100px;height:120;' draggable = false id = 'playerPic'>" + "<br>" +
-                "<input type='file' name='file' id='fileSelect' accept='image/x-png, image/gif, image/jpeg' />" +
-                "<table style='margin-left:auto; margin-right:auto;'>" +
-                "<tr><td>Spielername:</td><td>" + user.name +
-                "</td></tr></table>"
+                "<input type='file' name='file' id='fileSelect' accept='image/x-png, image/gif, image/jpeg' />";
             document.getElementById('fileSelect').onchange = function(evt) {
                 handleFileSelect(evt.srcElement.files[0]);
             };
@@ -66,7 +61,9 @@ function handleFileSelect(file) {
         location.reload(); // reload for new picture
     };
     reader.readAsDataURL(file);
+}
 
-
-
+function resetPlayerImage() {
+    localStorage.setItem("pictureURL", user.imageURL);
+    location.reload(); // reload for new picture
 }
