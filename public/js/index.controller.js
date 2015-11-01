@@ -75,7 +75,7 @@ verticalResize();
 requestPlayerList();
 createRightColumn();
 if (isAuthenticated) {
-    requestPlayerDetail("userImage");
+    //requestPlayerDetail("userImage"); //not used
 } else {
     writeWelcomeText();
 }

@@ -55,7 +55,7 @@ function createPlayerList() {
             for (var player in playerList) {
                 if (searchString == "") {
                     if(localStorage.getItem("saveFlag") == "true" && localStorage.getItem("pictureURL") && i == 0) {
-                        out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
+                        out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' width = 100 height = 130 draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
                         i++;
                     }
                     if(j >= random && j < random+limitSize) {
@@ -63,7 +63,7 @@ function createPlayerList() {
                         i++;
                     }
                 } else if (localStorage.getItem("spielername").toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")) && includeOwnPlayer == false) {
-                    out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
+                    out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' width = 100 height = 130 draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
                     i++;
                     includeOwnPlayer = true;
                 }

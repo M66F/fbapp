@@ -59,7 +59,7 @@ function writePlayerDetail(ownPlayerFlag) {
 //write JSON content into Element on Webpage as a table
             document.getElementById(Dom).innerHTML =
                 "<div align='center'>" +
-                "<img src=" + chosenPlayer.PictureURL + " width=auto height=208px draggable=false>" +
+                "<img src=" + chosenPlayer.PictureURL + " width=160px height=208px draggable=false>" +
                 "</div>" +
                 "<table style='margin-left:auto; margin-right:auto;'>" +
                 "<tr><td>Spielername:</td><td>" + chosenPlayer.Name +
@@ -126,7 +126,7 @@ function writePlayerDetail(ownPlayerFlag) {
 //write JSON content into Element on Webpage as a table
                     document.getElementById(Dom).innerHTML =
                         "<div align='center'>" +
-                        "<img src=" + chosenPlayer.PictureURL + " width=auto height=208px draggable=false>" +
+                        "<img src=" + chosenPlayer.PictureURL + " width=160px height=208px draggable=false>" +
                         "</div>" +
                         "<table style='margin-left:auto; margin-right:auto;'>" +
                         "<tr><td>Spielername:</td><td>" + chosenPlayer.Name +

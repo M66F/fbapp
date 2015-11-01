@@ -3,11 +3,36 @@ function requestPlayerDetail(filename) {
 
 
     if (filename == "userImage") {
-        document.getElementById("textDetailsLeft").innerHTML =
-            "<img src='" + user.imageURL + "' style='width:160px;height:200;' draggable = false>" +
-            "<table style='margin-left:auto; margin-right:auto;'>" +
-            "<tr><td>Spielername:</td><td>" + user.name +
-            "</td></tr></table>";
+        if(localStorage.getItem("pictureURL")) {
+            var img = new Image();
+
+            img.src = localStorage.getItem("pictureURL");
+            img.onload = function() {
+                document.getElementById("textDetailsLeft").innerHTML =
+                    "<img src='" + img.src + "' style='width:100px;height:120;' draggable = false id = 'playerPic'>" + "<br>" +
+                    "<input type='file' name='file' id='fileSelect' accept='image/x-png, image/gif, image/jpeg' />" +
+                    "<table style='margin-left:auto; margin-right:auto;'>" +
+                    "<tr><td>Spielername:</td><td>" + user.name +
+                    "</td></tr></table>";
+                document.getElementById('fileSelect').onchange = function(evt) {
+                    handleFileSelect(evt.srcElement.files[0]);
+                };
+            }
+
+
+        }
+        else {
+            document.getElementById("textDetailsLeft").innerHTML =
+                "<img src='" + user.imageURL + "' style='width:100px;height:120;' draggable = false id = 'playerPic'>" + "<br>" +
+                "<input type='file' name='file' id='fileSelect' accept='image/x-png, image/gif, image/jpeg' />" +
+                "<table style='margin-left:auto; margin-right:auto;'>" +
+                "<tr><td>Spielername:</td><td>" + user.name +
+                "</td></tr></table>"
+            document.getElementById('fileSelect').onchange = function(evt) {
+                handleFileSelect(evt.srcElement.files[0]);
+            };
+        }
+
 
     }
     else if(filename == "ownPlayer") {
@@ -26,4 +51,22 @@ function requestPlayerDetail(filename) {
         httpRequest.open('GET', '/playerdata/' + filename + '.pd');
         httpRequest.send();
     }
+}
+
+function handleFileSelect(file) {
+        // Only process image files.
+        if (!file.type.match('image.*')) {
+            return;
+        }
+
+    var reader = new FileReader();
+    reader.onload = readSuccess;
+    function readSuccess(evt) {
+        localStorage.setItem("pictureURL", evt.target.result);
+        location.reload(); // reload for new picture
+    };
+    reader.readAsDataURL(file);
+
+
+
 }

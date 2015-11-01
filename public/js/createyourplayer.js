@@ -95,7 +95,9 @@ function saveToLS() {
         localStorage.setItem("geburtsort", document.getElementById("geburtsort").value);
         localStorage.setItem("spielerberater", document.getElementById("spielerberater").value);
         localStorage.setItem("ausruester", document.getElementById("ausruester").value);
-        localStorage.setItem("pictureURL", user.imageURL);
+        if(!localStorage.getItem("pictureURL")) {
+            localStorage.setItem("pictureURL", user.imageURL);
+        }
 
         alert("Player saved!");
         window.open("/","_self")
