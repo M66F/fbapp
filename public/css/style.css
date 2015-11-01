@@ -328,6 +328,10 @@ a {
 
 }
 
+.dragDropLeft,.dragDropRight{
+height:470px;
+width:auto;
+}
 /*Searchbar in Header*/
 .searchAndTwitter {
     padding: 10px 10px;

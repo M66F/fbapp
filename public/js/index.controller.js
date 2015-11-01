@@ -26,16 +26,32 @@ var dragDropImg = "<img src='/static/img/dragFile.png' draggable=false height='4
 
 
 function writeWelcomeText() {
-    document.getElementById("textDetailsLeft").innerHTML = "<div align='center' style='padding-top:20px'" + 
-        "<p>Ziehe einen Spieler hierher!</p>" +
-        "<br>" +
-        "<img src='/static/img/dragFile.png' ID='dragDropLeft' draggable=false height='470px' width='auto'>" +
-        "</div>";
-    document.getElementById("textDetailsRight").innerHTML = "<div align='center' style='padding-top:20px'" + 
-        "<p>Ziehe einen Spieler hierher!</p>" +
-        "<br>" +
-        "<img src='/static/img/dragFile.png' ID='dragDropRight' draggable=false height='470px' width='auto'>" +
-        "</div>";
+    var divElementLeft = document.createElement('div');
+    var welcomeText = document.createTextNode("Ziehe einen Spieler hierher!");
+    var brElement = document.createElement('br');
+    var imgElement = document.createElement('img');
+
+divElementLeft.align = 'center';
+divElementLeft.style.paddingTop ='20px';
+
+imgElement.src = '/static/img/dragFile.png';
+imgElement.id = 'dragDropLeft';
+
+imgElement.style.height = '470px';
+imgElement.style.width = 'auto';
+
+divElementLeft.appendChild(welcomeText);
+divElementLeft.appendChild(brElement);
+divElementLeft.appendChild(brElement.cloneNode(true));
+divElementLeft.appendChild(imgElement);
+
+document.getElementById("textDetailsLeft").appendChild(divElementLeft);
+
+var divElementRight = divElementLeft.cloneNode(true);
+divElementRight.lastChild.id = 'dragDropRight';
+
+document.getElementById("textDetailsRight").appendChild(divElementRight);
+
 }
 //*************************************************************************************
 // Initial Setup
