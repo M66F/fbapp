@@ -48,6 +48,12 @@ function createPlayerList() {
             var i = 0;
             var j = 0;
             var random = Math.floor(Math.random()*((numberOfPlayers-limitSize)-0+1)+0);
+
+            if(localStorage.getItem("saveFlag") == "true" && localStorage.getItem("pictureURL")) {
+                out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
+                i++;
+            }
+
             //loop through the players in the JSON file
             for (var player in playerList) {
                 if (searchString == "") {

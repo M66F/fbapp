@@ -1,0 +1,28 @@
+body{
+
+
+}
+
+
+.inputPlayer{
+    height: 1.5em;
+    font-size: 14px;
+    width: 100%;
+
+}
+
+#inputForm{
+    text-align: center;
+    font-size: small;
+    display: inline;
+}
+
+
+#detailsRight{
+    width: 0%;
+
+}
+
+#detailsLeft{
+    text-align: center;
+}

@@ -90,6 +90,24 @@ module.exports = function (passport) {
             title: "Impressum"
         });
     });
+    router.get('/cyp', function (req, res) {
+        if (req.isAuthenticated()) {
+            //user is authenticated -> send his user profile
+            res.render('createyourplayer', {
+                titel: "Create your Player",
+                isAuthenticated: req.isAuthenticated(),
+                user: req.user,
+            });
+        } else {
+            // user is not authenticated
+            res.render('index', {
+                title: "Die Fußball App",
+                isAuthenticated: req.isAuthenticated(),
+                user: "",
+                bundesligaFeed: ""
+            });
+        }
+    });
 
     return router;
 }

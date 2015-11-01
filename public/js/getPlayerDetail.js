@@ -9,7 +9,11 @@ function requestPlayerDetail(filename) {
             "<tr><td>Spielername:</td><td>" + user.name +
             "</td></tr></table>";
 
-    } else {
+    }
+    else if(filename == "ownPlayer") {
+        writePlayerDetail(true);
+    }
+    else {
         httpRequest = new XMLHttpRequest();
 
 
