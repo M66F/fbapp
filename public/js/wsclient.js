@@ -24,6 +24,11 @@ socket.on('alert', function (data) {
     }
 });
 
+
+    socket.on('reload', function () {
+        location.reload();
+    });
+
 socket.on('init', function (data) {
     var nameI = user.name;
     if (nameI == null) {

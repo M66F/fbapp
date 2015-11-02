@@ -199,6 +199,8 @@ io.sockets.on('connection', function (socket) {
                 message: "History cleared"
             });
             history = [];
+            socket.emit('reload', {
+            });
         } else if (data.command == '/online') {
             text = 'Currently online: ' + currentlyOnline;
             socket.emit('chat', {
