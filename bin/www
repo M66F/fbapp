@@ -195,11 +195,11 @@ io.sockets.on('connection', function (socket) {
                 console.log(new Date() + " Following client is now admin: " + clientIp);
             }
         } else if (data.command == '/clear' && isAdmin) {
-            io.sockets.emit('alert', {
+            socket.emit('alert', {
                 message: "History cleared"
             });
             history = [];
-            socket.emit('reload', {
+            io.sockets.emit('reload', {
             });
         } else if (data.command == '/online') {
             text = 'Currently online: ' + currentlyOnline;
