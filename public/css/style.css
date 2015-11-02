@@ -464,6 +464,9 @@ p.impressum {
 .detailsRight{
     display: none;
 }
+    .textDetailsLeft{
+        display: none;
+    }
 .detailsLeft{
     height:597px;
     padding-bottom: 0px;
