@@ -424,6 +424,7 @@ p.impressum {
     border-bottom-style: solid;
     border-bottom-width: 2px;
     border-bottom-color: white;
+    overflow:auto;
 
 }
 .detailsRight{
@@ -443,6 +444,7 @@ p.impressum {
     }
     .detailsLeft{
         padding-bottom: 130px;
+        overflow:auto;
     }
 }
 
@@ -465,6 +467,7 @@ p.impressum {
 .detailsLeft{
     padding-bottom: 0px;
     border :none;
+    overflow:auto;
 }
 .scrollingText{
     display: none;
