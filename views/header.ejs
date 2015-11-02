@@ -13,7 +13,7 @@
     <% if (ENV_DEVELOPMENT) { %>
         <script src="http://localhost:35729/livereload.js"></script>
         <% } %>
-    <script src="socket.io/socket.io.js"></script>
+            <script src="socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -27,17 +27,19 @@
                 <li><a ID='cyp' href="javascript:checkAuth()">Create Your Player</a></li>
                 <li><a ID='impressumButton' href="/impressum">Impressum</a></li>
                 <li><a style="cursor: pointer;" ID="loginButton">Login</a>
-                
-                <ul ID="dropdown">
-                    <li><a href="/auth/facebook" class="facebook">Facebook</a></li>
-                    <li><a href="/auth/twitter" class="twitter">Twitter</a></li>
-                </ul>
+
+                    <ul ID="dropdown">
+                        <li><a href="/auth/facebook" class="facebook">Facebook</a></li>
+                        <li><a href="/auth/twitter" class="twitter">Twitter</a></li>
+                    </ul>
 
                 </li>
+                <li><a ID='logoutButton' href="/logout" style="display: none">Logout</a></li>
             </ul>
 
         </div>
         <div class="logo" ID="thelogo" href="/">
-            <a href="/"><img src="/static/img/logo.png" height="90" width=auto></img></a>
+            <a href="/"><img src="/static/img/logo.png" height="90" width=auto></img>
+            </a>
         </div>
     </div>

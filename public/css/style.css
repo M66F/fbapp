@@ -1,6 +1,6 @@
 /*Navigation Header*/
 /*--------------------------------
- Functional Styles (Required)
+ Functional Styles
 ---------------------------------*/
 
 .header { position: relative; }
@@ -17,10 +17,8 @@
 	.toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
 	#toggle:checked + div .menu { display: block; opacity: 1;}
 }
-
-
 /*--------------------------------
- Presentation Styles (Editable)
+ Presentation Styles
 ---------------------------------*/
 
 /*
@@ -376,16 +374,4 @@ p.impressum {
     border-bottom-color: white;
     text-align: center;
 }
-.logoutButton {
-    display: block;
-    width: 80px;
-    height: 15px;
-    margin-top: 1px;
-    text-align: center;
-    background: #800000;
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    margin: auto;
-    margin-top: 3px;
-}
+
