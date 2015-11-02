@@ -20,15 +20,18 @@ Der Server läuft auf dem Port 80.
 # Features
 ## Datenstamm: 
 *   Die Spieler komplette erste Bundesliga in der Form von JSON formatierten Dateien (keine Datenbank!)
+
 ## Arbeit mit dem Datenstamm:
 *   Drag & Drop der Spielerbilder
 *   Vergleich verschiedener Spieler untereinander
 *   Zufallsbasierte ausgabe einer Spielerliste beim Aufrufen der Seite
 *   Live Suchfunktion der Spielerliste mit Spracheingabe
+
 ## zusätzlich verfügbare Features bei Login (über Facebook und Twitter):
 *   Create Your Player: Erstellen eines eigenen Spielers (Ablage im Localstorage) und Vergleich mit anderen Spielern
 *   Upload des Spielerbildes über die HTML 5 File API
 *   Twitter Livefeed unter dem Hashtag: #Bundesliga
+
 # weiteres:
 *   Impressum
 *   responsive Design
