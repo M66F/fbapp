@@ -9,6 +9,9 @@ if (window.innerWidth > 500) {
 	document.getElementById("playerDetails").style.height = (window.innerHeight-100)+"px";
 	document.getElementById("content").style.height = (window.innerHeight-371)+"px";
 	document.getElementById("wrapper").style.height = (window.innerHeight-100)+"px";
-};
+}else{
+	document.getElementById("playerColumn").style.height = 165 + "px";
+	document.getElementById("playerDetails").style.height = (window.innerHeight-328)+"px";
 
+}
 }

@@ -224,6 +224,9 @@ Reset Backgrounds to enable the backgroundpicture
 	.header > h1, .nav, .toggle:after{
 		float: none;
 	}
+    .nav{
+        display:none;
+    }
 	.toggle:after {
 		text-align: center; width: 100%;
 	}
@@ -456,11 +459,8 @@ p.impressum {
 }
 .playerDetails{
     width: calc(100% - 6px);
-    height: 600px;
 }
-.playerColumn{
-    height: 165px;
-}
+
 .detailsRight{
     display: none;
 }
@@ -468,7 +468,6 @@ p.impressum {
         display: none;
     }
 .detailsLeft{
-    height:597px;
     padding-bottom: 0px;
     border :none;
     overflow:auto;
@@ -476,7 +475,8 @@ p.impressum {
 .scrollingText{
     display: none;
 }
-#wrapper{
-    height:828px;
+#textDetailsLeft{
+    display:none;
 }
+
 }
