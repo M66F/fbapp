@@ -53,55 +53,55 @@ Der Server läuft auf dem Port 80.
 *   js
     *   compareStats.js
     
-    ⋅⋅⋅Vergleich der Spielerdaten und Rückgabe von Wertungen in Form von Bildern.
+            Vergleich der Spielerdaten und Rückgabe von Wertungen in Form von Bildern.
     
     *   createyourplayer.js
     
-    ⋅⋅⋅Formular zur Erstellung seines eigenen Spielers mit der File API und der Ablage im Localstorage.
+            Formular zur Erstellung seines eigenen Spielers mit der File API und der Ablage im Localstorage.
     
     *   dragAndDrop.js
     
-    ⋅⋅⋅Handler für die Drag&Drop Events.
+            Handler für die Drag&Drop Events.
     
     *   getPlayerDetail.js
     
-    ⋅⋅⋅Fordert Spielerdaten vom Server und Verarbeitet die Informationen.
+            Fordert Spielerdaten vom Server und Verarbeitet die Informationen.
     
     *   getPlayerlist.js
     
-    ⋅⋅⋅Fordert JSON Spielerliste (\crawly\data\general\playerData.pd) an und verarbeitet sie.
+            Fordert JSON Spielerliste (\crawly\data\general\playerData.pd) an und verarbeitet sie.
     
     *   impressum.js
     
-    ⋅⋅⋅Scripte für das Impressum.
+            Scripte für das Impressum.
     
     *   index.controller.js
     
-    ⋅⋅⋅Scripte zur Steuerung der index.ejs.
+            Scripte zur Steuerung der index.ejs.
     
     *   loginCSS.js
     
-    ⋅⋅⋅Veränderung des CSS des Login-Button Dropdown Menu.
+            Veränderung des CSS des Login-Button Dropdown Menu.
     
     *   parseTwitterFeed.js
     
-    ⋅⋅⋅Abfangen und Verarbeitung des empfangenen Twitter Livefeed JSONs
+            Abfangen und Verarbeitung des empfangenen Twitter Livefeed JSONs
     
     *   speechRecognition.js
     
-    ⋅⋅⋅Speech-To-Text Eingabe für das Suchfeld
+            Speech-To-Text Eingabe für das Suchfeld
     
     *   verticalResize.js
     
-    ⋅⋅⋅Erfassung der Größen der verschiedenen Dic-Container, um responsiveness zu gewährleisten.
+            Erfassung der Größen der verschiedenen Dic-Container, um responsiveness zu gewährleisten.
     
     *   writeDetails.js
     
-    ⋅⋅⋅Schreibt die Spielerdaten aus dem JSON in die Div-Container in der Mitte der Seite & fängt dabei die Ablage der Drag & Drop Aktion ab.
+            Schreibt die Spielerdaten aus dem JSON in die Div-Container in der Mitte der Seite & fängt dabei die Ablage der Drag & Drop Aktion ab.
     
     *   wsclient.js
     
-    ⋅⋅⋅Clientlogik für den Chat.
+            Clientlogik für den Chat.
 
 ## routes 
 
@@ -111,31 +111,31 @@ Der Server läuft auf dem Port 80.
 
 *   error.ejs
 
-⋅⋅⋅Abfangen und Wiedergeben von Errorcodes für den Client.
+        Abfangen und Wiedergeben von Errorcodes für den Client.
 
 *   footer.ejs
 
-⋅⋅⋅der Fuß der Seite (leer).
+        Der Fuß der Seite (leer).
 
 *   header.ejs
 
-⋅⋅⋅Der Navigation Header der Seite
+        Der Navigation Header der Seite
 
 *   impressum.ejs
-
-⋅⋅⋅Impressum
+    
+        Impressum
 
 *   index.ejs    
-
-⋅⋅⋅Main body der Seite
+    
+        Main body der Seite
 
 *   Gruntfile.js
-
-⋅⋅⋅eine Datei zur Automatisierung der wichtigsten Serverfunktionen
+    
+        Eine Datei zur Automatisierung der wichtigsten Serverfunktionen
 
 *   app.js
-
-⋅⋅⋅Grundlegende Serverfunktionen
+    
+        Grundlegende Serverfunktionen
 
 ---
 
