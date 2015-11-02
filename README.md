@@ -33,8 +33,9 @@ Der Server läuft auf dem Port 80.
 *   Impressum
 *   responsive Design
 
+---
   
-# Erläuterung der Dateistruktur
+# Erläuterung der Dateien und Ordner
 ## bin
 ### www
     Server Config, Websocket Server Config & Funktionen
@@ -105,7 +106,11 @@ Der Server läuft auf dem Port 80.
 
 ## routes 
 
+    Routing eingehender Verbindungen uf dem Server
+
 ## tools/LinkExtractor
+
+    Siehe Readme im Ordner
 
 ## views
 
