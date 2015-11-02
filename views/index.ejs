@@ -22,7 +22,7 @@
 
 <%# scrolling text with twitter livefeed%> 
 <div class="scrollingText">
-    <marquee behavior="slide" scrollamount="5" direction="down" style="text-align:center" ID="twitterFeed" start="start()"><font size="3" display="block"><b>LOGIN TO RECEIVE A TWITTER LIVEFEED</b></font></marquee>      
+    <marquee behavior="slide" scrollamount="10" direction="down" style="text-align:center" ID="twitterFeed"><font size="3" display="block"><b>LOGIN TO RECEIVE A TWITTER LIVEFEED</b></font></marquee>      
 </div>      
 
 <%# container 1 - left side %>
@@ -72,7 +72,6 @@
 		<img id='userImage' draggable='false' ondragstart='drag(event)'>
 		<div id='userInfo'>
 			<div id='userName'></div>
-			<a id='logoutButton' class='logoutButton' href='/logout'>logout</a>
 		</div>
 	</div>
 
@@ -100,6 +99,7 @@ if (isAuthenticated) {
 <script type="text/javascript" src="./static/js/wsclient.js"></script>
 
 <%# contains scripts for this site %>
+
 <script type="text/javascript" src="./static/js/createyourplayer.js"></script>
 <SCRIPT TYPE="text/javascript" src="./static/js/verticalResize.js"></SCRIPT>
 <script type="text/javascript" src="./static/js/getPlayerlist.js"></script>

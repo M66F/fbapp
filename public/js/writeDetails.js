@@ -111,11 +111,12 @@ httpRequest.status = 200;
                 image.style.height = '208px';
                 image.style.width = '160px';
                 divImage.appendChild(image);
-                console.log(chosenPlayer);
+                //console.log(chosenPlayer);
                 document.getElementById(Dom).appendChild(divImage);
 
                 //and table
                 var table = document.createElement('table');
+                table.className = "table";
                 table.style.marginLeft, table.style.marginRight = 'auto';
 
                 var tr, td, text;

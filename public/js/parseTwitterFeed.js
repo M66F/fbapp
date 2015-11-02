@@ -9,20 +9,20 @@ function parseTwitterFeed(twitterFeed) {
 
     var i = 0; //  set counter to 0
 
-    function myLoop() { //  create a loop function
+    function TwitterLoop() { //  create a loop function
         setTimeout(function () { //  call a 8s setTimeout when the loop is called
             document.getElementById('twitterFeed').innerHTML = '<font size="2" display="block"><b>' + feed[i].text + '</b></font>';
 
             i++; //  increment counter
             if (i < feed.length) { //  if the counter < feed.length, call the loop function
-                myLoop();
-            } else {
+                TwitterLoop();
+            } else {    // else: when all Twitter-messages are done, restart from beginning
                 i = 0;
-                myLoop();
+                TwitterLoop();
             }
         }, 8000)
     }
 
-    myLoop(); //  start the loop
+    TwitterLoop(); //  start the loop
 
 }

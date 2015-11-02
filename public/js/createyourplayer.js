@@ -1,5 +1,14 @@
 //**************************************************************************************************
 
+//CSS
+//activate ImpressumButton
+function activateImpressum() {
+    var cypButton = document.getElementById('cyp');
+    cypButton.style.background = "#F2F2F2";
+    cypButton.style.boxShadow = "inset 0px 5px #51C1F1";
+    cypButton.style.color = "#51C1F1";
+    cypButton.style.padding = "50px 20px 34px";
+}
 
 function checkAuth() {
     if (isAuthenticated) {
@@ -36,12 +45,23 @@ function checkAuth() {
             };
         }
 
+//**************************************************************************************************
+// if user is logged in, change login Div to Logout
+function SwapDivs()
+{
+    if (isAuthenticated) {
+        document.getElementById('loginButton').remove();
+        document.getElementById('dropdown').remove();
+        document.getElementById('logoutButton').style.display = "block";
+    }
+}
 
     
 
     document.getElementById("inputForm").style.display = "block";
 
     document.getElementById("spielername").value = user.name;
+
 
     }
     else {
