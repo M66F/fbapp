@@ -110,31 +110,24 @@ Der Server läuft auf dem Port 80.
 ## views
 
 *   error.ejs
-
 ⋅⋅⋅Abfangen und Wiedergeben von Errorcodes für den Client.
 
 *   footer.ejs
-
 ⋅⋅⋅der Fuß der Seite (leer).
 
 *   header.ejs
-
 ⋅⋅⋅Der Navigation Header der Seite
 
 *   impressum.ejs
-
 ⋅⋅⋅Impressum
 
 *   index.ejs    
-
 ⋅⋅⋅Main body der Seite
 
 *   Gruntfile.js
-
 ⋅⋅⋅eine Datei zur Automatisierung der wichtigsten Serverfunktionen
 
 *   app.js
-
 ⋅⋅⋅Grundlegende Serverfunktionen
 
 ---
