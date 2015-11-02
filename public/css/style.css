@@ -1,87 +1,109 @@
-/* Globale Eigenschaften/Standard (größer 1250px in der Breite) */
+/*Navigation Header*/
+/*--------------------------------
+ Functional Styles
+---------------------------------*/
 
-/* Menü und Kopfzeile */
-.header {
-    position: relative;
+.header { position: relative; }
+#toggle, .toggle { display: none; }
+.menu > li { list-style: none; float:left; }
+
+.clearfix:before, .clearfix:after { display: table; content: ""; }
+.clearfix:after { clear: both; }
+
+@media only screen and (max-width: 768px){
+	.menu { display: none; opacity: 0; width: 100%; position: absolute; right: 0; }
+	.menu > li { display: block; width: 100%; margin: 0; }
+	.menu > li > a { display: block; width: 100%; text-decoration: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+	.toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+	#toggle:checked + div .menu { display: block; opacity: 1;}
 }
+/*--------------------------------
+ Presentation Styles
+---------------------------------*/
 
-#toggle, .toggle {
-    display: none;
-}
-
-.menu > li {
-    list-style: none;
-    float: left;
-}
-
-.clearfix:before, .clearfix:after {
-    display: table;
-    content: "";
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-.header {
-    min-height: 100px;
-    height: 100%;
-    padding: 0 20px;
-    background: white;
+/*
+Reset Backgrounds to enable the backgroundpicture
+*/
+.header{
+	min-height: 100px;
+	height: 100%;
+	padding: 0 20px;
+	background: white;
 }
 
 .header > h1 {
-    float: left;
-    padding: 30px 0 0;
-    font-style: italic;
-    font-family: Georgia;
-    font-size: 28px;
-    color: #DFDFDF;
+	float: left;
+	padding: 30px 0 0;
+	font-style: italic;
+	font-family: Georgia;
+	font-size: 28px;
+	color: #DFDFDF;
 }
 
-.nav {
-    display: block;
-    float: right;
+.nav{
+	display: block;
+	float: right;
 }
 
-.nav, .menu, .menu > li, .menu > li > a {
-    height: 100px;
+.nav, .menu, .menu > li, .menu > li > a{
+	height: 100px;
 }
 
-.menu > li > a {
-    display: block;
-    padding: 42px 20px;
-    text-decoration: none;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 1;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: all .25s linear;
-    -moz-transition: all .25s linear;
-    -o-transition: all .25s linear;
-    transition: all .25s linear;
+.menu > li > a{
+	display: block;
+	padding: 42px 20px;
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 1;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .25s linear;
+	-moz-transition: all .25s linear;
+	-o-transition: all .25s linear;
+	transition: all .25s linear;
 }
 
-.menu > li > a:hover, .menu > li > a:focus {
-    background: #F2F2F2;
-    box-shadow: inset 0px 5px #51C1F1;
-    color: #51C1F1;
-    padding: 50px 20px 34px;
+.menu > li > a:hover, .menu > li > a:focus{
+	background: #F2F2F2;
+	box-shadow: inset 0px 5px #51C1F1;
+	color: #51C1F1;
+	padding: 50px 20px 34px;
 }
+/*Hover action regarding relationship between button & drop down menu handled in Javascript*/
+
+/*********************rarestuff**********************
+****************************************************/
+.rare {
+    opacity: 0;
+}
+
+.menu > li > .rare:hover{
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+    background: url("http://i.imgur.com/2czseQm.gif") no-repeat 6px center;
+    background-size: 150px auto;
+    background-position: center;
+}
+/****************************************************
+**********************rarestuff*********************/
+
 
 /*drop down sub menu*/
 .menu ul {
     position: relative;
-
+ 
     opacity: 0;
     background: #F2F2F2;
-
+ 
     -webkit-border-radius: 0 0 5px 5px;
     -moz-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
-
+ 
     -webkit-transition: opacity .25s ease .1s;
     -moz-transition: opacity .25s ease .1s;
     -o-transition: opacity .25s ease .1s;
@@ -89,26 +111,24 @@
     transition: opacity .25s ease .1s;
 }
 
-.menu li:hover > ul, .menu > li > a:hover, .menu > li > a:focus {
-    opacity: 1;
-}
-
+.menu li:hover > ul, .menu > li > a:hover, .menu > li > a:focus { 
+    opacity: 1; 
+    }
+ 
 .menu ul li {
     height: 0;
     overflow: hidden;
     padding: 10px;
-    list-style-type: none;
-
+    list-style-type:none;
+ 
     border-top: 1px solid #353539;
-
+    
     -webkit-transition: height .25s ease .1s;
     -moz-transition: height .25s ease .1s;
     -o-transition: height .25s ease .1s;
     -ms-transition: height .25s ease .1s;
-    transition: height .25s ease .1s;
+    transition: height .25s ease .1s;   
 }
-
-/* End Menu */
 
 /*Drop Down Boxes*/
 .menu li:hover > ul li {
@@ -120,60 +140,106 @@
 .menu ul li a {
     padding-left: 25px;
 }
-
+ 
 .menu ul li a:hover {
     color: #51C1F1;
 }
 
-.menu ul li:last-child a {
-    border: none;
+.menu ul li:last-child a { 
+    border: none; 
 }
 
-.menu a.facebook {
+.menu a.facebook{
     background: url(/static/img/facebook.png);
     background-repeat: no-repeat;
     background-size: 16px 16px;
 }
 
-.menu a.twitter {
+.menu a.twitter{
     background: url(/static/img/twitter.png);
     background-repeat: no-repeat;
     background-size: 16px 16px;
 }
-
-.toggle {
-    z-index: 2;
-}
-
 /*end of drop down sub menu*/
 
-/* Rare */
-.rare {
-    opacity: 0;
+.toggle{
+	z-index: 2;
 }
 
-.menu > li > .rare:hover {
-    -webkit-transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -o-transition: opacity 1s ease-in-out;
-    transition: opacity 1s ease-in-out;
-    opacity: 1;
-    background: url("http://i.imgur.com/2czseQm.gif") no-repeat 6px center;
-    background-size: 150px auto;
-    background-position: center;
+/*make Menu responsive*/
+@media only screen and (max-width: 768px){
+	.menu{
+		background: #FFFFFF;
+		border-top: 1px solid #51C1F1;
+	}
+
+	.menu, .menu > li, .menu > li > a{
+		height: auto;
+	}
+
+	.menu > li > a{
+		padding: 15px 15px;
+	}
+
+	.menu > li > a:hover, .menu > li > a:focus{
+		background: #F2F2F2;
+		box-shadow: inset 5px 0px #51C1F1;
+		padding: 15px 15px 15px 25px;
+	}
+
+	.toggle:after {
+		content: attr(data-open);
+		display: block;
+		width: 200px;
+		margin: 33px 0;
+		padding: 10px 50px;
+		background: #51C1F1;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		text-align: center;
+		font-size: 12px;
+		color: #FFFFFF;
+		-webkit-transition: all 0.5s linear;
+		-moz-transition: all 0.5s linear;
+		-o-transition: all 0.5s linear;
+		transition: all 0.5s linear;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	.toggle:hover:after{
+		background: #45ABD6;
+	}
+
+	#toggle:checked + div .toggle:after{
+		content: attr(data-close);
+	}
 }
+
+@media only screen and (max-width: 479px){
+	.header > h1 {
+		text-align: center;
+	}
+	.header > h1, .nav, .toggle:after{
+		float: none;
+	}
+	.toggle:after {
+		text-align: center; width: 100%;
+	}
+}
+/************End of Menu******************/
+
+
 
 /*Prevent default space on top/left/right both sides*/
 * {
-    margin: 0;
-    padding: 0;
+margin: 0;
+padding: 0;
 }
-
 /*make the page fill the whole client browser*/
-html, body {
-    min-height: 100%;
-}
-
+html, body { min-height: 100%; }
+ 
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     color: white;
@@ -190,7 +256,7 @@ a {
 .playerColumn {
     height: 770px;
     overflow: auto;
-    position: inherit;
+    position:inherit;
     width: 98%;
     float: left;
     color: white;
@@ -220,7 +286,7 @@ a {
     width: calc(60% - 12px);
     float: left;
     height: 100%;
-    bottom: 0px;
+    bottom:0px;
     border-right-style: solid;
     border-right-width: 3px;
     border-right-color: white;
@@ -229,8 +295,7 @@ a {
     border-left-color: white;
     overflow: auto;
 }
-
-.detailsLeft, .detailsRight {
+.detailsLeft , .detailsRight {
     float: left;
     width: calc(50% - 3px);
     font-size: 20px;
@@ -240,7 +305,7 @@ a {
 }
 
 .rightColumn {
-    height: calc(100% - 100px);
+    height: calc(100%-100px);
     overflow: auto;
     width: 20%;
     float: right;
@@ -250,53 +315,48 @@ a {
     background-color: rgba(17, 19, 22, 0.85);
 }
 
-.ratingImage {
-    width: 30px;
-    height: auto;
-    align: right;
+.ratingImage{
+    width:30px; 
+    height:auto;
+    align:right;
 }
-
 .leftColumn {
     float: left;
     width: 20%;
     border-right-style: solid;
-    border-right-width: 3px;
+    border-right-width: 3px; 
     border-right-color: white;
     background-color: rgba(17, 19, 22, 0.85);
 
 }
 
-#dragDropLeft, #dragDropRight {
-    height: 470px;
-    width: auto;
+#dragDropLeft,#dragDropRight{
+height:470px;
+width:auto;
 }
-
 /*Searchbar in Header*/
 .searchAndTwitter {
     padding: 10px 10px;
-    border-bottom-style: solid;
-    border-bottom-width: 3px;
+        border-bottom-style: solid;
+    border-bottom-width: 3px; 
     border-bottom-color: white;
 }
-
 #searchText {
-    width: calc(100% - 40px);
+    width:calc(100% - 40px);
 }
-
 #speechButton {
     vertical-align: middle;
 }
-
 #speechImage {
-    width: 18px;
+    width:18px;
     height: relative;
 }
-
 .logo {
     padding-top: 6px;
 }
 
-div#impwrap {
+
+div#impwrap{
     width: 95%;
     text-align: justify;
     padding: 1em 1em;
@@ -315,111 +375,3 @@ p.impressum {
     text-align: center;
 }
 
-/* Tablet/kleiner Screen Version */
-@media screen and (min-width: 769) and (max-width: 1250px) {
-
-}
-
-/* Mobile Version */
-@media screen and (max-width: 768) {
-    .menu {
-        display: none;
-        opacity: 0;
-        width: 100%;
-        position: absolute;
-        right: 0;
-    }
-
-    .menu > li {
-        display: block;
-        width: 100%;
-        margin: 0;
-    }
-
-    .menu > li > a {
-        display: block;
-        width: 100%;
-        text-decoration: none;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .toggle {
-        display: block;
-        position: relative;
-        cursor: pointer;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-
-    #toggle:checked + div .menu {
-        display: block;
-        opacity: 1;
-    }
-
-    .menu {
-        background: #FFFFFF;
-        border-top: 1px solid #51C1F1;
-    }
-
-    .menu, .menu > li, .menu > li > a {
-        height: auto;
-    }
-
-    .menu > li > a {
-        padding: 15px 15px;
-    }
-
-    .menu > li > a:hover, .menu > li > a:focus {
-        background: #F2F2F2;
-        box-shadow: inset 5px 0px #51C1F1;
-        padding: 15px 15px 15px 25px;
-    }
-
-    .toggle:after {
-        content: attr(data-open);
-        display: block;
-        width: 200px;
-        margin: 33px 0;
-        padding: 10px 50px;
-        background: #51C1F1;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-        text-align: center;
-        font-size: 12px;
-        color: #FFFFFF;
-        -webkit-transition: all 0.5s linear;
-        -moz-transition: all 0.5s linear;
-        -o-transition: all 0.5s linear;
-        transition: all 0.5s linear;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-
-    .toggle:hover:after {
-        background: #45ABD6;
-    }
-
-    #toggle:checked + div .toggle:after {
-        content: attr(data-close);
-    }
-}
-
-/* Sehr kleine Geräte */
-@media only screen and (max-width: 479px) {
-    .header > h1 {
-        text-align: center;
-    }
-
-    .header > h1, .nav, .toggle:after {
-        float: none;
-    }
-
-    .toggle:after {
-        text-align: center;
-        width: 100%;
-    }
-}
