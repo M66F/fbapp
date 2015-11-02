@@ -1,4 +1,5 @@
 //LoginButton mouseover & mouseout EventListener to enable CSS merging of drop down menu to header
+if (isAuthenticated === false) {
 var one = document.getElementById('dropdown'),
 two = document.getElementById('loginButton');
 
@@ -28,3 +29,4 @@ one.addEventListener('mouseout', function(){
 	two.style.boxShadow = "inset 0px 0px";
     two.style.color = "black";
 }, true);
+}

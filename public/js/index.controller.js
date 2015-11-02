@@ -8,6 +8,18 @@ var playerLeft;
 var playerRight;
 
 //**************************************************************************************************
+// if user is logged in, change login Div to Logout
+function SwapDivs()
+{
+    if (isAuthenticated) {
+        document.getElementById('loginButton').remove();
+        document.getElementById('dropdown').remove();
+        document.getElementById('logoutButton').style.display = "block";
+    }
+}
+
+
+//**************************************************************************************************
 //show left container depending on Login Status
 function createRightColumn() {
     if (isAuthenticated) {
@@ -55,7 +67,7 @@ verticalResize();
 requestPlayerList();
 createRightColumn();
 writeWelcomeText();
-
+SwapDivs();
 
 
 //*************************************************************************************
