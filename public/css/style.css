@@ -342,7 +342,7 @@ width:auto;
     border-bottom-color: white;
 }
 #searchText {
-    width:calc(100% - 30px);
+    width:calc(100% - 40px);
 }
 #speechButton {
     vertical-align: middle;

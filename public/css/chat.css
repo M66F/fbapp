@@ -28,7 +28,7 @@ input{
 
 #text {
 
-    width: calc(100% - 60px);
+    width: calc(100% - 70px);
 }
 #chatInput{
     bottom: 0;
