@@ -445,6 +445,10 @@ p.impressum {
     .detailsLeft{
         padding-bottom: 130px;
         overflow:auto;
+        font-size: small;
+    }
+    .detailsRight{
+        font-size: small;
     }
 }
 
@@ -471,6 +475,7 @@ p.impressum {
     padding-bottom: 0px;
     border :none;
     overflow:auto;
+    font-size: small;
 }
 .scrollingText{
     display: none;
