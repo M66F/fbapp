@@ -62,7 +62,7 @@ function createPlayerList() {
                         out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
                         i++;
                     }
-                } else if (localStorage.getItem("spielername").toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")) && includeOwnPlayer == false) {
+                } else if (localStorage.getItem("spielername") && localStorage.getItem("spielername").toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")) && includeOwnPlayer == false) {
                     out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' width = 100 height = 130 draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
                     i++;
                     includeOwnPlayer = true;
