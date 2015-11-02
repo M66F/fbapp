@@ -195,7 +195,7 @@ io.sockets.on('connection', function (socket) {
                 console.log(new Date() + " Following client is now admin: " + clientIp);
             }
         } else if (data.command == '/clear' && isAdmin) {
-            socket.emit('alert', {
+            io.sockets.emit('alert', {
                 message: "History cleared"
             });
             history = [];
