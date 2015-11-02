@@ -47,7 +47,7 @@ var divElementRight = divElementLeft.cloneNode(true);
 divElementRight.lastChild.id = 'dragDropRight';
 
 document.getElementById("textDetailsRight").appendChild(divElementRight);
-
+document.getElementById("inputForm").style.display = "none";
 }
 //*************************************************************************************
 // Initial Setup
@@ -74,12 +74,3 @@ function listenToTheKey(e) {
         }
 }
 
-
-function checkAuth() {
-    if (isAuthenticated) {
-        window.location.href="/cyp";
-    }
-    else {
-        alert('Login to use this feature');
-    }
-}

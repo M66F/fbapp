@@ -305,6 +305,9 @@ a {
     text-align: left;
     font-weight: bold;
 }
+#textDetailsLeft, #textDetailsRight {
+    text-align: center;
+}
 
 .rightColumn {
     height: calc(100%-100px);
@@ -388,4 +391,18 @@ p.impressum {
     font-weight: bold;
     margin: auto;
     margin-top: 3px;
+}
+
+
+.inputPlayer{
+    height: 1.5em;
+    font-size: 14px;
+    width: 100%;
+
+}
+
+#inputForm{
+    text-align: center;
+    font-size: small;
+    display: inline;
 }

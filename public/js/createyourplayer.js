@@ -1,48 +1,52 @@
 //**************************************************************************************************
-//CSS
-//activate ImpressumButton
-var cypButton = document.getElementById('cyp');
-cypButton.style.background = "#F2F2F2";
-cypButton.style.boxShadow = "inset 0px 5px #51C1F1";
-cypButton.style.color = "#51C1F1";
-cypButton.style.padding = "50px 20px 34px";
 
 
-
-document.getElementById("spielername").value = user.name;
-
-
-
-//**************************************************************************************************
-//Global Variables
-//"target" for the drop location of drag&drop event
-var target;
-
-//"playerLeft" and "playerRight" for player comparism
-var playerLeft;
-var playerRight;
-
-//**************************************************************************************************
-//show left container depending on Login Status
-function createRightColumn() {
+function checkAuth() {
     if (isAuthenticated) {
-        document.getElementById("login").style.display = "block";
-        document.getElementById("userImage").src = user.imageURL;
-        document.getElementById("userName").appendChild(document.createTextNode("Eingeloggt als "+user.name+"."));
-    } else {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("chat").style.display = "none";
-    }
-}
+        
+        if(localStorage.getItem("pictureURL")) {
+            //get order in div container
+            var textDetailsLeft = document.getElementById("textDetailsLeft");
+            var img = new Image();
+            textDetailsLeft.parentNode.insertBefore(textDetailsLeft,textDetailsLeft.parentNode.children[0]);
+      
+            if (textDetailsLeft.parentNode.children[2]) {
+               textDetailsLeft.parentNode.removeChild(textDetailsLeft.parentNode.children[2]);
+            }; 
+            // picture input
+            img.src = localStorage.getItem("pictureURL");
+            img.onload = function() {
+                textDetailsLeft.innerHTML =
+                    "<img src='" + img.src + "' style='width:100px;height:120;' draggable = false id = 'playerPic'>" + "<br>" +
+                    "<input type='file' name='file' id='fileSelect' accept='image/x-png, image/gif, image/jpeg' />" +
+                        "<input type='button' id='reset' onclick='resetPlayerImage()' value='reset' />";
+                document.getElementById('fileSelect').onchange = function(evt) {
+                    handleFileSelect(evt.srcElement.files[0]);
+                };
+            }
 
-//*************************************************************************************
-// Initial Setup
-verticalResize();
-createRightColumn();
-if (isAuthenticated) {
-    requestPlayerDetail("userImage");
-} else {
-    writeWelcomeText();
+
+        }
+        else {
+            textDetailsLeft.innerHTML =
+                "<img src='" + user.imageURL + "' style='width:100px;height:120;' draggable = false id = 'playerPic'>" + "<br>" +
+                "<input type='file' name='file' id='fileSelect' accept='image/x-png, image/gif, image/jpeg' />";
+            document.getElementById('fileSelect').onchange = function(evt) {
+                handleFileSelect(evt.srcElement.files[0]);
+            };
+        }
+
+
+    
+
+    document.getElementById("inputForm").style.display = "block";
+
+    document.getElementById("spielername").value = user.name;
+
+    }
+    else {
+        alert('Login to use this feature');
+    }
 }
 
 // Function to save player into local storage
@@ -117,19 +121,22 @@ function parseDate(input) {
     }
 }
 
+function handleFileSelect(file) {
+        // Only process image files.
+        if (!file.type.match('image.*')) {
+            return;
+        }
 
-//*************************************************************************************
-window.onkeypress = listenToTheKey;
-var parrot = 0;
-function listenToTheKey(e) {
-    if (e.keyCode == 35 || e.charCode == 35) {
-        if(parrot == 0) {
-            document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";
-            parrot = 1;
-        }
-        else {
-            document.getElementById("thelogo").style.background = "url('')";
-            parrot = 0;
-        }
-    }
+    var reader = new FileReader();
+    reader.onload = readSuccess;
+    function readSuccess(evt) {
+        localStorage.setItem("pictureURL", evt.target.result);
+        location.reload(); // reload for new picture
+    };
+    reader.readAsDataURL(file);
+}
+
+function resetPlayerImage() {
+    localStorage.setItem("pictureURL", user.imageURL);
+    location.reload(); // reload for new picture
 }

@@ -93,9 +93,17 @@ httpRequest.status = 200;
 
                     //clear current content 
                 var container = document.getElementById(Dom);
-                while (container.firstChild) {container.removeChild(container.firstChild);}
-
+                for (var i = 0; i < container.children.length; i++) {
+                    if (container.children[i].id == "inputForm") {
+                container.children[i].style.display="none";
+            } else {
+                container.removeChild(container.children[i]);
+                i--; // because the children will move up in the array
+            }
+                };
+                //fill with image
                 var divImage = document.createElement('div');
+                divImage.id = "textDetailsLeft";
                 divImage.align = 'center';
                 var image = document.createElement('img');
                 image.src = chosenPlayer.PictureURL;
@@ -106,8 +114,7 @@ httpRequest.status = 200;
                 console.log(chosenPlayer);
                 document.getElementById(Dom).appendChild(divImage);
 
-                // [Detailkategorie, property im Spielerobjekt, Position im Rating-Array (wenn vorhanden)]
-
+                //and table
                 var table = document.createElement('table');
                 table.style.marginLeft, table.style.marginRight = 'auto';
 
