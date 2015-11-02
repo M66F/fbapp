@@ -45,9 +45,15 @@ Der Server läuft auf dem Port 80.
     Server Config, Websocket Server Config & Funktionen
 ## crawly
 *   data
-*   nodeDemo
+
+        Ordner mit den JSON-encoded .pd Spielerdaten-Dateien
 *   crawly.py
+
+        Hauptscript zum Sammeln der Spielerdaten in die .pd Dateien
+        
 *   start.py
+
+        Script zum Starten von crawly.py, enthält die Spieler, die gesammelt werden sollen
 
 ## passport 
     Einstellungen für den OAuth Login bei Facebook und Twitter
