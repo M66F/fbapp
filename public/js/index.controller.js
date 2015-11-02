@@ -9,8 +9,7 @@ var playerRight;
 
 //**************************************************************************************************
 // if user is logged in, change login Div to Logout
-function SwapDivs()
-{
+function SwapDivs() {
     if (isAuthenticated) {
         document.getElementById('loginButton').remove();
         document.getElementById('dropdown').remove();
@@ -23,13 +22,13 @@ function SwapDivs()
 //show left container depending on Login Status
 function createRightColumn() {
     if (isAuthenticated) {
-         document.getElementById("login").style.display = "block";
-         document.getElementById("userImage").src = user.imageURL;
-         document.getElementById("userName").innerHTML = "Eingeloggt als "+user.name+".";
+        document.getElementById("login").style.display = "block";
+        document.getElementById("userImage").src = user.imageURL;
+        document.getElementById("userName").innerHTML = "Eingeloggt als " + user.name + ".";
     } else {
-         document.getElementById("login").style.display = "none";
-         document.getElementById("chat").style.display = "none";
-   }  
+        document.getElementById("login").style.display = "none";
+        document.getElementById("chat").style.display = "none";
+    }
 }
 
 //*************************************************************************************
@@ -42,23 +41,23 @@ function writeWelcomeText() {
     var brElement = document.createElement('br');
     var imgElement = document.createElement('img');
 
-divElementLeft.align = 'center';
-divElementLeft.style.paddingTop ='20px';
+    divElementLeft.align = 'center';
+    divElementLeft.style.paddingTop = '20px';
 
-imgElement.src = '/static/img/dragFile.png';
-imgElement.id = 'dragDropLeft';
+    imgElement.src = '/static/img/dragFile.png';
+    imgElement.id = 'dragDropLeft';
 
-divElementLeft.appendChild(welcomeText);
-divElementLeft.appendChild(brElement);
-divElementLeft.appendChild(brElement.cloneNode(true));
-divElementLeft.appendChild(imgElement);
+    divElementLeft.appendChild(welcomeText);
+    divElementLeft.appendChild(brElement);
+    divElementLeft.appendChild(brElement.cloneNode(true));
+    divElementLeft.appendChild(imgElement);
 
-document.getElementById("textDetailsLeft").appendChild(divElementLeft);
+    document.getElementById("textDetailsLeft").appendChild(divElementLeft);
 
-var divElementRight = divElementLeft.cloneNode(true);
-divElementRight.lastChild.id = 'dragDropRight';
+    var divElementRight = divElementLeft.cloneNode(true);
+    divElementRight.lastChild.id = 'dragDropRight';
 
-document.getElementById("textDetailsRight").appendChild(divElementRight);
+    document.getElementById("textDetailsRight").appendChild(divElementRight);
 
 }
 //*************************************************************************************
@@ -73,25 +72,24 @@ SwapDivs();
 //*************************************************************************************
 window.onkeypress = listenToTheKey;
 var parrot = 0;
+
 function listenToTheKey(e) {
-        if (e.keyCode == 35 || e.charCode == 35) {
-            if(parrot == 0) {
-                document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";
-                parrot = 1;
-            }
-            else {
-                document.getElementById("thelogo").style.background = "url('')";
-                parrot = 0;
-            }
+    if (e.keyCode == 35 || e.charCode == 35) {
+        if (parrot == 0) {
+            document.getElementById("thelogo").style.background = "url('http://i.imgur.com/9r4dE69.gif')";
+            parrot = 1;
+        } else {
+            document.getElementById("thelogo").style.background = "url('')";
+            parrot = 0;
         }
+    }
 }
 
 
 function checkAuth() {
     if (isAuthenticated) {
-        window.location.href="/cyp";
-    }
-    else {
+        window.location.href = "/cyp";
+    } else {
         alert('Login to use this feature');
     }
 }

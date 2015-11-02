@@ -1,6 +1,6 @@
 /*Navigation Header*/
 /*--------------------------------
- Functional Styles (Required)
+ Functional Styles
 ---------------------------------*/
 
 .header { position: relative; }
@@ -17,10 +17,8 @@
 	.toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
 	#toggle:checked + div .menu { display: block; opacity: 1;}
 }
-
-
 /*--------------------------------
- Presentation Styles (Editable)
+ Presentation Styles
 ---------------------------------*/
 
 /*
