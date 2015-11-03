@@ -60,6 +60,7 @@ function createPlayerList() {
                 img.setAttribute("ondragstart","drag(event)");
                 img.height = 130;
                 img.width = 100;
+                img.setAttribute("onclick", "mobileOnclick(this.id)");
             var p = document.createElement("p");
 
             function appendToUl () {
@@ -92,6 +93,7 @@ function createPlayerList() {
                         img.src = playerList[player].imageurl;
                         img.id=playerList[player].filename;
                         p.appendChild(document.createTextNode(playerList[player].playername));
+
 
                     i++;
                     appendToUl();
@@ -130,6 +132,13 @@ function createPlayerList() {
         } else {
             alert('There was a problem with the get playerList request.');
         }
+    }
+}
+
+function mobileOnclick(filename) {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        target = "detailsLeft";
+        requestPlayerDetail(filename);
     }
 }
 
