@@ -10,13 +10,14 @@
 .clearfix:before, .clearfix:after { display: table; content: ""; }
 .clearfix:after { clear: both; }
 
+/*
 @media only screen and (max-width: 768px){
 	.menu { display: none; opacity: 0; width: 100%; position: absolute; right: 0; }
 	.menu > li { display: block; width: 100%; margin: 0; }
 	.menu > li > a { display: block; width: 100%; text-decoration: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 	.toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
 	#toggle:checked + div .menu { display: block; opacity: 1;}
-}
+}*/
 /*--------------------------------
  Presentation Styles
 ---------------------------------*/
@@ -166,7 +167,9 @@ Reset Backgrounds to enable the backgroundpicture
 	z-index: 2;
 }
 
+
 /*make Menu responsive*/
+/*
 @media only screen and (max-width: 768px){
 	.menu{
 		background: #FFFFFF;
@@ -230,7 +233,7 @@ Reset Backgrounds to enable the backgroundpicture
 	.toggle:after {
 		text-align: center; width: 100%;
 	}
-}
+}*/
 /************End of Menu******************/
 
 
@@ -384,9 +387,6 @@ div#impwrap{
     padding: 1em 1em;
 }
 
-p.impressum {
-    padding-bottom: 1em;
-}
 
 .scrollingText {
     height: 20px;
@@ -410,7 +410,10 @@ p.impressum {
     display: inline;
 }
 
-
+.logoImg{
+    height: 80px;
+    width: auto;
+}
 @media only screen and (max-width: 1070px){
 
 .rightColumn{
@@ -420,24 +423,28 @@ p.impressum {
     width:calc(80% - 12px);
 }
 
-}
-
 @media only screen and (max-width: 820px){
 
-.detailsLeft{
-    width:calc(100% - 6px);
-    padding-bottom: 60px;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-color: white;
-    overflow:auto;
+    .detailsLeft{
+        width:calc(100% - 6px);
+        padding-bottom: 60px;
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: white;
+        overflow:auto;
+
+    }
+    .detailsRight{
+        width:calc(100% - 6px);
+
+    }
+    
+    ul > li > .loginButton, ul > li > .cyp, ul > li > ul > li {
+        display: none;
+    }
 
 }
-.detailsRight{
-    width:calc(100% - 6px);
 
-}
-}
 @media only screen and (max-width: 650px){
 
     .leftColumn{
@@ -451,35 +458,55 @@ p.impressum {
     .detailsLeft{
         padding-bottom: 130px;
         overflow:auto;
+        font-size: small;
+    }
+    .detailsRight{
+        font-size: small;
+    }
+    
+    ul > li > .rare  {
+        display: none;
     }
 }
 
 @media only screen and (max-width: 500px){
+    ul > li > .impressum{
+        display: none
+    }
+    
+    .logoImg{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .leftColumn{
+        width: calc(100% - 3px);
+        height: 225px;
+        border-bottom-style: solid;
+        border-bottom-width: 3px;
+        border-bottom-color: white;
+    }
+    .playerDetails{
+        width: calc(100% - 6px);
+    }
 
-.leftColumn{
-    width: calc(100% - 3px);
-    height: 225px;
-    border-bottom-style: solid;
-    border-bottom-width: 3px;
-    border-bottom-color: white;
-}
-.playerDetails{
-    width: calc(100% - 6px);
-}
-
-.detailsRight{
-    display: none;
-}
-.detailsLeft{
-    padding-bottom: 0px;
-    border :none;
-    overflow:auto;
-}
-.scrollingText{
-    display: none;
-}
-#textDetailsLeft{
-    display:none;
-}
-
+    .detailsRight{
+        display: none;
+    }
+    .textDetailsLeft{
+        display: none;
+    }
+    .detailsLeft{
+        padding-bottom: 0px;
+        border :none;
+        overflow:auto;
+        font-size: small;
+    }
+    .scrollingText{
+        display: none;
+    }
+    #textDetailsLeft{
+        display:none;
+    }
 }
