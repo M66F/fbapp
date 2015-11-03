@@ -19,16 +19,18 @@
 <body>
 
     <div class="header clearfix">
+
         <div class="nav">
+
             <input type="checkbox" id="toggle" />
             <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu"></label>
             <ul class="menu">
                 <li><a class="rare">Rare</a></li>
-                <li><a ID='cyp' onclick="checkAuth()">Create Your Player</a></li>
-                <li><a ID='impressumButton' href="/impressum">Impressum</a></li>
-                <li><a style="cursor: pointer;" ID="loginButton">Login</a>
+                <li><a style="cursor: pointer;" ID='cyp' class="cyp" onclick="checkAuth()">Create Your Player</a></li>
+                <li><a ID='impressumButton' class='impressum' href="/impressum">Impressum</a></li>
+                <li><a style="cursor: pointer;" ID="loginButton" class='loginButton'>Login</a>
 
-                    <ul ID="dropdown">
+                    <ul ID="dropdown" class='dropdown'>
                         <li><a href="/auth/facebook" class="facebook">Facebook</a></li>
                         <li><a href="/auth/twitter" class="twitter">Twitter</a></li>
                     </ul>
@@ -38,8 +40,10 @@
             </ul>
 
         </div>
+
         <div class="logo" ID="thelogo" href="/">
-            <a href="/"><img src="/static/img/logo.png" height="90" width=auto></img>
+            <a href="/"><img src="/static/img/logo.png" class="logoImg"></img>
             </a>
         </div>
+
     </div>
