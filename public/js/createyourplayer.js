@@ -1,21 +1,13 @@
 //**************************************************************************************************
 
-//CSS
-//activate ImpressumButton
-function activateImpressum() {
-    var cypButton = document.getElementById('cyp');
-    cypButton.style.background = "#F2F2F2";
-    cypButton.style.boxShadow = "inset 0px 5px #51C1F1";
-    cypButton.style.color = "#51C1F1";
-    cypButton.style.padding = "50px 20px 34px";
-}
+
 
 function checkAuth() {
     if (isAuthenticated) {
-        
+        var textDetailsLeft = document.getElementById("textDetailsLeft");
         if(localStorage.getItem("pictureURL")) {
             //get order in div container
-            var textDetailsLeft = document.getElementById("textDetailsLeft");
+            
             var img = new Image();
             textDetailsLeft.parentNode.insertBefore(textDetailsLeft,textDetailsLeft.parentNode.children[0]);
       

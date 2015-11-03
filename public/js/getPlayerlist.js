@@ -30,7 +30,6 @@ function createPlayerList() {
             }
             //create a string with HTML code, which will turn into a List of all Players from the JSON
             //start of the List
-            var out = "<ul style='list-style: none;padding:0;margin:0;'>";
             // get search string
             var searchString = document.getElementById('searchText').value;
 
@@ -50,38 +49,90 @@ function createPlayerList() {
             var random = Math.floor(Math.random()*((numberOfPlayers-limitSize)-0+1)+0);
             var includeOwnPlayer = false;
 
+            //structure for player preparation
+            var ul = document.createElement("ul");
+                ul.id = "ul";
+            var li = document.createElement("li");
+            var div = document.createElement("div");
+                div.classList.add("playerBox");
+            var img = document.createElement("img");
+                img.setAttribute("draggable","true");
+                img.setAttribute("ondragstart","drag(event)");
+                img.height = 130;
+                img.width = 100;
+            var p = document.createElement("p");
+
+            function appendToUl () {
+
+                    div.appendChild(img);
+                    div.appendChild(p);
+                    li.appendChild(div);
+                    ul.appendChild(li);
+            }
 
             //loop through the players in the JSON file
             for (var player in playerList) {
+
+            img= img.cloneNode(false);
+            p = p.cloneNode(false);
+            div = div.cloneNode(false);
+            li = li.cloneNode(false);
+                    //create a button with id and drag capability for each player ( the  function called by drop will get you detailed info on the player of the button)
+
                 if (searchString == "") {
                     if(localStorage.getItem("saveFlag") == "true" && localStorage.getItem("pictureURL") && i == 0) {
-                        out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' width = 100 height = 130 draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
+                        img.src = localStorage.getItem('pictureURL');
+                        img.id='ownPlayer';
+                        p.appendChild(document.createTextNode(localStorage.getItem("spielername")));
+
                         i++;
+                    appendToUl();
                     }
                     if(j >= random && j < random+limitSize) {
-                        out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
-                        i++;
+                        img.src = playerList[player].imageurl;
+                        img.id=playerList[player].filename;
+                        p.appendChild(document.createTextNode(playerList[player].playername));
+
+                    i++;
+                    appendToUl();
                     }
-                } else if (localStorage.getItem("spielername") && localStorage.getItem("spielername").toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")) && includeOwnPlayer == false) {
-                    out += "<li><div class= 'playerBox'><img src=" + localStorage.getItem('pictureURL') + " id='ownPlayer' width = 100 height = 130 draggable='true' ondragstart='drag(event)' ><p>" + localStorage.getItem("spielername") + "</p></div></li>";
+                }
+                else if (localStorage.getItem("spielername") && localStorage.getItem("spielername").toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*")) && includeOwnPlayer == false) {
+                        
+                        img.src = localStorage.getItem('pictureURL');
+                        img.id='ownPlayer';
+                        p.appendChild(document.createTextNode(localStorage.getItem("spielername")));
+
                     i++;
                     includeOwnPlayer = true;
+                appendToUl();
                 }
                 else if ((playerList[player].playername.toUpperCase().match(searchString.toUpperCase().replace(" ", "(.)*"))) && i < limitSize) {
-                    //create a button with id and onclick for each player ( the  function called by onclick will get you detailed info on the player of the button)
-                    out += "<li><div class= 'playerBox'><img src=" + playerList[player].imageurl + " id='" + playerList[player].filename + "' draggable='true' ondragstart='drag(event)' ><p>" + playerList[player].playername + "</p></div></li>";
+                       
+                        img.src = playerList[player].imageurl;
+                        img.id=playerList[player].filename;
+                        p.appendChild(document.createTextNode(playerList[player].playername));
                     i++;
+                appendToUl();
                 }
+
+
+
                 j++; // loop counter for random start
             }
 
-            //end the list
-            out += "</ul>"
-            //bring the code to create the List of Buttons into the HTML-Webpage
-            document.getElementById("playerColumn").innerHTML = out;
+            //end of list
+            
+            //bring the List of Buttons into the DOM
+            document.getElementById("playerColumn").innerHTML = "";
+            document.getElementById("playerColumn").appendChild(ul);
 
         } else {
             alert('There was a problem with the get playerList request.');
         }
     }
 }
+
+
+
+
